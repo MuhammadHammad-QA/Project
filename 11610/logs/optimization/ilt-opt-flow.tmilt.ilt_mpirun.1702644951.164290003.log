@@ -1,0 +1,18 @@
+PE Hostfile is '/opt/gridengine/default/spool/big-0-11/active_jobs/6728267.1/pe_hostfile' and originally contained:
+----------------------------------------------------------
+big-0-11.local 2 all.q@big-0-11.local UNDEFINED
+big-0-12.local 2 all.q@big-0-12.local UNDEFINED
+big-0-10.local 2 all.q@big-0-10.local UNDEFINED
+big-0-9.local 2 all.q@big-0-9.local UNDEFINED
+----------------------------------------------------------
+Revised PE Hostfile is 'intermediate/ilt_mpirun_info/pe_hostfile.6728267.1.1702644951.164290003' and now contains:
+----------------------------------------------------------
+big-0-11.local 4 all.q@big-0-11.local UNDEFINED
+big-0-12.local 4 all.q@big-0-12.local UNDEFINED
+big-0-10.local 4 all.q@big-0-10.local UNDEFINED
+big-0-9.local 4 all.q@big-0-9.local UNDEFINED
+----------------------------------------------------------
+
+[Fri Dec 15 07:55:51 EST 2023: run=1] mpirun tmilt-flow-wrapper --logfile logs/optimization /mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/data/appliance/tcl_scripts/ilt-opt-flow.tmilt --debug-flags logMPI logMPITime logCosts quantizerStrategy=add --partition-info-wafer-target /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/intermediate/divi.output.wafer_target/divi.ini --partition-info-mask-geom /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/intermediate/divi.output.mask_geom/divi.ini --partition-info-no-ilt-no-cost /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/intermediate/divi.output.no_ilt_no_cost/divi.ini --partition-info-no-ilt-yes-cost /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/intermediate/divi.output.no_ilt_yes_cost/divi.ini --errors-layer-number 200 --num-iterations 100 --model-file /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/input/Micron44L-Fermi-Kernel2048nm-8nm-v14.tmod --mwco-enabled 0 --mask-model-file  --min-width-nm 12.5 --min-spacing-nm 12.5 --min-area-nm2 500 --min-curvature-radius-nm 6 --dark-stripes none --export-mbf 1 --do-xor-check 1 --do-epe-check 1 --do-mrc-check 1 --pv-band-full 0 --pv-band-dose 1 --pv-band-focus 1 --epe-threshold-nm 2 --pv-threshold-nm 5 --do-dlilt 0 --nominal-tag f0d0 --plus-dose-tag f0dp --minus-dose-tag f0dn --plus-focus-tag fp1d0 --minus-focus-tag fn1d0 --nominal-weight 0.4 --dose-weight 0 --focus-weight 0.6 --match-to-nominal-weight 1 --flow-number 11610 --failures-dir logs/failures/20231215125537Z0ad1b1ab1d3f0600 --legalize 1 --correction-distance  --dlilttrain-case  --design-file /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/input/contactsNew44L-design.oas
+No retry marker file found.
+Exit code 0

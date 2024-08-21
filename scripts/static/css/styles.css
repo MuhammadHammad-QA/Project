@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+table {
+    border: 1px solid #dee2e6;
+    background-color: #ffffff;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}

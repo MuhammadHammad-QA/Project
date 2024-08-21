@@ -1,0 +1,199 @@
+[Main_Stats]
+fermi_id = 11610
+checker_id = 0
+gpu = 8
+expect_run_time_50_gpu = 583.88
+expect_run_time_1_gpu = 29193.76
+user = d2susr06
+name = contactsNew44L-design
+max_err_per_partion = None
+total_errors = None
+design_size = 0.85785 x 0.844296
+mask_file_size = 2258.88
+recipe_name = None
+mbf_size = 2662.4
+pdose_simulation_size = 413.95
+pdefocus_simulation_size = 430.4
+ndefocus_simulation_size = 430.4
+nominal_simulation_size = 435.32
+ndose_simulation_size = 459.48
+target_file_size = 355.67
+machine_name = cdp38
+run_date_time = 2023-12-15 12:24:23.548924
+revision_branch = ILT.2023.02.RC1.20231212.212240
+revision_commit = tags/ILT.2023.02.RC1.20231212.212240-0-gf438a7dd7cc98d964a791c8cd048ee18c7d9b728
+revision_date = 2023-12-13
+fermi_job_name = ContactNew44L
+tmod_name = Micron44L-Fermi-Kernel2048nm-8nm-v14.tmod
+process_condition = f0d0_fp1d0_fn1d0_f0dp_f0dn_0.4_0_0.6_1
+partition = 30 x 30
+grid = 8
+optimizer_iterations = None
+force_flag = False
+force_screenshot = False
+mpi_retry_count = None
+num_qtm3_iterations = None
+num_qtm4_iterations = None
+num_qtm5_iterations = None
+mask_num_deleted_shapes = None
+mask_num_upsized_shapes = None
+num_pixel_corrections = None
+num_part_corrections = None
+delete_mask_polygon_count = None
+delete_mask_polygon_max = None
+delete_mask_polygon_min = None
+upsizing_mask_polygon_count = None
+upsizing_mask_polygon_max = None
+upsizing_mask_polygon_min = None
+number_of_optimized_partitions = 900
+total_number_of_partitions = 900
+parsing_time = False
+
+[Runtime_Analysis_Stats]
+target_prep_runtime = 399.8191
+ctm_fg = 810.8500
+qtm_fg = 3848.3311
+ctm_prep = 2171.2153
+qtm0_prep = 852.9773
+qtm1_prep = 1043.2887
+qtm2_prep = 1113.3378
+qtm3_prep = 614.0774
+qtm4_prep = 0
+qtm5_prep = 0
+qtm0_total = 1259.5336
+qtm1_total = 1609.342
+qtm2_total = 1956.2838
+qtm3_total = 4419.0413
+qtm4_total = 0
+qtm5_total = 0
+ctm_exec_time = 3150.6588
+qtm_exec_time = 11062.5420
+total_prediction_time = None
+mrc1_time = 1317.0721
+mrc2_time = 486.0263
+mbf_exec_time = 192.783
+postprocess_exec_time = 1333.140
+total_fermi_runtime = 16005
+the_checker_runtime = None
+
+[Geometric_Analysis_Stats_Fermi]
+mrc_area_count = 0
+mrc_area_max_value = 0.0
+mrc_area_min_value = 0.0
+mrc_area_marker_x = 0
+mrc_area_marker_y = 0
+imrcfix_max_correction_max_value = None
+imrcfix_total_number_of_fixed_mrc_width_errors_count = None
+imrcfix_total_number_of_partially_fixed_mrc_width_errors_count = None
+imrcfix_the_worst_width_error_overall_max_value = None
+imrcfix_total_number_of_fixed_mrc_spacing_errors_count = None
+imrcfix_total_number_of_partially_fixed_mrc_spacing_errors_count = None
+imrcfix_the_worst_spacing_error_overall_max_value = None
+imrcfix_total_number_of_unimproved_mrc_errors_count = None
+high_curvature_internal_checking_setting = 6
+high_curvature_external_checking_setting = 6
+mrc_area_setting = 500
+mrc_spacing_setting = 12.5
+mrc_width_setting = 12.5
+mrc_width_count = 0
+mrc_width_max_value = 0.0
+mrc_width_min_value = 0.0
+mrc_width_marker_x = 0
+mrc_width_marker_y = 0
+mrc_spacing_count = 0
+mrc_spacing_max_value = 0.0
+mrc_spacing_min_value = 0.0
+mrc_spacing_marker_x = 0
+mrc_spacing_marker_y = 0
+high_curvature_internal_checking_count = 0
+high_curvature_internal_checking_max_value = 0.0
+high_curvature_internal_checking_min_value = 0.0
+high_curvature_internal_checking_marker_x = 0
+high_curvature_internal_checking_marker_y = 0
+high_curvature_external_checking_count = 0
+high_curvature_external_checking_max_value = 0.0
+high_curvature_external_checking_min_value = 0.0
+high_curvature_external_checking_marker_x = 0
+high_curvature_external_checking_marker_y = 0
+xor_error_of_nominal_contour_greater_than_15_count = 0
+xor_error_of_nominal_contour_greater_than_15_max_value = 0.0
+xor_error_of_nominal_contour_greater_than_15_min_value = 0.0
+xor_error_of_nominal_contour_greater_than_15_marker_x = 0
+xor_error_of_nominal_contour_greater_than_15_marker_y = 0
+xor_error_of_negative_dose_greater_than_15_count = 0
+xor_error_of_negative_dose_greater_than_15_max_value = 0.0
+xor_error_of_negative_dose_greater_than_15_min_value = 0.0
+xor_error_of_negative_dose_greater_than_15_marker_x = 0
+xor_error_of_negative_dose_greater_than_15_marker_y = 0
+xor_error_of_positive_dose_greater_than_15_count = 0
+xor_error_of_positive_dose_greater_than_15_max_value = 0.0
+xor_error_of_positive_dose_greater_than_15_min_value = 0.0
+xor_error_of_positive_dose_greater_than_15_marker_x = 0
+xor_error_of_positive_dose_greater_than_15_marker_y = 0
+xor_error_of_negative_defocus_greater_than_15_count = 0
+xor_error_of_negative_defocus_greater_than_15_max_value = 0.0
+xor_error_of_negative_defocus_greater_than_15_min_value = 0.0
+xor_error_of_negative_defocus_greater_than_15_marker_x = 0
+xor_error_of_negative_defocus_greater_than_15_marker_y = 0
+xor_error_of_positive_defocus_greater_than_15_count = 0
+xor_error_of_positive_defocus_greater_than_15_max_value = 0.0
+xor_error_of_positive_defocus_greater_than_15_min_value = 0.0
+xor_error_of_positive_defocus_greater_than_15_marker_x = 0
+xor_error_of_positive_defocus_greater_than_15_marker_y = 0
+
+[Statistical_Analysis:EPE_Target_vs_Mask_Simulation_Negfocus]
+mean_fermi = -0.56
+std_fermi = 0.47
+max_fermi = 4.2
+count_fermi = 343945
+marker_x_fermi = 833398.5
+marker_y_fermi = 33297.5
+
+[Statistical_Analysis:EPE_Target_vs_Mask_Simulation_Negdose]
+mean_fermi = 3.08
+std_fermi = 0.6
+max_fermi = 6.47
+count_fermi = 844707
+marker_x_fermi = 680194.8
+marker_y_fermi = 133342.9
+
+[Statistical_Analysis:EPE_Target_vs_Nominal_Mask_Simulation_f0d0]
+mean_fermi = -0.04
+std_fermi = 0.41
+max_fermi = 2.79
+count_fermi = 8774
+marker_x_fermi = 833396.2
+marker_y_fermi = 33301.3
+
+[Statistical_Analysis:EPE_Target_vs_Mask_Simulation_Posfocus]
+mean_fermi = -0.56
+std_fermi = 0.47
+max_fermi = 4.2
+count_fermi = 343945
+marker_x_fermi = 833398.5
+marker_y_fermi = 33297.5
+
+[Statistical_Analysis:EPE_Target_vs_Mask_Simulation_Posdose]
+mean_fermi = -2.62
+std_fermi = 0.63
+max_fermi = 5.72
+count_fermi = 790410
+marker_x_fermi = 833397.7
+marker_y_fermi = 33296.0
+
+[Statistical_Analysis:Width_of_PV_Band_by_Dose]
+mean_fermi = 5.75
+std_fermi = 0.81
+max_fermi = 10.01
+count_fermi = 820367
+marker_x_fermi = 635002.5
+marker_y_fermi = 165332.7
+
+[Statistical_Analysis:Width_of_PV_Band_by_Focus]
+mean_fermi = 0.56
+std_fermi = 0.21
+max_fermi = 2.41
+count_fermi = 0
+marker_x_fermi = 0
+marker_y_fermi = 0
+

@@ -1,0 +1,8 @@
+PE Hostfile is '/opt/gridengine/default/spool/big-0-8/active_jobs/6731797.1/pe_hostfile' and contains:
+----------------------------------------------------------
+big-0-8.local 1 all.q@big-0-8.local UNDEFINED
+----------------------------------------------------------
+
+[Fri Dec 15 12:24:23 EST 2023: run=1] mpirun with_locked_gpu --logfile=logs/exporting -- d2spython3 --logfile=logs/exporting/publish_recipe.pyc.log /mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python/d2s/ILT/publish_recipe.pyc -i intermediate/tmilt_recipes/recipe_candidate -r output/tmilt_recipes -n recipe_candidate
+No retry marker file found.
+Exit code 0
