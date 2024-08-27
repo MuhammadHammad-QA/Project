@@ -1,0 +1,3241 @@
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# d2s Inverse Lithography Technology
+# TrueMask® ILT - version ILT.2023.02, 2023-Dec-13 - build 23347.gf438a7dd7c
+# 
+# D2S Inc. - www.design2silicon.com - support@design2silicon.com
+# Copyright D2S Inc., 2017-2023.  All rights reserved.
+# D2S Inc. Proprietary and Trade Secret.
+# D2S Inc. Proprietary and Confidential.
+# 
+# Covered by one or more patents: 
+#   Information: http://design2silicon.com/patents.
+# Other patents pending.
+# 
+# 
+# ------------------------------------------------------
+#  Some portions of this product suite may use
+#  third-party code which is either open source
+#  or purchased by D2S Inc. as a commercial product.
+#  Certain of these packages may require notices to
+#  be listed with the D2S Inc. copyright notice; these
+#  are listed below.  Since others may not have this
+#  requirement, this may not be a complete list.
+#  More details of packages and their terms may
+#  be found in the 'third_party/copyrights'
+#  directory of this product installation and/or
+#  in the purchase agreement for this product suite.
+#  Where the terms require D2S Inc. to make source
+#  code for a package available to our customers,
+#  the source can be found in the 'third_party/src'
+#  directory of this product installation.  In cases
+#  where D2S Inc. has made modifications to the source,
+#  both the unmodified and the modified versions
+#  will be found there.
+# ------------------------------------------------------
+# 
+# Some portions of this product suite may use some subsets
+# of the NLopt package from MIT.  Most of NLopt is covered
+# by the MIT license, but the 'luksan' subset is covered by
+# the GNU LGPL, version 2.1, and is used by permission.
+# A copy of all NLopt licenses is available in the
+# third_party/copyrights directory of this installation.
+# 
+# D2S uses an slightly modified version of the NLopt package; full
+# source code is for both the unmodified original and the modified
+# version we use is available in the third_party/src directory
+# of this installation.  The latest unmodified version of the source
+# may also be found online at:
+#    http://ab-initio.mit.edu/wiki/index.php/NLopt
+# 
+# A copy of Perl 5.22.0 is included in this release.  Perl is
+# free software; source is included in the third_party/src directory of
+# this installation and is also available online at http://www.perl.org and
+# http://www.cpan.org.
+# 
+# Portions of this product suite may use D2S-modified Eigen
+# version 3.0.4.  D2S-modified Eigen is used and distributed under
+# the terms of the GNU Lesser General Public License, version 3.
+# A copy of the license is included in the third_party/copyrights
+# directory of this installation.  A copy of the source for
+# D2S-modified Eigen is included in the third_party/src directory
+# of this installation.  The original unmodified source for Eigen
+# is also included in that directory and can be obtained online
+# at http://eigen.tuxfamily.org.
+# 
+# Some portions of this product suite use Python® 3, version 3.9.16.
+# ("Python" is a registered trademark of the Python Software Foundation.)
+# 
+# Python itself has not been modified; however, a number of extra
+# opensource packages have been added to this version as listed in the
+# table below.  None of these have been modified.  These are in addition
+# to the standard Python modules.  Note that this list is subject to
+# change without notice in future D2S product releases.
+# 
+# A tarkit containing the sources/wheels for this version of Python and all
+# the additional packages can be found in the third_party/src directory
+# of this product distribution.  Copyright/license info for the various
+# packages are included in their respective installation kits.
+# 
+# Package                       Version
+# --------------------          --------
+# absl-py                       1.4.0
+# alembic                       1.11.1
+# ansiwrap                      0.8.4
+# anyio                         3.7.0
+# argon2-cffi                   21.3.0
+# argon2-cffi-bindings          21.2.0
+# arrow                         1.2.3
+# asttokens                     2.2.1
+# astunparse                    1.6.3
+# attrs                         23.1.0
+# backcall                      0.2.0
+# beautifulsoup4                4.12.2
+# bleach                        6.0.0
+# cachetools                    5.3.1
+# certifi                       2023.5.7
+# cffi                          1.15.1
+# charset-normalizer            3.1.0
+# click                         8.1.3
+# cloudpickle                   2.2.1
+# cmaes                         0.9.1
+# colorlog                      6.7.0
+# comm                          0.1.3
+# contourpy                     1.1.0
+# cycler                        0.11.0
+# debugpy                       1.6.7
+# decorator                     5.1.1
+# defusedxml                    0.7.1
+# entrypoints                   0.4
+# exceptiongroup                1.1.1
+# executing                     1.2.0
+# fastjsonschema                2.17.1
+# flatbuffers                   23.5.26
+# fonttools                     4.40.0
+# fqdn                          1.5.1
+# gast                          0.4.0
+# google-auth                   2.21.0
+# google-auth-oauthlib          1.0.0
+# google-pasta                  0.2.0
+# greenlet                      2.0.2
+# grpcio                        1.56.0
+# h5py                          3.9.0
+# horovod                       0.28.1
+# idna                          3.4
+# importlib-metadata            6.7.0
+# importlib-resources           5.12.0
+# iniconfig                     2.0.0
+# ipykernel                     6.23.3
+# ipython                       8.14.0
+# ipython-genutils              0.2.0
+# ipywidgets                    8.0.6
+# isoduration                   20.11.0
+# jax                           0.4.13
+# jedi                          0.18.2
+# Jinja2                        3.1.2
+# jsonpointer                   2.4
+# jsonschema                    4.17.3
+# jupyter                       1.0.0
+# jupyter-console               6.6.3
+# jupyter-events                0.6.3
+# jupyter_client                8.3.0
+# jupyter_core                  5.3.1
+# jupyter_server                2.7.0
+# jupyter_server_terminals      0.4.4
+# jupyterlab-pygments           0.2.2
+# jupyterlab-widgets            3.0.7
+# keras                         2.12.0
+# kiwisolver                    1.4.4
+# libclang                      16.0.0
+# Mako                          1.2.4
+# Markdown                      3.4.3
+# MarkupSafe                    2.1.3
+# matplotlib                    3.7.1
+# matplotlib-inline             0.1.6
+# mistune                       3.0.1
+# ml-dtypes                     0.2.0
+# mpmath                        1.3.0
+# nbclassic                     1.0.0
+# nbclient                      0.8.0
+# nbconvert                     7.6.0
+# nbformat                      5.9.0
+# nest-asyncio                  1.5.6
+# notebook                      6.5.4
+# notebook_shim                 0.2.3
+# numpy                         1.23.5
+# oauthlib                      3.2.2
+# opencv-python                 4.7.0.72
+# opt-einsum                    3.3.0
+# optuna                        3.2.0
+# overrides                     7.3.1
+# packaging                     23.1
+# pandas                        2.0.2
+# pandocfilters                 1.5.0
+# papermill                     2.4.0
+# parso                         0.8.3
+# patsy                         0.5.3
+# pexpect                       4.8.0
+# pickleshare                   0.7.5
+# Pillow                        9.5.0
+# pip                           23.1.2
+# platformdirs                  3.8.0
+# pluggy                        1.2.0
+# ply                           3.11
+# prometheus-client             0.17.0
+# prompt-toolkit                3.0.38
+# protobuf                      4.23.3
+# psutil                        5.9.5
+# ptyprocess                    0.7.0
+# pure-eval                     0.2.2
+# pyasn1                        0.5.0
+# pyasn1-modules                0.3.0
+# pycparser                     2.21
+# pycrypto                      2.6.1
+# pydot                         1.4.2
+# Pygments                      2.15.1
+# pyparsing                     3.1.0
+# pyrsistent                    0.19.3
+# pyspeedtest                   1.2.7
+# pytest                        7.4.0
+# python-dateutil               2.8.2
+# python-json-logger            2.0.7
+# pytz                          2023.3
+# PyYAML                        6.0
+# pyzmq                         25.1.0
+# qtconsole                     5.4.3
+# QtPy                          2.3.1
+# requests                      2.31.0
+# requests-oauthlib             1.3.1
+# rfc3339-validator             0.1.4
+# rfc3986-validator             0.1.1
+# rsa                           4.9
+# scipy                         1.11.0
+# seaborn                       0.12.2
+# Send2Trash                    1.8.2
+# setuptools                    68.0.0
+# six                           1.16.0
+# sniffio                       1.3.0
+# soupsieve                     2.4.1
+# SQLAlchemy                    2.0.17
+# stack-data                    0.6.2
+# statsmodels                   0.14.0
+# sympy                         1.12
+# tenacity                      8.2.2
+# tensorboard                   2.12.3
+# tensorboard-data-server       0.7.1
+# tensorflow                    2.12.0
+# tensorflow-estimator          2.12.0
+# tensorflow-io-gcs-filesystem  0.32.0
+# termcolor                     2.3.0
+# terminado                     0.17.1
+# textwrap3                     0.9.2
+# tinycss2                      1.2.1
+# tomli                         2.0.1
+# tornado                       6.3.2
+# tqdm                          4.65.0
+# traitlets                     5.9.0
+# typing_extensions             4.6.3
+# tzdata                        2023.3
+# uri-template                  1.3.0
+# urllib3                       1.26.16
+# wcwidth                       0.2.6
+# webcolors                     1.13
+# webencodings                  0.5.1
+# websocket-client              1.6.1
+# Werkzeug                      2.3.6
+# wheel                         0.40.0
+# widgetsnbextension            4.0.7
+# wrapt                         1.14.1
+# zipp                          3.15.0
+# 
+# The version of Python3 included in this distribution includes
+# matplotlib, which includes color specifications and designs
+# developed by Cynthia Brewer (http://colorbrewer.org/).
+# 
+# Portions of this product suite use libquadmath, version 7.3.0.
+# Libquadmath is licensed under the GNU LGPL.  A copy of this license is
+# included in the "third_party/copyrights" directory of this installation.
+# A copy of the source for libquadmath is included with the source
+# for gcc 7.3.0, which can be found in the "third_party/src" directory
+# of this installation.
+# 
+# Some portions of the product suite may be based in part on
+# the work of the Qwt project (http://qwt.sf.net).  Source
+# code is available in the third_party/src directory of this
+# product distribution.
+# 
+# Portions of this product suite use the 'zlib' general purpose
+# compression library, version 1.2.5.
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Starting at:
+#    Fri 15 Dec 2023 12:22:55 PM EST
+#    {ProgramStartEpoch|1702660975.436155932}
+#
+# Command and args:
+#    "shotcat" "crv" "-frame_no" "14" "-chip_cnf" "output/crv" "-outref" "output/crv/ref.14" "-outlink" "output/crv/link.14" "-outcell" "output/crv/cell.14" "-idir" "intermediate/fermi.output/contact_target" "-infile_width" "114.688" "-infile_height" "114.688" "-localization" "1" "-verbosity" "3" "-l" "./logs/shotcat/shotcat_14.log"
+#
+# Initial working dir:
+#    /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610
+#
+# Location of installation:
+#    /mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43
+#
+# This log file is:
+#    /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/logs/shotcat/shotcat_14.log
+#
+# Running on:
+#     Host:        'big-0-13.local'.''
+#     Current OS:   Linux/x86_64, 3.10.0-957.10.1.el7.x86_64 #1 SMP Mon Mar 18 15:06:45 UTC 2019
+#                   CentOS 7.6
+#     Uptime:       14d 19:48:15
+#     Load Avg:     0.16, 0.05, 0.09
+#     Process ID:   1031727 (parent=1030562)
+#     RAM:          1,081,592,258,560
+#     Vendor ID:    'GenuineIntel'
+#     CPU Model:    'Intel(R) Xeon(R) CPU E5-2637 v4 @ 3.50GHz'
+#     Hypervisor:   false
+#     CPUs(Cores):  8
+#     CPU affinity: .1234567
+#             mask: 11111111
+#             bits: 0-7
+#
+# Build information:
+#   Program 'shotcat':
+#     nominally 'shotcat'
+#     release 'ILT.2023.02' ('ilt-cdp43')
+#     build '23347.gf438a7dd7c' (2023-12-13 02:46:43 UTC)
+#     by 'release'
+#     settings 'gcc-11.3.0/opt/64'
+#     debuggable? no
+#     revision 'tags/ILT.2023.02.RC1.20231212.212240-0-gf438a7dd7cc98d964a791c8cd048ee18c7d9b728'
+#     sandbox '/re/releases/candidates/ILT.2023.02/sandboxes/ILT.2023.02'
+#     host 'build03' (x86_64)
+#     system 'linux-x86_64' (Linux-3.10.0-957.21.3.el7.x86_64-x86_64-with-glibc2.17)
+#     distribution 'centos 7.6'
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Environment variables (273 defined):
+#     ARC="lx-amd64"
+#     D2SINFO_DATE_HUMAN_FMT="+%F\x20(%a)\x20%T\x20%Z"
+#     D2SINFO_DATE_SECS_FMT="+%s"
+#     D2SINFO_EXIT_ARGV_ERROR_CODE="9"
+#     D2SINFO_EXIT_ARGV_REQUEST_CODE="96"
+#     D2SINFO_EXIT_BAD_EXCEPT_CODE="21"
+#     D2SINFO_EXIT_BAD_INSTALL_CODE="17"
+#     D2SINFO_EXIT_CPP_TERMINATE_CODE="20"
+#     D2SINFO_EXIT_DATA_VERSION_CODE="18"
+#     D2SINFO_EXIT_ERROR_CODE="2"
+#     D2SINFO_EXIT_EXCEPT_CODE="6"
+#     D2SINFO_EXIT_EXEC_CMD_FAIL_CODE="126"
+#     D2SINFO_EXIT_EXEC_FAILURE_CODE="10"
+#     D2SINFO_EXIT_FATAL_CODE="3"
+#     D2SINFO_EXIT_GPU_FAULT_CODE="15"
+#     D2SINFO_EXIT_GPU_RETRY_CODE="102"
+#     D2SINFO_EXIT_INCORRECT_INIT_CODE="26"
+#     D2SINFO_EXIT_INTERRUPT_CODE="4"
+#     D2SINFO_EXIT_LOGIN_FAILURE_CODE="12"
+#     D2SINFO_EXIT_LOG_OPEN_FAILED_CODE="8"
+#     D2SINFO_EXIT_LOST_LICENSE_CODE="7"
+#     D2SINFO_EXIT_NETWORK_CODE="28"
+#     D2SINFO_EXIT_NODE_BROKEN_CODE="24"
+#     D2SINFO_EXIT_NO_PERMISSION_CODE="23"
+#     D2SINFO_EXIT_NO_WORK_CODE="97"
+#     D2SINFO_EXIT_OK_CODE="0"
+#     D2SINFO_EXIT_OUTPUT_MISSING_CODE="16"
+#     D2SINFO_EXIT_OUT_OF_MEM_CODE="19"
+#     D2SINFO_EXIT_PROTOCOL_ERROR_CODE="13"
+#     D2SINFO_EXIT_QMASTER_CRASH_CODE="22"
+#     D2SINFO_EXIT_Q_SUB_CODE="1"
+#     D2SINFO_EXIT_Q_SUB_TWO_CODE="25"
+#     D2SINFO_EXIT_RESOURCE_LIMIT_CODE="29"
+#     D2SINFO_EXIT_RETRY_FLOW_CODE="101"
+#     D2SINFO_EXIT_RETRY_NEEDED_CODE="98"
+#     D2SINFO_EXIT_RETRY_PHASE_CODE="100"
+#     D2SINFO_EXIT_RETRY_TASK_CODE="99"
+#     D2SINFO_EXIT_SIGNAL_CODE="5"
+#     D2SINFO_EXIT_SPAWN_CODE="30"
+#     D2SINFO_EXIT_SYSTEM_SEGV_CODE="11"
+#     D2SINFO_EXIT_TERMINATED_CODE="14"
+#     D2SINFO_EXIT_THREAD_ERROR_CODE="27"
+#     D2SINFO_EXIT_TIME_LIMIT_CODE="31"
+#     D2SINFO_EXIT_VERIFY_FAILURE_CODE="65"
+#     D2SINFO_EXIT_VM_LIMIT_RETRY_CODE="66"
+#     D2SINFO_EXIT_WARNING_CODE="64"
+#     D2SINFO_INSTALL_BIN3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin"
+#     D2SINFO_INSTALL_BIN="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin"
+#     D2SINFO_INSTALL_DATA3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/data"
+#     D2SINFO_INSTALL_DATA="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/data"
+#     D2SINFO_INSTALL_ETC3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/etc"
+#     D2SINFO_INSTALL_ETC="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/etc"
+#     D2SINFO_INSTALL_LIB3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/lib"
+#     D2SINFO_INSTALL_LIB="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib"
+#     D2SINFO_INSTALL_LIB_BASH="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.bash"
+#     D2SINFO_INSTALL_LIB_CDP="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.cdp"
+#     D2SINFO_INSTALL_LIB_MAKE="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.make"
+#     D2SINFO_INSTALL_LIB_PERL="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl"
+#     D2SINFO_INSTALL_LIB_PYTHON="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python"
+#     D2SINFO_INSTALL_LIB_TCL="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.tcl.tm"
+#     D2SINFO_INSTALL_ROOT="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43"
+#     D2SINFO_OS_FAMILY="centos"
+#     D2S_CMD_ADDR2LINE="/usr/bin/addr2line"
+#     D2S_CMD_APTITUDE="/usr/bin/aptitude"
+#     D2S_CMD_APTITUDE_SHOWALL="/usr/bin/aptitude\x20-F\x20'%c%a%M%S\x20%40p\x20%35t\x20%55V'\x20-w\x20137\x20-O\x20'name,version'\x20search\x20'~i'"
+#     D2S_CMD_AR="/usr/bin/ar"
+#     D2S_CMD_ARP="/sbin/arp"
+#     D2S_CMD_ARP_A="/sbin/arp\x20-a"
+#     D2S_CMD_AWK="/bin/awk"
+#     D2S_CMD_BASENAME="/bin/basename"
+#     D2S_CMD_BASH="/bin/bash"
+#     D2S_CMD_BLKID="/sbin/blkid"
+#     D2S_CMD_BUNZIP2="/usr/bin/bunzip2"
+#     D2S_CMD_BZIP2="/usr/bin/bzip2"
+#     D2S_CMD_CAT="/bin/cat"
+#     D2S_CMD_CHMOD="/bin/chmod"
+#     D2S_CMD_CHOWN="/bin/chown"
+#     D2S_CMD_CMP="/usr/bin/cmp"
+#     D2S_CMD_COLUMN="/usr/bin/column"
+#     D2S_CMD_CP="/bin/cp"
+#     D2S_CMD_CPIO="/bin/cpio"
+#     D2S_CMD_DATE="/bin/date"
+#     D2S_CMD_DD="/bin/dd"
+#     D2S_CMD_DF="/bin/df"
+#     D2S_CMD_DIFF="/usr/bin/diff"
+#     D2S_CMD_DIRNAME="/usr/bin/dirname"
+#     D2S_CMD_DMESG="/bin/dmesg"
+#     D2S_CMD_DU="/usr/bin/du"
+#     D2S_CMD_ECHO="/bin/echo"
+#     D2S_CMD_EGREP="/bin/egrep"
+#     D2S_CMD_ENV="/usr/bin/env"
+#     D2S_CMD_EP3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin/ep3\x20-line_comment\x20'_EP3_LINE_COMMENT_'\x20-start_comment\x20'_EP3_START_COMMENT_'\x20-end_comment\x20'_EP3_END_COMMENT_'\x20-nocomment\x20-protect"
+#     D2S_CMD_FALSE="/bin/false"
+#     D2S_CMD_FIND="/usr/bin/find"
+#     D2S_CMD_FMT="/usr/bin/fmt"
+#     D2S_CMD_FREE="/usr/bin/free"
+#     D2S_CMD_FREE_MT="/usr/bin/free\x20-m\x20-t"
+#     D2S_CMD_GNUPLOT="/usr/bin/gnuplot"
+#     D2S_CMD_GREP="/bin/grep"
+#     D2S_CMD_GUNZIP="/bin/gunzip"
+#     D2S_CMD_GZIP="/bin/gzip"
+#     D2S_CMD_HEAD="/usr/bin/head"
+#     D2S_CMD_HOSTID="/usr/bin/hostid"
+#     D2S_CMD_HOSTNAME="/bin/hostname"
+#     D2S_CMD_ID="/usr/bin/id"
+#     D2S_CMD_IFCONFIG_A="/sbin/ifconfig\x20-a"
+#     D2S_CMD_IOSTAT="/usr/bin/iostat"
+#     D2S_CMD_IOSTAT_DMN="/usr/bin/iostat\x20-m\x20-d\x20-n"
+#     D2S_CMD_IP="/sbin/ip"
+#     D2S_CMD_KILL="/bin/kill"
+#     D2S_CMD_LDCONFIG="/sbin/ldconfig"
+#     D2S_CMD_LDCONFIG_PRINT="/sbin/ldconfig\x20-p"
+#     D2S_CMD_LESS="/usr/bin/less"
+#     D2S_CMD_LN="/bin/ln"
+#     D2S_CMD_LN_S="/bin/ln\x20-s"
+#     D2S_CMD_LS="/bin/ls"
+#     D2S_CMD_LSHAL="/usr/bin/lshal"
+#     D2S_CMD_LSMOD="/sbin/lsmod"
+#     D2S_CMD_MAKE="/usr/bin/make"
+#     D2S_CMD_MD5SUM="/usr/bin/md5sum"
+#     D2S_CMD_MKDIR="/bin/mkdir"
+#     D2S_CMD_MKDIR_P="/bin/mkdir\x20-p"
+#     D2S_CMD_MKFIFO="/usr/bin/mkfifo"
+#     D2S_CMD_MORE="/usr/bin/less"
+#     D2S_CMD_MOUNT="/bin/mount"
+#     D2S_CMD_MV="/bin/mv"
+#     D2S_CMD_NETSTAT="/bin/netstat"
+#     D2S_CMD_NVIDIASMI="/usr/bin/nvidia-smi"
+#     D2S_CMD_NVIDIASMI_A="/usr/bin/nvidia-smi\x20-a"
+#     D2S_CMD_NVIDIASMI_L="/usr/bin/nvidia-smi\x20-L"
+#     D2S_CMD_NVIDIASMI_Q="/usr/bin/nvidia-smi\x20-q"
+#     D2S_CMD_OD="/usr/bin/od"
+#     D2S_CMD_PERL="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin/perl5.22.0"
+#     D2S_CMD_PR="/usr/bin/pr"
+#     D2S_CMD_PRINTENV="/usr/bin/printenv"
+#     D2S_CMD_PRINTF="/usr/bin/printf"
+#     D2S_CMD_PS="/bin/ps"
+#     D2S_CMD_PS_EFF="/bin/ps\x20-ef\x20f"
+#     D2S_CMD_PWD="/bin/pwd"
+#     D2S_CMD_PYTHON3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin/python3.9"
+#     D2S_CMD_READLINK="/usr/bin/readlink"
+#     D2S_CMD_RM="/bin/rm"
+#     D2S_CMD_RM_RF="/bin/rm\x20-rf"
+#     D2S_CMD_RPM="/bin/rpm"
+#     D2S_CMD_RPM_SHOWALL="/bin/rpm\x20-q\x20-a\x20--qf\x20'%{DISTRIBUTION}\x20==\x20%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}.rpm\x20==\x20%{INSTALLTIME:date}\x20==\x20%{SUMMARY}\x5cn'"
+#     D2S_CMD_RSYNC="/usr/bin/rsync"
+#     D2S_CMD_SCP="/usr/bin/scp"
+#     D2S_CMD_SED="/bin/sed"
+#     D2S_CMD_SEQ="/usr/bin/seq"
+#     D2S_CMD_SGE_QDEL="/opt/gridengine/bin/lx-amd64/qdel"
+#     D2S_CMD_SGE_QRSH="/opt/gridengine/bin/lx-amd64/qrsh"
+#     D2S_CMD_SGE_QSTAT="/opt/gridengine/bin/lx-amd64/qstat"
+#     D2S_CMD_SGE_QSTAT_U="/opt/gridengine/bin/lx-amd64/qstat\x20-u\x20\x5c*"
+#     D2S_CMD_SGE_QSUB="/opt/gridengine/bin/lx-amd64/qsub"
+#     D2S_CMD_SHA1SUM="/usr/bin/sha1sum"
+#     D2S_CMD_SHA256SUM="/usr/bin/sha256sum"
+#     D2S_CMD_SHA512SUM="/usr/bin/sha512sum"
+#     D2S_CMD_SLEEP="/bin/sleep"
+#     D2S_CMD_SMARTCTL="/usr/sbin/smartctl"
+#     D2S_CMD_SORT="/bin/sort"
+#     D2S_CMD_SSH="/usr/bin/ssh"
+#     D2S_CMD_SU="/bin/su"
+#     D2S_CMD_SUDO="/usr/bin/sudo"
+#     D2S_CMD_SYMLINK="/bin/ln\x20-s"
+#     D2S_CMD_TAIL="/usr/bin/tail"
+#     D2S_CMD_TAR="/bin/tar"
+#     D2S_CMD_TEE="/usr/bin/tee"
+#     D2S_CMD_TIMEOUT="/usr/bin/timeout"
+#     D2S_CMD_TOUCH="/bin/touch"
+#     D2S_CMD_TR="/usr/bin/tr"
+#     D2S_CMD_TRUE="/bin/true"
+#     D2S_CMD_UNAME="/bin/uname"
+#     D2S_CMD_VMSTAT="/usr/bin/vmstat"
+#     D2S_CMD_VMSTAT_SM="/usr/bin/vmstat\x20-S\x20M"
+#     D2S_CMD_WHICH="/usr/bin/which"
+#     D2S_CMD_WHO="/usr/bin/who"
+#     D2S_CMD_WHOAMI="/usr/bin/whoami"
+#     D2S_CMD_XARGS="/usr/bin/xargs"
+#     D2S_CMD_XMLLINT="/usr/bin/xmllint"
+#     D2S_CMD_XXD="/usr/bin/xxd"
+#     D2S_CMD_YUM="/usr/bin/yum"
+#     D2S_CMD_YUM_SHOWALL="/usr/bin/yum\x20list\x20installed\x20--color=never"
+#     D2S_ROOT_CMD_CHKCONFIG="/sbin/chkconfig"
+#     D2S_ROOT_CMD_CHKCONFIG_LIST="/sbin/chkconfig\x20--list"
+#     D2S_ROOT_CMD_DMIDECODE="/usr/sbin/dmidecode"
+#     D2S_ROOT_CMD_FDISK="/sbin/fdisk"
+#     D2S_ROOT_CMD_FDISK_L="/sbin/fdisk\x20-l"
+#     D2S_ROOT_CMD_IPMITOOL="/usr/bin/ipmitool"
+#     D2S_ROOT_CMD_IPTABLES="/sbin/iptables"
+#     D2S_ROOT_CMD_IPTABLES_LIST="/sbin/iptables\x20--list"
+#     D2S_ROOT_CMD_LSBLK="/bin/lsblk"
+#     D2S_ROOT_CMD_LSCGROUP="/bin/lscgroup"
+#     D2S_ROOT_CMD_LSCPU="/usr/bin/lscpu"
+#     D2S_ROOT_CMD_LSOF="/usr/sbin/lsof"
+#     D2S_ROOT_CMD_LSPCI="/sbin/lspci"
+#     D2S_ROOT_CMD_LSPCMCIA="/sbin/lspcmcia"
+#     D2S_ROOT_CMD_LSSCSI="/usr/bin/lsscsi"
+#     D2S_ROOT_CMD_LSSUBSYS="/bin/lssubsys"
+#     D2S_ROOT_CMD_LSTOPO_NO_GRAPHICS="/usr/bin/lstopo-no-graphics"
+#     D2S_ROOT_CMD_LSUSB="/usr/bin/lsusb"
+#     D2S_ROOT_CMD_MCELOG="/usr/sbin/mcelog"
+#     D2S_ROOT_CMD_MDADM="/sbin/mdadm"
+#     D2S_ROOT_CMD_PARTED="/sbin/parted"
+#     D2S_ROOT_CMD_PARTED_LIST="/sbin/parted\x20--list"
+#     D2S_ROOT_CMD_SERVICE="/sbin/service"
+#     D2S_ROOT_CMD_SERVICE_LIST="/sbin/service\x20--status-all"
+#     DISPLAY="localhost:25.0"
+#     ENVIRONMENT="BATCH"
+#     HISTSIZE="1000"
+#     HOME="/home/d2suser06"
+#     HOSTNAME="big-0-13.local"
+#     JOB_ID="6730867"
+#     JOB_NAME="shotcat11610.1___"
+#     JOB_SCRIPT="/bin/bash"
+#     LANG="en_US.UTF-8"
+#     LC_CTYPE="en_US.UTF-8"
+#     LIBC_FATAL_STDERR_="1"
+#     LOGNAME="d2susr06"
+#     MAIL="/var/spool/mail/d2susr06"
+#     NHOSTS="1"
+#     NQUEUES="1"
+#     NSLOTS="1"
+#     PATH="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.bash:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.tcl.tm:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/bin:/usr/bin:/sbin:/usr/sbin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.bash:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.tcl.tm:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl:/tmp/6730867.1.all.q:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.third_party/bin:/opt/gridengine/bin/lx-amd64"
+#     PWD="/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610"
+#     QTDIR="/usr/lib64/qt-3.3"
+#     QTINC="/usr/lib64/qt-3.3/include"
+#     QTLIB="/usr/lib64/qt-3.3/lib"
+#     QT_GRAPHICSSYSTEM_CHECKED="1"
+#     QT_PLUGIN_PATH="/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins"
+#     QUEUE="all.q"
+#     REQNAME="shotcat11610.1___"
+#     REQUEST="shotcat11610.1___"
+#     RESTARTED="0"
+#     RLM_EXTENDED_ERROR_MESSAGES="1"
+#     ROCKSROOT="/opt/rocks/share/devel"
+#     ROCKS_ROOT="/opt/rocks"
+#     ROLLSROOT="/opt/rocks/share/devel/src/roll"
+#     SGE_ACCOUNT="sge"
+#     SGE_ARCH="lx-amd64"
+#     SGE_BINARY_PATH="/opt/gridengine/bin/lx-amd64"
+#     SGE_CELL="default"
+#     SGE_CWD_PATH="/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610"
+#     SGE_EXECD_PORT="537"
+#     SGE_JOB_SPOOL_DIR="/opt/gridengine/default/spool/big-0-13/active_jobs/6730867.1"
+#     SGE_O_HOME="/home/d2suser06"
+#     SGE_O_HOST="cdp38"
+#     SGE_O_LOGNAME="d2susr06"
+#     SGE_O_MAIL="/var/spool/mail/d2susr06"
+#     SGE_O_PATH="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.bash:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.tcl.tm:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/bin:/usr/bin:/sbin:/usr/sbin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.third_party/bin:/opt/gridengine/bin/lx-amd64"
+#     SGE_O_SHELL="/bin/bash"
+#     SGE_O_WORKDIR="/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610"
+#     SGE_QMASTER_PORT="536"
+#     SGE_ROOT="/opt/gridengine"
+#     SGE_STDERR_PATH="/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/logs/qexec.shotcat11610.1___"
+#     SGE_STDIN_PATH="/dev/null"
+#     SGE_STDOUT_PATH="/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/logs/qexec.shotcat11610.1___"
+#     SGE_TASK_FIRST="undefined"
+#     SGE_TASK_ID="undefined"
+#     SGE_TASK_LAST="undefined"
+#     SGE_TASK_STEPSIZE="undefined"
+#     SHELL="/bin/sh"
+#     SHLVL="5"
+#     TCL_LIBRARY="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/lib/tcl8.6"
+#     TERM="xterm"
+#     TMP="/tmp/6730867.1.all.q"
+#     TMPDIR="/tmp/6730867.1.all.q"
+#     USER="d2susr06"
+#     XDG_DATA_DIRS="/home/d2suser06/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+#     XDG_RUNTIME_DIR="/run/user/42108"
+#     XDG_SESSION_ID="15262"
+#     _="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin/shotcat"
+#     _STDBUF_E="0"
+#     _STDBUF_O="0"
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+#####
+# stats: main(): Started: 2023-12-15 (Fri) 12:22:55 EST
+#####
+
+
+----------------------------------------------------
+Running crv
+----------------------------------------------------
+
+DEBUG: ShotCat_CRV: parsing params.
+Searching in intermediate/fermi.output/contact_target
+DEBUG: FindFieldSubdirs2( intermediate/fermi.output/contact_target, 1 ).
+DEBUG: found 120 subdirs of intermediate/fermi.output/contact_target; 30 of them match '[0-9]+_c'.
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/023_c'
+DEBUG: col '023_c': checking '023_c/field_023_017' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_019' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_006' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_013' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_003' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_027' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_028' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_008' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_018' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_014' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_026' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_021' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_011' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_015' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_024' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_009' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_016' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_029' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_001' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_023' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_022' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_004' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_020' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_010' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_000' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_007' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_012' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_002' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_025' against '*/field_*_*'
+DEBUG: col '023_c': checking '023_c/field_023_005' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/019_c'
+DEBUG: col '019_c': checking '019_c/field_019_006' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_005' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_013' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_028' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_001' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_025' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_004' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_012' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_008' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_015' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_003' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_000' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_022' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_016' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_026' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_029' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_020' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_007' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_017' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_018' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_009' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_021' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_014' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_023' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_011' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_010' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_002' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_019' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_027' against '*/field_*_*'
+DEBUG: col '019_c': checking '019_c/field_019_024' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/022_c'
+DEBUG: col '022_c': checking '022_c/field_022_025' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_026' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_028' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_020' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_001' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_029' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_017' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_019' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_006' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_004' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_021' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_012' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_010' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_027' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_007' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_002' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_011' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_015' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_016' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_013' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_024' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_018' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_022' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_023' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_003' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_014' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_008' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_000' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_005' against '*/field_*_*'
+DEBUG: col '022_c': checking '022_c/field_022_009' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/020_c'
+DEBUG: col '020_c': checking '020_c/field_020_010' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_007' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_013' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_019' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_018' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_020' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_028' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_016' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_008' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_011' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_001' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_002' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_027' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_015' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_009' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_003' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_029' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_026' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_006' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_004' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_023' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_021' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_025' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_000' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_012' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_017' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_024' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_022' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_014' against '*/field_*_*'
+DEBUG: col '020_c': checking '020_c/field_020_005' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/017_c'
+DEBUG: col '017_c': checking '017_c/field_017_019' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_027' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_016' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_000' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_020' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_005' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_025' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_009' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_023' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_022' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_010' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_013' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_001' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_002' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_008' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_012' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_003' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_028' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_021' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_018' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_006' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_029' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_014' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_011' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_007' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_015' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_004' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_024' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_017' against '*/field_*_*'
+DEBUG: col '017_c': checking '017_c/field_017_026' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/005_c'
+DEBUG: col '005_c': checking '005_c/field_005_010' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_017' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_028' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_019' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_006' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_022' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_005' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_025' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_000' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_027' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_013' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_020' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_015' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_001' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_003' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_024' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_029' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_018' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_008' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_016' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_023' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_009' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_004' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_026' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_021' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_012' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_007' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_014' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_011' against '*/field_*_*'
+DEBUG: col '005_c': checking '005_c/field_005_002' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/007_c'
+DEBUG: col '007_c': checking '007_c/field_007_004' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_001' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_018' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_021' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_027' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_007' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_024' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_005' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_014' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_025' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_022' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_026' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_016' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_015' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_029' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_000' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_028' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_002' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_012' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_010' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_009' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_008' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_019' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_011' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_006' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_020' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_003' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_023' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_013' against '*/field_*_*'
+DEBUG: col '007_c': checking '007_c/field_007_017' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/018_c'
+DEBUG: col '018_c': checking '018_c/field_018_003' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_012' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_007' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_020' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_028' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_029' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_024' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_005' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_001' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_027' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_008' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_026' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_014' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_004' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_022' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_021' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_017' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_018' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_023' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_010' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_009' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_013' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_000' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_002' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_006' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_025' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_019' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_011' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_015' against '*/field_*_*'
+DEBUG: col '018_c': checking '018_c/field_018_016' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/021_c'
+DEBUG: col '021_c': checking '021_c/field_021_022' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_003' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_004' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_013' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_029' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_007' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_014' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_015' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_001' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_008' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_010' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_027' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_009' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_021' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_006' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_016' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_024' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_018' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_002' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_023' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_020' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_019' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_017' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_000' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_026' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_011' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_005' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_025' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_028' against '*/field_*_*'
+DEBUG: col '021_c': checking '021_c/field_021_012' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/027_c'
+DEBUG: col '027_c': checking '027_c/field_027_021' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_007' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_013' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_001' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_003' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_010' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_004' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_018' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_008' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_000' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_016' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_012' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_017' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_002' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_026' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_019' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_020' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_009' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_029' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_015' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_005' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_006' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_011' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_014' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_028' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_024' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_025' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_022' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_027' against '*/field_*_*'
+DEBUG: col '027_c': checking '027_c/field_027_023' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/003_c'
+DEBUG: col '003_c': checking '003_c/field_003_022' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_021' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_017' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_013' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_023' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_010' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_000' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_003' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_025' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_027' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_008' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_018' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_002' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_011' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_026' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_001' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_012' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_024' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_014' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_019' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_007' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_009' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_016' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_004' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_005' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_028' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_029' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_020' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_006' against '*/field_*_*'
+DEBUG: col '003_c': checking '003_c/field_003_015' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/029_c'
+DEBUG: col '029_c': checking '029_c/field_029_013' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_020' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_011' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_004' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_023' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_006' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_003' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_027' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_007' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_017' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_021' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_022' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_008' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_028' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_015' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_012' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_005' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_029' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_000' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_014' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_024' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_009' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_001' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_018' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_002' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_026' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_025' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_016' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_019' against '*/field_*_*'
+DEBUG: col '029_c': checking '029_c/field_029_010' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/002_c'
+DEBUG: col '002_c': checking '002_c/field_002_019' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_018' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_012' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_026' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_010' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_025' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_000' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_014' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_028' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_006' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_013' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_008' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_015' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_027' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_029' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_002' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_017' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_003' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_004' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_011' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_024' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_001' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_022' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_021' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_016' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_023' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_005' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_009' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_020' against '*/field_*_*'
+DEBUG: col '002_c': checking '002_c/field_002_007' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/010_c'
+DEBUG: col '010_c': checking '010_c/field_010_001' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_025' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_002' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_019' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_022' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_015' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_004' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_021' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_018' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_016' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_006' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_026' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_000' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_011' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_028' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_029' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_009' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_005' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_013' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_020' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_027' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_017' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_012' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_024' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_014' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_007' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_010' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_023' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_008' against '*/field_*_*'
+DEBUG: col '010_c': checking '010_c/field_010_003' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/011_c'
+DEBUG: col '011_c': checking '011_c/field_011_009' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_001' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_010' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_006' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_019' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_014' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_008' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_020' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_025' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_016' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_026' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_024' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_027' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_015' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_018' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_004' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_029' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_005' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_002' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_021' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_017' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_013' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_022' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_028' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_023' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_011' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_000' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_003' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_012' against '*/field_*_*'
+DEBUG: col '011_c': checking '011_c/field_011_007' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/016_c'
+DEBUG: col '016_c': checking '016_c/field_016_023' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_003' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_024' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_028' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_026' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_004' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_018' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_013' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_008' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_009' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_014' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_029' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_020' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_016' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_006' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_002' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_010' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_012' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_000' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_001' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_025' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_019' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_017' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_011' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_015' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_027' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_007' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_022' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_005' against '*/field_*_*'
+DEBUG: col '016_c': checking '016_c/field_016_021' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/012_c'
+DEBUG: col '012_c': checking '012_c/field_012_007' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_029' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_019' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_017' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_004' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_002' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_000' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_009' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_013' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_026' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_020' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_008' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_001' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_003' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_024' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_012' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_005' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_010' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_018' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_014' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_021' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_006' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_022' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_023' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_027' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_016' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_028' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_025' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_015' against '*/field_*_*'
+DEBUG: col '012_c': checking '012_c/field_012_011' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/025_c'
+DEBUG: col '025_c': checking '025_c/field_025_007' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_026' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_020' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_006' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_021' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_014' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_003' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_019' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_011' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_005' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_001' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_013' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_000' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_012' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_018' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_016' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_029' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_022' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_002' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_028' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_023' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_015' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_010' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_027' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_025' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_017' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_024' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_004' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_009' against '*/field_*_*'
+DEBUG: col '025_c': checking '025_c/field_025_008' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/006_c'
+DEBUG: col '006_c': checking '006_c/field_006_024' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_027' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_026' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_012' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_005' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_023' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_016' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_019' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_020' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_014' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_018' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_000' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_021' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_006' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_028' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_015' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_029' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_008' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_007' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_001' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_002' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_011' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_017' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_003' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_022' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_009' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_025' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_010' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_013' against '*/field_*_*'
+DEBUG: col '006_c': checking '006_c/field_006_004' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/009_c'
+DEBUG: col '009_c': checking '009_c/field_009_008' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_023' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_000' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_017' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_009' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_010' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_022' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_005' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_014' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_015' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_011' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_020' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_007' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_018' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_028' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_019' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_012' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_006' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_025' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_026' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_029' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_001' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_024' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_002' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_021' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_004' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_027' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_016' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_003' against '*/field_*_*'
+DEBUG: col '009_c': checking '009_c/field_009_013' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/013_c'
+DEBUG: col '013_c': checking '013_c/field_013_000' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_002' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_028' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_014' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_027' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_019' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_003' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_004' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_011' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_012' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_001' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_016' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_009' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_025' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_013' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_007' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_022' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_023' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_010' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_018' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_015' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_021' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_017' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_026' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_020' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_006' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_024' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_008' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_029' against '*/field_*_*'
+DEBUG: col '013_c': checking '013_c/field_013_005' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/000_c'
+DEBUG: col '000_c': checking '000_c/field_000_000' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_022' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_014' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_003' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_001' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_025' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_028' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_021' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_024' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_004' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_006' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_005' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_016' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_009' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_011' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_007' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_027' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_018' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_020' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_026' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_013' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_019' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_010' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_023' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_017' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_012' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_002' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_008' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_015' against '*/field_*_*'
+DEBUG: col '000_c': checking '000_c/field_000_029' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/015_c'
+DEBUG: col '015_c': checking '015_c/field_015_024' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_003' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_027' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_009' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_025' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_005' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_016' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_008' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_028' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_000' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_011' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_014' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_017' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_012' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_013' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_007' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_006' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_018' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_023' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_020' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_001' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_019' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_015' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_004' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_002' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_026' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_022' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_029' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_010' against '*/field_*_*'
+DEBUG: col '015_c': checking '015_c/field_015_021' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/014_c'
+DEBUG: col '014_c': checking '014_c/field_014_001' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_026' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_012' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_029' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_025' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_003' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_004' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_005' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_011' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_006' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_027' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_010' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_014' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_028' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_017' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_020' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_009' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_013' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_022' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_019' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_024' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_007' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_021' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_000' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_002' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_023' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_018' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_008' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_016' against '*/field_*_*'
+DEBUG: col '014_c': checking '014_c/field_014_015' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/024_c'
+DEBUG: col '024_c': checking '024_c/field_024_018' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_015' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_007' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_025' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_022' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_004' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_001' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_003' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_000' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_026' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_024' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_010' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_029' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_016' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_008' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_019' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_023' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_012' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_014' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_027' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_028' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_013' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_009' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_020' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_017' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_002' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_005' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_006' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_011' against '*/field_*_*'
+DEBUG: col '024_c': checking '024_c/field_024_021' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/001_c'
+DEBUG: col '001_c': checking '001_c/field_001_017' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_000' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_001' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_013' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_015' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_027' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_004' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_008' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_026' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_012' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_021' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_003' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_011' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_009' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_020' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_007' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_002' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_005' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_024' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_028' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_019' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_018' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_023' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_025' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_022' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_010' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_006' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_016' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_014' against '*/field_*_*'
+DEBUG: col '001_c': checking '001_c/field_001_029' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/008_c'
+DEBUG: col '008_c': checking '008_c/field_008_004' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_010' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_022' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_011' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_013' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_019' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_012' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_017' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_003' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_024' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_028' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_007' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_000' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_020' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_029' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_016' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_006' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_001' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_008' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_009' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_026' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_002' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_005' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_018' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_015' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_025' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_021' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_023' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_014' against '*/field_*_*'
+DEBUG: col '008_c': checking '008_c/field_008_027' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/026_c'
+DEBUG: col '026_c': checking '026_c/field_026_002' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_008' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_021' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_013' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_028' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_025' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_000' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_024' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_009' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_014' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_022' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_012' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_017' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_005' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_027' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_011' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_015' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_003' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_001' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_023' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_018' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_004' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_019' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_016' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_029' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_020' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_010' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_007' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_006' against '*/field_*_*'
+DEBUG: col '026_c': checking '026_c/field_026_026' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/028_c'
+DEBUG: col '028_c': checking '028_c/field_028_012' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_003' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_025' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_020' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_016' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_000' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_019' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_029' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_006' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_009' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_013' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_022' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_024' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_001' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_004' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_014' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_007' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_028' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_027' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_010' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_005' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_002' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_015' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_017' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_018' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_021' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_026' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_023' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_008' against '*/field_*_*'
+DEBUG: col '028_c': checking '028_c/field_028_011' against '*/field_*_*'
+DEBUG: read 30 subdirs and 0 files from 'intermediate/fermi.output/contact_target/004_c'
+DEBUG: col '004_c': checking '004_c/field_004_016' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_004' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_017' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_008' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_026' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_009' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_007' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_018' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_010' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_028' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_021' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_003' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_014' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_015' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_005' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_024' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_027' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_023' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_022' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_012' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_001' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_006' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_013' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_011' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_000' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_002' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_029' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_025' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_019' against '*/field_*_*'
+DEBUG: col '004_c': checking '004_c/field_004_020' against '*/field_*_*'
+DEBUG: identified 900 fields.
+DEBUG:     '023_c/field_023_017'
+DEBUG:     '023_c/field_023_019'
+DEBUG:     '023_c/field_023_006'
+DEBUG:     '023_c/field_023_013'
+DEBUG:     '023_c/field_023_003'
+DEBUG:     '023_c/field_023_027'
+DEBUG:     '023_c/field_023_028'
+DEBUG:     '023_c/field_023_008'
+DEBUG:     '023_c/field_023_018'
+DEBUG:     '023_c/field_023_014'
+DEBUG:     '023_c/field_023_026'
+DEBUG:     '023_c/field_023_021'
+DEBUG:     '023_c/field_023_011'
+DEBUG:     '023_c/field_023_015'
+DEBUG:     '023_c/field_023_024'
+DEBUG:     '023_c/field_023_009'
+DEBUG:     '023_c/field_023_016'
+DEBUG:     '023_c/field_023_029'
+DEBUG:     '023_c/field_023_001'
+DEBUG:     '023_c/field_023_023'
+DEBUG:     '023_c/field_023_022'
+DEBUG:     '023_c/field_023_004'
+DEBUG:     '023_c/field_023_020'
+DEBUG:     '023_c/field_023_010'
+DEBUG:     '023_c/field_023_000'
+DEBUG:     '023_c/field_023_007'
+DEBUG:     '023_c/field_023_012'
+DEBUG:     '023_c/field_023_002'
+DEBUG:     '023_c/field_023_025'
+DEBUG:     '023_c/field_023_005'
+DEBUG:     '019_c/field_019_006'
+DEBUG:     '019_c/field_019_005'
+DEBUG:     '019_c/field_019_013'
+DEBUG:     '019_c/field_019_028'
+DEBUG:     '019_c/field_019_001'
+DEBUG:     '019_c/field_019_025'
+DEBUG:     '019_c/field_019_004'
+DEBUG:     '019_c/field_019_012'
+DEBUG:     '019_c/field_019_008'
+DEBUG:     '019_c/field_019_015'
+DEBUG:     '019_c/field_019_003'
+DEBUG:     '019_c/field_019_000'
+DEBUG:     '019_c/field_019_022'
+DEBUG:     '019_c/field_019_016'
+DEBUG:     '019_c/field_019_026'
+DEBUG:     '019_c/field_019_029'
+DEBUG:     '019_c/field_019_020'
+DEBUG:     '019_c/field_019_007'
+DEBUG:     '019_c/field_019_017'
+DEBUG:     '019_c/field_019_018'
+DEBUG:     '019_c/field_019_009'
+DEBUG:     '019_c/field_019_021'
+DEBUG:     '019_c/field_019_014'
+DEBUG:     '019_c/field_019_023'
+DEBUG:     '019_c/field_019_011'
+DEBUG:     '019_c/field_019_010'
+DEBUG:     '019_c/field_019_002'
+DEBUG:     '019_c/field_019_019'
+DEBUG:     '019_c/field_019_027'
+DEBUG:     '019_c/field_019_024'
+DEBUG:     '022_c/field_022_025'
+DEBUG:     '022_c/field_022_026'
+DEBUG:     '022_c/field_022_028'
+DEBUG:     '022_c/field_022_020'
+DEBUG:     '022_c/field_022_001'
+DEBUG:     '022_c/field_022_029'
+DEBUG:     '022_c/field_022_017'
+DEBUG:     '022_c/field_022_019'
+DEBUG:     '022_c/field_022_006'
+DEBUG:     '022_c/field_022_004'
+DEBUG:     '022_c/field_022_021'
+DEBUG:     '022_c/field_022_012'
+DEBUG:     '022_c/field_022_010'
+DEBUG:     '022_c/field_022_027'
+DEBUG:     '022_c/field_022_007'
+DEBUG:     '022_c/field_022_002'
+DEBUG:     '022_c/field_022_011'
+DEBUG:     '022_c/field_022_015'
+DEBUG:     '022_c/field_022_016'
+DEBUG:     '022_c/field_022_013'
+DEBUG:     '022_c/field_022_024'
+DEBUG:     '022_c/field_022_018'
+DEBUG:     '022_c/field_022_022'
+DEBUG:     '022_c/field_022_023'
+DEBUG:     '022_c/field_022_003'
+DEBUG:     '022_c/field_022_014'
+DEBUG:     '022_c/field_022_008'
+DEBUG:     '022_c/field_022_000'
+DEBUG:     '022_c/field_022_005'
+DEBUG:     '022_c/field_022_009'
+DEBUG:     '020_c/field_020_010'
+DEBUG:     '020_c/field_020_007'
+DEBUG:     '020_c/field_020_013'
+DEBUG:     '020_c/field_020_019'
+DEBUG:     '020_c/field_020_018'
+DEBUG:     '020_c/field_020_020'
+DEBUG:     '020_c/field_020_028'
+DEBUG:     '020_c/field_020_016'
+DEBUG:     '020_c/field_020_008'
+DEBUG:     '020_c/field_020_011'
+DEBUG:     '020_c/field_020_001'
+DEBUG:     '020_c/field_020_002'
+DEBUG:     '020_c/field_020_027'
+DEBUG:     '020_c/field_020_015'
+DEBUG:     '020_c/field_020_009'
+DEBUG:     '020_c/field_020_003'
+DEBUG:     '020_c/field_020_029'
+DEBUG:     '020_c/field_020_026'
+DEBUG:     '020_c/field_020_006'
+DEBUG:     '020_c/field_020_004'
+DEBUG:     '020_c/field_020_023'
+DEBUG:     '020_c/field_020_021'
+DEBUG:     '020_c/field_020_025'
+DEBUG:     '020_c/field_020_000'
+DEBUG:     '020_c/field_020_012'
+DEBUG:     '020_c/field_020_017'
+DEBUG:     '020_c/field_020_024'
+DEBUG:     '020_c/field_020_022'
+DEBUG:     '020_c/field_020_014'
+DEBUG:     '020_c/field_020_005'
+DEBUG:     '017_c/field_017_019'
+DEBUG:     '017_c/field_017_027'
+DEBUG:     '017_c/field_017_016'
+DEBUG:     '017_c/field_017_000'
+DEBUG:     '017_c/field_017_020'
+DEBUG:     '017_c/field_017_005'
+DEBUG:     '017_c/field_017_025'
+DEBUG:     '017_c/field_017_009'
+DEBUG:     '017_c/field_017_023'
+DEBUG:     '017_c/field_017_022'
+DEBUG:     '017_c/field_017_010'
+DEBUG:     '017_c/field_017_013'
+DEBUG:     '017_c/field_017_001'
+DEBUG:     '017_c/field_017_002'
+DEBUG:     '017_c/field_017_008'
+DEBUG:     '017_c/field_017_012'
+DEBUG:     '017_c/field_017_003'
+DEBUG:     '017_c/field_017_028'
+DEBUG:     '017_c/field_017_021'
+DEBUG:     '017_c/field_017_018'
+DEBUG:     '017_c/field_017_006'
+DEBUG:     '017_c/field_017_029'
+DEBUG:     '017_c/field_017_014'
+DEBUG:     '017_c/field_017_011'
+DEBUG:     '017_c/field_017_007'
+DEBUG:     '017_c/field_017_015'
+DEBUG:     '017_c/field_017_004'
+DEBUG:     '017_c/field_017_024'
+DEBUG:     '017_c/field_017_017'
+DEBUG:     '017_c/field_017_026'
+DEBUG:     '005_c/field_005_010'
+DEBUG:     '005_c/field_005_017'
+DEBUG:     '005_c/field_005_028'
+DEBUG:     '005_c/field_005_019'
+DEBUG:     '005_c/field_005_006'
+DEBUG:     '005_c/field_005_022'
+DEBUG:     '005_c/field_005_005'
+DEBUG:     '005_c/field_005_025'
+DEBUG:     '005_c/field_005_000'
+DEBUG:     '005_c/field_005_027'
+DEBUG:     '005_c/field_005_013'
+DEBUG:     '005_c/field_005_020'
+DEBUG:     '005_c/field_005_015'
+DEBUG:     '005_c/field_005_001'
+DEBUG:     '005_c/field_005_003'
+DEBUG:     '005_c/field_005_024'
+DEBUG:     '005_c/field_005_029'
+DEBUG:     '005_c/field_005_018'
+DEBUG:     '005_c/field_005_008'
+DEBUG:     '005_c/field_005_016'
+DEBUG:     '005_c/field_005_023'
+DEBUG:     '005_c/field_005_009'
+DEBUG:     '005_c/field_005_004'
+DEBUG:     '005_c/field_005_026'
+DEBUG:     '005_c/field_005_021'
+DEBUG:     '005_c/field_005_012'
+DEBUG:     '005_c/field_005_007'
+DEBUG:     '005_c/field_005_014'
+DEBUG:     '005_c/field_005_011'
+DEBUG:     '005_c/field_005_002'
+DEBUG:     '007_c/field_007_004'
+DEBUG:     '007_c/field_007_001'
+DEBUG:     '007_c/field_007_018'
+DEBUG:     '007_c/field_007_021'
+DEBUG:     '007_c/field_007_027'
+DEBUG:     '007_c/field_007_007'
+DEBUG:     '007_c/field_007_024'
+DEBUG:     '007_c/field_007_005'
+DEBUG:     '007_c/field_007_014'
+DEBUG:     '007_c/field_007_025'
+DEBUG:     '007_c/field_007_022'
+DEBUG:     '007_c/field_007_026'
+DEBUG:     '007_c/field_007_016'
+DEBUG:     '007_c/field_007_015'
+DEBUG:     '007_c/field_007_029'
+DEBUG:     '007_c/field_007_000'
+DEBUG:     '007_c/field_007_028'
+DEBUG:     '007_c/field_007_002'
+DEBUG:     '007_c/field_007_012'
+DEBUG:     '007_c/field_007_010'
+DEBUG:     '007_c/field_007_009'
+DEBUG:     '007_c/field_007_008'
+DEBUG:     '007_c/field_007_019'
+DEBUG:     '007_c/field_007_011'
+DEBUG:     '007_c/field_007_006'
+DEBUG:     '007_c/field_007_020'
+DEBUG:     '007_c/field_007_003'
+DEBUG:     '007_c/field_007_023'
+DEBUG:     '007_c/field_007_013'
+DEBUG:     '007_c/field_007_017'
+DEBUG:     '018_c/field_018_003'
+DEBUG:     '018_c/field_018_012'
+DEBUG:     '018_c/field_018_007'
+DEBUG:     '018_c/field_018_020'
+DEBUG:     '018_c/field_018_028'
+DEBUG:     '018_c/field_018_029'
+DEBUG:     '018_c/field_018_024'
+DEBUG:     '018_c/field_018_005'
+DEBUG:     '018_c/field_018_001'
+DEBUG:     '018_c/field_018_027'
+DEBUG:     '018_c/field_018_008'
+DEBUG:     '018_c/field_018_026'
+DEBUG:     '018_c/field_018_014'
+DEBUG:     '018_c/field_018_004'
+DEBUG:     '018_c/field_018_022'
+DEBUG:     '018_c/field_018_021'
+DEBUG:     '018_c/field_018_017'
+DEBUG:     '018_c/field_018_018'
+DEBUG:     '018_c/field_018_023'
+DEBUG:     '018_c/field_018_010'
+DEBUG:     '018_c/field_018_009'
+DEBUG:     '018_c/field_018_013'
+DEBUG:     '018_c/field_018_000'
+DEBUG:     '018_c/field_018_002'
+DEBUG:     '018_c/field_018_006'
+DEBUG:     '018_c/field_018_025'
+DEBUG:     '018_c/field_018_019'
+DEBUG:     '018_c/field_018_011'
+DEBUG:     '018_c/field_018_015'
+DEBUG:     '018_c/field_018_016'
+DEBUG:     '021_c/field_021_022'
+DEBUG:     '021_c/field_021_003'
+DEBUG:     '021_c/field_021_004'
+DEBUG:     '021_c/field_021_013'
+DEBUG:     '021_c/field_021_029'
+DEBUG:     '021_c/field_021_007'
+DEBUG:     '021_c/field_021_014'
+DEBUG:     '021_c/field_021_015'
+DEBUG:     '021_c/field_021_001'
+DEBUG:     '021_c/field_021_008'
+DEBUG:     '021_c/field_021_010'
+DEBUG:     '021_c/field_021_027'
+DEBUG:     '021_c/field_021_009'
+DEBUG:     '021_c/field_021_021'
+DEBUG:     '021_c/field_021_006'
+DEBUG:     '021_c/field_021_016'
+DEBUG:     '021_c/field_021_024'
+DEBUG:     '021_c/field_021_018'
+DEBUG:     '021_c/field_021_002'
+DEBUG:     '021_c/field_021_023'
+DEBUG:     '021_c/field_021_020'
+DEBUG:     '021_c/field_021_019'
+DEBUG:     '021_c/field_021_017'
+DEBUG:     '021_c/field_021_000'
+DEBUG:     '021_c/field_021_026'
+DEBUG:     '021_c/field_021_011'
+DEBUG:     '021_c/field_021_005'
+DEBUG:     '021_c/field_021_025'
+DEBUG:     '021_c/field_021_028'
+DEBUG:     '021_c/field_021_012'
+DEBUG:     '027_c/field_027_021'
+DEBUG:     '027_c/field_027_007'
+DEBUG:     '027_c/field_027_013'
+DEBUG:     '027_c/field_027_001'
+DEBUG:     '027_c/field_027_003'
+DEBUG:     '027_c/field_027_010'
+DEBUG:     '027_c/field_027_004'
+DEBUG:     '027_c/field_027_018'
+DEBUG:     '027_c/field_027_008'
+DEBUG:     '027_c/field_027_000'
+DEBUG:     '027_c/field_027_016'
+DEBUG:     '027_c/field_027_012'
+DEBUG:     '027_c/field_027_017'
+DEBUG:     '027_c/field_027_002'
+DEBUG:     '027_c/field_027_026'
+DEBUG:     '027_c/field_027_019'
+DEBUG:     '027_c/field_027_020'
+DEBUG:     '027_c/field_027_009'
+DEBUG:     '027_c/field_027_029'
+DEBUG:     '027_c/field_027_015'
+DEBUG:     '027_c/field_027_005'
+DEBUG:     '027_c/field_027_006'
+DEBUG:     '027_c/field_027_011'
+DEBUG:     '027_c/field_027_014'
+DEBUG:     '027_c/field_027_028'
+DEBUG:     '027_c/field_027_024'
+DEBUG:     '027_c/field_027_025'
+DEBUG:     '027_c/field_027_022'
+DEBUG:     '027_c/field_027_027'
+DEBUG:     '027_c/field_027_023'
+DEBUG:     '003_c/field_003_022'
+DEBUG:     '003_c/field_003_021'
+DEBUG:     '003_c/field_003_017'
+DEBUG:     '003_c/field_003_013'
+DEBUG:     '003_c/field_003_023'
+DEBUG:     '003_c/field_003_010'
+DEBUG:     '003_c/field_003_000'
+DEBUG:     '003_c/field_003_003'
+DEBUG:     '003_c/field_003_025'
+DEBUG:     '003_c/field_003_027'
+DEBUG:     '003_c/field_003_008'
+DEBUG:     '003_c/field_003_018'
+DEBUG:     '003_c/field_003_002'
+DEBUG:     '003_c/field_003_011'
+DEBUG:     '003_c/field_003_026'
+DEBUG:     '003_c/field_003_001'
+DEBUG:     '003_c/field_003_012'
+DEBUG:     '003_c/field_003_024'
+DEBUG:     '003_c/field_003_014'
+DEBUG:     '003_c/field_003_019'
+DEBUG:     '003_c/field_003_007'
+DEBUG:     '003_c/field_003_009'
+DEBUG:     '003_c/field_003_016'
+DEBUG:     '003_c/field_003_004'
+DEBUG:     '003_c/field_003_005'
+DEBUG:     '003_c/field_003_028'
+DEBUG:     '003_c/field_003_029'
+DEBUG:     '003_c/field_003_020'
+DEBUG:     '003_c/field_003_006'
+DEBUG:     '003_c/field_003_015'
+DEBUG:     '029_c/field_029_013'
+DEBUG:     '029_c/field_029_020'
+DEBUG:     '029_c/field_029_011'
+DEBUG:     '029_c/field_029_004'
+DEBUG:     '029_c/field_029_023'
+DEBUG:     '029_c/field_029_006'
+DEBUG:     '029_c/field_029_003'
+DEBUG:     '029_c/field_029_027'
+DEBUG:     '029_c/field_029_007'
+DEBUG:     '029_c/field_029_017'
+DEBUG:     '029_c/field_029_021'
+DEBUG:     '029_c/field_029_022'
+DEBUG:     '029_c/field_029_008'
+DEBUG:     '029_c/field_029_028'
+DEBUG:     '029_c/field_029_015'
+DEBUG:     '029_c/field_029_012'
+DEBUG:     '029_c/field_029_005'
+DEBUG:     '029_c/field_029_029'
+DEBUG:     '029_c/field_029_000'
+DEBUG:     '029_c/field_029_014'
+DEBUG:     '029_c/field_029_024'
+DEBUG:     '029_c/field_029_009'
+DEBUG:     '029_c/field_029_001'
+DEBUG:     '029_c/field_029_018'
+DEBUG:     '029_c/field_029_002'
+DEBUG:     '029_c/field_029_026'
+DEBUG:     '029_c/field_029_025'
+DEBUG:     '029_c/field_029_016'
+DEBUG:     '029_c/field_029_019'
+DEBUG:     '029_c/field_029_010'
+DEBUG:     '002_c/field_002_019'
+DEBUG:     '002_c/field_002_018'
+DEBUG:     '002_c/field_002_012'
+DEBUG:     '002_c/field_002_026'
+DEBUG:     '002_c/field_002_010'
+DEBUG:     '002_c/field_002_025'
+DEBUG:     '002_c/field_002_000'
+DEBUG:     '002_c/field_002_014'
+DEBUG:     '002_c/field_002_028'
+DEBUG:     '002_c/field_002_006'
+DEBUG:     '002_c/field_002_013'
+DEBUG:     '002_c/field_002_008'
+DEBUG:     '002_c/field_002_015'
+DEBUG:     '002_c/field_002_027'
+DEBUG:     '002_c/field_002_029'
+DEBUG:     '002_c/field_002_002'
+DEBUG:     '002_c/field_002_017'
+DEBUG:     '002_c/field_002_003'
+DEBUG:     '002_c/field_002_004'
+DEBUG:     '002_c/field_002_011'
+DEBUG:     '002_c/field_002_024'
+DEBUG:     '002_c/field_002_001'
+DEBUG:     '002_c/field_002_022'
+DEBUG:     '002_c/field_002_021'
+DEBUG:     '002_c/field_002_016'
+DEBUG:     '002_c/field_002_023'
+DEBUG:     '002_c/field_002_005'
+DEBUG:     '002_c/field_002_009'
+DEBUG:     '002_c/field_002_020'
+DEBUG:     '002_c/field_002_007'
+DEBUG:     '010_c/field_010_001'
+DEBUG:     '010_c/field_010_025'
+DEBUG:     '010_c/field_010_002'
+DEBUG:     '010_c/field_010_019'
+DEBUG:     '010_c/field_010_022'
+DEBUG:     '010_c/field_010_015'
+DEBUG:     '010_c/field_010_004'
+DEBUG:     '010_c/field_010_021'
+DEBUG:     '010_c/field_010_018'
+DEBUG:     '010_c/field_010_016'
+DEBUG:     '010_c/field_010_006'
+DEBUG:     '010_c/field_010_026'
+DEBUG:     '010_c/field_010_000'
+DEBUG:     '010_c/field_010_011'
+DEBUG:     '010_c/field_010_028'
+DEBUG:     '010_c/field_010_029'
+DEBUG:     '010_c/field_010_009'
+DEBUG:     '010_c/field_010_005'
+DEBUG:     '010_c/field_010_013'
+DEBUG:     '010_c/field_010_020'
+DEBUG:     '010_c/field_010_027'
+DEBUG:     '010_c/field_010_017'
+DEBUG:     '010_c/field_010_012'
+DEBUG:     '010_c/field_010_024'
+DEBUG:     '010_c/field_010_014'
+DEBUG:     '010_c/field_010_007'
+DEBUG:     '010_c/field_010_010'
+DEBUG:     '010_c/field_010_023'
+DEBUG:     '010_c/field_010_008'
+DEBUG:     '010_c/field_010_003'
+DEBUG:     '011_c/field_011_009'
+DEBUG:     '011_c/field_011_001'
+DEBUG:     '011_c/field_011_010'
+DEBUG:     '011_c/field_011_006'
+DEBUG:     '011_c/field_011_019'
+DEBUG:     '011_c/field_011_014'
+DEBUG:     '011_c/field_011_008'
+DEBUG:     '011_c/field_011_020'
+DEBUG:     '011_c/field_011_025'
+DEBUG:     '011_c/field_011_016'
+DEBUG:     '011_c/field_011_026'
+DEBUG:     '011_c/field_011_024'
+DEBUG:     '011_c/field_011_027'
+DEBUG:     '011_c/field_011_015'
+DEBUG:     '011_c/field_011_018'
+DEBUG:     '011_c/field_011_004'
+DEBUG:     '011_c/field_011_029'
+DEBUG:     '011_c/field_011_005'
+DEBUG:     '011_c/field_011_002'
+DEBUG:     '011_c/field_011_021'
+DEBUG:     '011_c/field_011_017'
+DEBUG:     '011_c/field_011_013'
+DEBUG:     '011_c/field_011_022'
+DEBUG:     '011_c/field_011_028'
+DEBUG:     '011_c/field_011_023'
+DEBUG:     '011_c/field_011_011'
+DEBUG:     '011_c/field_011_000'
+DEBUG:     '011_c/field_011_003'
+DEBUG:     '011_c/field_011_012'
+DEBUG:     '011_c/field_011_007'
+DEBUG:     '016_c/field_016_023'
+DEBUG:     '016_c/field_016_003'
+DEBUG:     '016_c/field_016_024'
+DEBUG:     '016_c/field_016_028'
+DEBUG:     '016_c/field_016_026'
+DEBUG:     '016_c/field_016_004'
+DEBUG:     '016_c/field_016_018'
+DEBUG:     '016_c/field_016_013'
+DEBUG:     '016_c/field_016_008'
+DEBUG:     '016_c/field_016_009'
+DEBUG:     '016_c/field_016_014'
+DEBUG:     '016_c/field_016_029'
+DEBUG:     '016_c/field_016_020'
+DEBUG:     '016_c/field_016_016'
+DEBUG:     '016_c/field_016_006'
+DEBUG:     '016_c/field_016_002'
+DEBUG:     '016_c/field_016_010'
+DEBUG:     '016_c/field_016_012'
+DEBUG:     '016_c/field_016_000'
+DEBUG:     '016_c/field_016_001'
+DEBUG:     '016_c/field_016_025'
+DEBUG:     '016_c/field_016_019'
+DEBUG:     '016_c/field_016_017'
+DEBUG:     '016_c/field_016_011'
+DEBUG:     '016_c/field_016_015'
+DEBUG:     '016_c/field_016_027'
+DEBUG:     '016_c/field_016_007'
+DEBUG:     '016_c/field_016_022'
+DEBUG:     '016_c/field_016_005'
+DEBUG:     '016_c/field_016_021'
+DEBUG:     '012_c/field_012_007'
+DEBUG:     '012_c/field_012_029'
+DEBUG:     '012_c/field_012_019'
+DEBUG:     '012_c/field_012_017'
+DEBUG:     '012_c/field_012_004'
+DEBUG:     '012_c/field_012_002'
+DEBUG:     '012_c/field_012_000'
+DEBUG:     '012_c/field_012_009'
+DEBUG:     '012_c/field_012_013'
+DEBUG:     '012_c/field_012_026'
+DEBUG:     '012_c/field_012_020'
+DEBUG:     '012_c/field_012_008'
+DEBUG:     '012_c/field_012_001'
+DEBUG:     '012_c/field_012_003'
+DEBUG:     '012_c/field_012_024'
+DEBUG:     '012_c/field_012_012'
+DEBUG:     '012_c/field_012_005'
+DEBUG:     '012_c/field_012_010'
+DEBUG:     '012_c/field_012_018'
+DEBUG:     '012_c/field_012_014'
+DEBUG:     '012_c/field_012_021'
+DEBUG:     '012_c/field_012_006'
+DEBUG:     '012_c/field_012_022'
+DEBUG:     '012_c/field_012_023'
+DEBUG:     '012_c/field_012_027'
+DEBUG:     '012_c/field_012_016'
+DEBUG:     '012_c/field_012_028'
+DEBUG:     '012_c/field_012_025'
+DEBUG:     '012_c/field_012_015'
+DEBUG:     '012_c/field_012_011'
+DEBUG:     '025_c/field_025_007'
+DEBUG:     '025_c/field_025_026'
+DEBUG:     '025_c/field_025_020'
+DEBUG:     '025_c/field_025_006'
+DEBUG:     '025_c/field_025_021'
+DEBUG:     '025_c/field_025_014'
+DEBUG:     '025_c/field_025_003'
+DEBUG:     '025_c/field_025_019'
+DEBUG:     '025_c/field_025_011'
+DEBUG:     '025_c/field_025_005'
+DEBUG:     '025_c/field_025_001'
+DEBUG:     '025_c/field_025_013'
+DEBUG:     '025_c/field_025_000'
+DEBUG:     '025_c/field_025_012'
+DEBUG:     '025_c/field_025_018'
+DEBUG:     '025_c/field_025_016'
+DEBUG:     '025_c/field_025_029'
+DEBUG:     '025_c/field_025_022'
+DEBUG:     '025_c/field_025_002'
+DEBUG:     '025_c/field_025_028'
+DEBUG:     '025_c/field_025_023'
+DEBUG:     '025_c/field_025_015'
+DEBUG:     '025_c/field_025_010'
+DEBUG:     '025_c/field_025_027'
+DEBUG:     '025_c/field_025_025'
+DEBUG:     '025_c/field_025_017'
+DEBUG:     '025_c/field_025_024'
+DEBUG:     '025_c/field_025_004'
+DEBUG:     '025_c/field_025_009'
+DEBUG:     '025_c/field_025_008'
+DEBUG:     '006_c/field_006_024'
+DEBUG:     '006_c/field_006_027'
+DEBUG:     '006_c/field_006_026'
+DEBUG:     '006_c/field_006_012'
+DEBUG:     '006_c/field_006_005'
+DEBUG:     '006_c/field_006_023'
+DEBUG:     '006_c/field_006_016'
+DEBUG:     '006_c/field_006_019'
+DEBUG:     '006_c/field_006_020'
+DEBUG:     '006_c/field_006_014'
+DEBUG:     '006_c/field_006_018'
+DEBUG:     '006_c/field_006_000'
+DEBUG:     '006_c/field_006_021'
+DEBUG:     '006_c/field_006_006'
+DEBUG:     '006_c/field_006_028'
+DEBUG:     '006_c/field_006_015'
+DEBUG:     '006_c/field_006_029'
+DEBUG:     '006_c/field_006_008'
+DEBUG:     '006_c/field_006_007'
+DEBUG:     '006_c/field_006_001'
+DEBUG:     '006_c/field_006_002'
+DEBUG:     '006_c/field_006_011'
+DEBUG:     '006_c/field_006_017'
+DEBUG:     '006_c/field_006_003'
+DEBUG:     '006_c/field_006_022'
+DEBUG:     '006_c/field_006_009'
+DEBUG:     '006_c/field_006_025'
+DEBUG:     '006_c/field_006_010'
+DEBUG:     '006_c/field_006_013'
+DEBUG:     '006_c/field_006_004'
+DEBUG:     '009_c/field_009_008'
+DEBUG:     '009_c/field_009_023'
+DEBUG:     '009_c/field_009_000'
+DEBUG:     '009_c/field_009_017'
+DEBUG:     '009_c/field_009_009'
+DEBUG:     '009_c/field_009_010'
+DEBUG:     '009_c/field_009_022'
+DEBUG:     '009_c/field_009_005'
+DEBUG:     '009_c/field_009_014'
+DEBUG:     '009_c/field_009_015'
+DEBUG:     '009_c/field_009_011'
+DEBUG:     '009_c/field_009_020'
+DEBUG:     '009_c/field_009_007'
+DEBUG:     '009_c/field_009_018'
+DEBUG:     '009_c/field_009_028'
+DEBUG:     '009_c/field_009_019'
+DEBUG:     '009_c/field_009_012'
+DEBUG:     '009_c/field_009_006'
+DEBUG:     '009_c/field_009_025'
+DEBUG:     '009_c/field_009_026'
+DEBUG:     '009_c/field_009_029'
+DEBUG:     '009_c/field_009_001'
+DEBUG:     '009_c/field_009_024'
+DEBUG:     '009_c/field_009_002'
+DEBUG:     '009_c/field_009_021'
+DEBUG:     '009_c/field_009_004'
+DEBUG:     '009_c/field_009_027'
+DEBUG:     '009_c/field_009_016'
+DEBUG:     '009_c/field_009_003'
+DEBUG:     '009_c/field_009_013'
+DEBUG:     '013_c/field_013_000'
+DEBUG:     '013_c/field_013_002'
+DEBUG:     '013_c/field_013_028'
+DEBUG:     '013_c/field_013_014'
+DEBUG:     '013_c/field_013_027'
+DEBUG:     '013_c/field_013_019'
+DEBUG:     '013_c/field_013_003'
+DEBUG:     '013_c/field_013_004'
+DEBUG:     '013_c/field_013_011'
+DEBUG:     '013_c/field_013_012'
+DEBUG:     '013_c/field_013_001'
+DEBUG:     '013_c/field_013_016'
+DEBUG:     '013_c/field_013_009'
+DEBUG:     '013_c/field_013_025'
+DEBUG:     '013_c/field_013_013'
+DEBUG:     '013_c/field_013_007'
+DEBUG:     '013_c/field_013_022'
+DEBUG:     '013_c/field_013_023'
+DEBUG:     '013_c/field_013_010'
+DEBUG:     '013_c/field_013_018'
+DEBUG:     '013_c/field_013_015'
+DEBUG:     '013_c/field_013_021'
+DEBUG:     '013_c/field_013_017'
+DEBUG:     '013_c/field_013_026'
+DEBUG:     '013_c/field_013_020'
+DEBUG:     '013_c/field_013_006'
+DEBUG:     '013_c/field_013_024'
+DEBUG:     '013_c/field_013_008'
+DEBUG:     '013_c/field_013_029'
+DEBUG:     '013_c/field_013_005'
+DEBUG:     '000_c/field_000_000'
+DEBUG:     '000_c/field_000_022'
+DEBUG:     '000_c/field_000_014'
+DEBUG:     '000_c/field_000_003'
+DEBUG:     '000_c/field_000_001'
+DEBUG:     '000_c/field_000_025'
+DEBUG:     '000_c/field_000_028'
+DEBUG:     '000_c/field_000_021'
+DEBUG:     '000_c/field_000_024'
+DEBUG:     '000_c/field_000_004'
+DEBUG:     '000_c/field_000_006'
+DEBUG:     '000_c/field_000_005'
+DEBUG:     '000_c/field_000_016'
+DEBUG:     '000_c/field_000_009'
+DEBUG:     '000_c/field_000_011'
+DEBUG:     '000_c/field_000_007'
+DEBUG:     '000_c/field_000_027'
+DEBUG:     '000_c/field_000_018'
+DEBUG:     '000_c/field_000_020'
+DEBUG:     '000_c/field_000_026'
+DEBUG:     '000_c/field_000_013'
+DEBUG:     '000_c/field_000_019'
+DEBUG:     '000_c/field_000_010'
+DEBUG:     '000_c/field_000_023'
+DEBUG:     '000_c/field_000_017'
+DEBUG:     '000_c/field_000_012'
+DEBUG:     '000_c/field_000_002'
+DEBUG:     '000_c/field_000_008'
+DEBUG:     '000_c/field_000_015'
+DEBUG:     '000_c/field_000_029'
+DEBUG:     '015_c/field_015_024'
+DEBUG:     '015_c/field_015_003'
+DEBUG:     '015_c/field_015_027'
+DEBUG:     '015_c/field_015_009'
+DEBUG:     '015_c/field_015_025'
+DEBUG:     '015_c/field_015_005'
+DEBUG:     '015_c/field_015_016'
+DEBUG:     '015_c/field_015_008'
+DEBUG:     '015_c/field_015_028'
+DEBUG:     '015_c/field_015_000'
+DEBUG:     '015_c/field_015_011'
+DEBUG:     '015_c/field_015_014'
+DEBUG:     '015_c/field_015_017'
+DEBUG:     '015_c/field_015_012'
+DEBUG:     '015_c/field_015_013'
+DEBUG:     '015_c/field_015_007'
+DEBUG:     '015_c/field_015_006'
+DEBUG:     '015_c/field_015_018'
+DEBUG:     '015_c/field_015_023'
+DEBUG:     '015_c/field_015_020'
+DEBUG:     '015_c/field_015_001'
+DEBUG:     '015_c/field_015_019'
+DEBUG:     '015_c/field_015_015'
+DEBUG:     '015_c/field_015_004'
+DEBUG:     '015_c/field_015_002'
+DEBUG:     '015_c/field_015_026'
+DEBUG:     '015_c/field_015_022'
+DEBUG:     '015_c/field_015_029'
+DEBUG:     '015_c/field_015_010'
+DEBUG:     '015_c/field_015_021'
+DEBUG:     '014_c/field_014_001'
+DEBUG:     '014_c/field_014_026'
+DEBUG:     '014_c/field_014_012'
+DEBUG:     '014_c/field_014_029'
+DEBUG:     '014_c/field_014_025'
+DEBUG:     '014_c/field_014_003'
+DEBUG:     '014_c/field_014_004'
+DEBUG:     '014_c/field_014_005'
+DEBUG:     '014_c/field_014_011'
+DEBUG:     '014_c/field_014_006'
+DEBUG:     '014_c/field_014_027'
+DEBUG:     '014_c/field_014_010'
+DEBUG:     '014_c/field_014_014'
+DEBUG:     '014_c/field_014_028'
+DEBUG:     '014_c/field_014_017'
+DEBUG:     '014_c/field_014_020'
+DEBUG:     '014_c/field_014_009'
+DEBUG:     '014_c/field_014_013'
+DEBUG:     '014_c/field_014_022'
+DEBUG:     '014_c/field_014_019'
+DEBUG:     '014_c/field_014_024'
+DEBUG:     '014_c/field_014_007'
+DEBUG:     '014_c/field_014_021'
+DEBUG:     '014_c/field_014_000'
+DEBUG:     '014_c/field_014_002'
+DEBUG:     '014_c/field_014_023'
+DEBUG:     '014_c/field_014_018'
+DEBUG:     '014_c/field_014_008'
+DEBUG:     '014_c/field_014_016'
+DEBUG:     '014_c/field_014_015'
+DEBUG:     '024_c/field_024_018'
+DEBUG:     '024_c/field_024_015'
+DEBUG:     '024_c/field_024_007'
+DEBUG:     '024_c/field_024_025'
+DEBUG:     '024_c/field_024_022'
+DEBUG:     '024_c/field_024_004'
+DEBUG:     '024_c/field_024_001'
+DEBUG:     '024_c/field_024_003'
+DEBUG:     '024_c/field_024_000'
+DEBUG:     '024_c/field_024_026'
+DEBUG:     '024_c/field_024_024'
+DEBUG:     '024_c/field_024_010'
+DEBUG:     '024_c/field_024_029'
+DEBUG:     '024_c/field_024_016'
+DEBUG:     '024_c/field_024_008'
+DEBUG:     '024_c/field_024_019'
+DEBUG:     '024_c/field_024_023'
+DEBUG:     '024_c/field_024_012'
+DEBUG:     '024_c/field_024_014'
+DEBUG:     '024_c/field_024_027'
+DEBUG:     '024_c/field_024_028'
+DEBUG:     '024_c/field_024_013'
+DEBUG:     '024_c/field_024_009'
+DEBUG:     '024_c/field_024_020'
+DEBUG:     '024_c/field_024_017'
+DEBUG:     '024_c/field_024_002'
+DEBUG:     '024_c/field_024_005'
+DEBUG:     '024_c/field_024_006'
+DEBUG:     '024_c/field_024_011'
+DEBUG:     '024_c/field_024_021'
+DEBUG:     '001_c/field_001_017'
+DEBUG:     '001_c/field_001_000'
+DEBUG:     '001_c/field_001_001'
+DEBUG:     '001_c/field_001_013'
+DEBUG:     '001_c/field_001_015'
+DEBUG:     '001_c/field_001_027'
+DEBUG:     '001_c/field_001_004'
+DEBUG:     '001_c/field_001_008'
+DEBUG:     '001_c/field_001_026'
+DEBUG:     '001_c/field_001_012'
+DEBUG:     '001_c/field_001_021'
+DEBUG:     '001_c/field_001_003'
+DEBUG:     '001_c/field_001_011'
+DEBUG:     '001_c/field_001_009'
+DEBUG:     '001_c/field_001_020'
+DEBUG:     '001_c/field_001_007'
+DEBUG:     '001_c/field_001_002'
+DEBUG:     '001_c/field_001_005'
+DEBUG:     '001_c/field_001_024'
+DEBUG:     '001_c/field_001_028'
+DEBUG:     '001_c/field_001_019'
+DEBUG:     '001_c/field_001_018'
+DEBUG:     '001_c/field_001_023'
+DEBUG:     '001_c/field_001_025'
+DEBUG:     '001_c/field_001_022'
+DEBUG:     '001_c/field_001_010'
+DEBUG:     '001_c/field_001_006'
+DEBUG:     '001_c/field_001_016'
+DEBUG:     '001_c/field_001_014'
+DEBUG:     '001_c/field_001_029'
+DEBUG:     '008_c/field_008_004'
+DEBUG:     '008_c/field_008_010'
+DEBUG:     '008_c/field_008_022'
+DEBUG:     '008_c/field_008_011'
+DEBUG:     '008_c/field_008_013'
+DEBUG:     '008_c/field_008_019'
+DEBUG:     '008_c/field_008_012'
+DEBUG:     '008_c/field_008_017'
+DEBUG:     '008_c/field_008_003'
+DEBUG:     '008_c/field_008_024'
+DEBUG:     '008_c/field_008_028'
+DEBUG:     '008_c/field_008_007'
+DEBUG:     '008_c/field_008_000'
+DEBUG:     '008_c/field_008_020'
+DEBUG:     '008_c/field_008_029'
+DEBUG:     '008_c/field_008_016'
+DEBUG:     '008_c/field_008_006'
+DEBUG:     '008_c/field_008_001'
+DEBUG:     '008_c/field_008_008'
+DEBUG:     '008_c/field_008_009'
+DEBUG:     '008_c/field_008_026'
+DEBUG:     '008_c/field_008_002'
+DEBUG:     '008_c/field_008_005'
+DEBUG:     '008_c/field_008_018'
+DEBUG:     '008_c/field_008_015'
+DEBUG:     '008_c/field_008_025'
+DEBUG:     '008_c/field_008_021'
+DEBUG:     '008_c/field_008_023'
+DEBUG:     '008_c/field_008_014'
+DEBUG:     '008_c/field_008_027'
+DEBUG:     '026_c/field_026_002'
+DEBUG:     '026_c/field_026_008'
+DEBUG:     '026_c/field_026_021'
+DEBUG:     '026_c/field_026_013'
+DEBUG:     '026_c/field_026_028'
+DEBUG:     '026_c/field_026_025'
+DEBUG:     '026_c/field_026_000'
+DEBUG:     '026_c/field_026_024'
+DEBUG:     '026_c/field_026_009'
+DEBUG:     '026_c/field_026_014'
+DEBUG:     '026_c/field_026_022'
+DEBUG:     '026_c/field_026_012'
+DEBUG:     '026_c/field_026_017'
+DEBUG:     '026_c/field_026_005'
+DEBUG:     '026_c/field_026_027'
+DEBUG:     '026_c/field_026_011'
+DEBUG:     '026_c/field_026_015'
+DEBUG:     '026_c/field_026_003'
+DEBUG:     '026_c/field_026_001'
+DEBUG:     '026_c/field_026_023'
+DEBUG:     '026_c/field_026_018'
+DEBUG:     '026_c/field_026_004'
+DEBUG:     '026_c/field_026_019'
+DEBUG:     '026_c/field_026_016'
+DEBUG:     '026_c/field_026_029'
+DEBUG:     '026_c/field_026_020'
+DEBUG:     '026_c/field_026_010'
+DEBUG:     '026_c/field_026_007'
+DEBUG:     '026_c/field_026_006'
+DEBUG:     '026_c/field_026_026'
+DEBUG:     '028_c/field_028_012'
+DEBUG:     '028_c/field_028_003'
+DEBUG:     '028_c/field_028_025'
+DEBUG:     '028_c/field_028_020'
+DEBUG:     '028_c/field_028_016'
+DEBUG:     '028_c/field_028_000'
+DEBUG:     '028_c/field_028_019'
+DEBUG:     '028_c/field_028_029'
+DEBUG:     '028_c/field_028_006'
+DEBUG:     '028_c/field_028_009'
+DEBUG:     '028_c/field_028_013'
+DEBUG:     '028_c/field_028_022'
+DEBUG:     '028_c/field_028_024'
+DEBUG:     '028_c/field_028_001'
+DEBUG:     '028_c/field_028_004'
+DEBUG:     '028_c/field_028_014'
+DEBUG:     '028_c/field_028_007'
+DEBUG:     '028_c/field_028_028'
+DEBUG:     '028_c/field_028_027'
+DEBUG:     '028_c/field_028_010'
+DEBUG:     '028_c/field_028_005'
+DEBUG:     '028_c/field_028_002'
+DEBUG:     '028_c/field_028_015'
+DEBUG:     '028_c/field_028_017'
+DEBUG:     '028_c/field_028_018'
+DEBUG:     '028_c/field_028_021'
+DEBUG:     '028_c/field_028_026'
+DEBUG:     '028_c/field_028_023'
+DEBUG:     '028_c/field_028_008'
+DEBUG:     '028_c/field_028_011'
+DEBUG:     '004_c/field_004_016'
+DEBUG:     '004_c/field_004_004'
+DEBUG:     '004_c/field_004_017'
+DEBUG:     '004_c/field_004_008'
+DEBUG:     '004_c/field_004_026'
+DEBUG:     '004_c/field_004_009'
+DEBUG:     '004_c/field_004_007'
+DEBUG:     '004_c/field_004_018'
+DEBUG:     '004_c/field_004_010'
+DEBUG:     '004_c/field_004_028'
+DEBUG:     '004_c/field_004_021'
+DEBUG:     '004_c/field_004_003'
+DEBUG:     '004_c/field_004_014'
+DEBUG:     '004_c/field_004_015'
+DEBUG:     '004_c/field_004_005'
+DEBUG:     '004_c/field_004_024'
+DEBUG:     '004_c/field_004_027'
+DEBUG:     '004_c/field_004_023'
+DEBUG:     '004_c/field_004_022'
+DEBUG:     '004_c/field_004_012'
+DEBUG:     '004_c/field_004_001'
+DEBUG:     '004_c/field_004_006'
+DEBUG:     '004_c/field_004_013'
+DEBUG:     '004_c/field_004_011'
+DEBUG:     '004_c/field_004_000'
+DEBUG:     '004_c/field_004_002'
+DEBUG:     '004_c/field_004_029'
+DEBUG:     '004_c/field_004_025'
+DEBUG:     '004_c/field_004_019'
+DEBUG:     '004_c/field_004_020'
+Found 900 field dirs.
+000_c/field_000_000 to 029_c/field_029_029
+I'm in charge of 013_c/field_013_000
+I'm in charge of 013_c/field_013_001
+I'm in charge of 013_c/field_013_002
+I'm in charge of 013_c/field_013_003
+I'm in charge of 013_c/field_013_004
+I'm in charge of 013_c/field_013_005
+I'm in charge of 013_c/field_013_006
+I'm in charge of 013_c/field_013_007
+I'm in charge of 013_c/field_013_008
+I'm in charge of 013_c/field_013_009
+I'm in charge of 013_c/field_013_010
+I'm in charge of 013_c/field_013_011
+I'm in charge of 013_c/field_013_012
+I'm in charge of 013_c/field_013_013
+I'm in charge of 013_c/field_013_014
+I'm in charge of 013_c/field_013_015
+I'm in charge of 013_c/field_013_016
+I'm in charge of 013_c/field_013_017
+I'm in charge of 013_c/field_013_018
+I'm in charge of 013_c/field_013_019
+I'm in charge of 013_c/field_013_020
+I'm in charge of 013_c/field_013_021
+I'm in charge of 013_c/field_013_022
+I'm in charge of 013_c/field_013_023
+I'm in charge of 013_c/field_013_024
+I'm in charge of 013_c/field_013_025
+I'm in charge of 013_c/field_013_026
+I'm in charge of 013_c/field_013_027
+I'm in charge of 013_c/field_013_028
+I'm in charge of 013_c/field_013_029
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_000/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_001/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_002/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_003/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_004/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_005/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_006/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_007/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_008/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_009/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_010/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_011/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_012/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_013/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_014/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_015/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_016/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_017/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_018/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_019/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_020/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_021/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_022/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_023/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_024/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_025/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_026/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_027/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_028/ref.1' found.
+DEBUG: FindInputFiles: required file 'intermediate/fermi.output/contact_target/013_c/field_013_029/ref.1' found.
+DEBUG: FindInputFiles: Found 30 ref files, 30 link files, 30 cell files.
+DEBUG: ShotCat_CRV: mixing 30 dirs:
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_000' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_000'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_001' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_001'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_002' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_002'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_003' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_003'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_004' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_004'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_005' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_005'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_006' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_006'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_007' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_007'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_008' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_008'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_009' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_009'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_010' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_010'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_011' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_011'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_012' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_012'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_013' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_013'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_014' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_014'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_015' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_015'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_016' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_016'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_017' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_017'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_018' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_018'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_019' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_019'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_020' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_020'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_021' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_021'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_022' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_022'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_023' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_023'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_024' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_024'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_025' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_025'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_026' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_026'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_027' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_027'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_028' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_028'
+    DEBUG: FindMixDirs( 'intermediate/fermi.output/contact_target/013_c/field_013_029' , 1 ): found 0 dirs.
+    DEBUG: mixing 0 from 'intermediate/fermi.output/contact_target/013_c/field_013_029'
+Concatenating 30 files.
+DEBUG: ShotCatPart: chip_cnf = output/crv/chip.cnf
+Block 114688 x 114688 nm, frame_height 114688 nm.
+MBF2.0, ByteSwap:0, subFrame:1
+DEBUG: ShotCat_CRV: Number of columns of partitions = 30
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_000/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_000/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_000/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_001/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_001/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_001/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_002/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_002/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_002/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_003/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_003/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_003/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_004/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_004/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_004/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_005/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_005/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_005/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_006/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_006/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_006/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_007/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_007/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_007/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_008/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_008/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_008/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_009/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_009/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_009/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_010/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_010/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_010/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_011/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_011/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_011/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_012/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_012/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_012/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_013/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_013/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_013/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_014/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_014/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_014/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_015/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_015/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_015/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_016/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_016/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_016/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_017/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_017/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_017/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_018/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_018/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_018/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_019/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_019/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_019/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_020/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_020/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_020/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_021/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_021/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_021/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_022/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_022/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_022/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_023/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_023/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_023/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_024/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_024/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_024/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_025/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_025/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_025/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_026/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_026/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_026/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_027/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_027/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_027/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_028/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_028/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_028/cell.1
+  were found.
+DEBUG: Pretend as if
+  intermediate/fermi.output/contact_target/013_c/field_013_029/ref.1
+  intermediate/fermi.output/contact_target/013_c/field_013_029/link.1
+  intermediate/fermi.output/contact_target/013_c/field_013_029/cell.1
+  were found.
+DEBUG: ShotCat_CRV: concatenating non-MBF format 'CRV':
+    DEBUG: CatCells 18 from 30
+    DEBUG: CatLinks 18 from 30
+    DEBUG: CatRefs 17 from 30; width = 114688, height = 114688
+
+***** CatCells *****
+Writing to output/crv/cell.14
+Reading intermediate/fermi.output/contact_target/013_c/field_013_000/cell.1 as [0]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_001/cell.1 as [1]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_002/cell.1 as [2]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_003/cell.1 as [3]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_004/cell.1 as [4]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_005/cell.1 as [5]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_006/cell.1 as [6]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_007/cell.1 as [7]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_008/cell.1 as [8]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_009/cell.1 as [9]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_010/cell.1 as [10]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_011/cell.1 as [11]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_012/cell.1 as [12]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_013/cell.1 as [13]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_014/cell.1 as [14]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_015/cell.1 as [15]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_016/cell.1 as [16]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_017/cell.1 as [17]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_018/cell.1 as [18]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_019/cell.1 as [19]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_020/cell.1 as [20]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_021/cell.1 as [21]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_022/cell.1 as [22]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_023/cell.1 as [23]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_024/cell.1 as [24]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_025/cell.1 as [25]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_026/cell.1 as [26]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_027/cell.1 as [27]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_028/cell.1 as [28]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_029/cell.1 as [29]th stream
+
+**** CatCellsStream ****
+*** Reading Pointers from [0]th stream
+5509760 bytes (1377440 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [1]th stream
+5540996 bytes (1385249 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [2]th stream
+6173564 bytes (1543391 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [3]th stream
+6770216 bytes (1692554 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [4]th stream
+5736612 bytes (1434153 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [5]th stream
+5283624 bytes (1320906 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [6]th stream
+5115048 bytes (1278762 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [7]th stream
+5321828 bytes (1330457 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [8]th stream
+6177972 bytes (1544493 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [9]th stream
+6737976 bytes (1684494 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [10]th stream
+5561584 bytes (1390396 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [11]th stream
+5006040 bytes (1251510 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [12]th stream
+4583544 bytes (1145886 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [13]th stream
+4558116 bytes (1139529 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [14]th stream
+6078212 bytes (1519553 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [15]th stream
+6288244 bytes (1572061 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [16]th stream
+6288696 bytes (1572174 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [17]th stream
+5359704 bytes (1339926 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [18]th stream
+4699948 bytes (1174987 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [19]th stream
+5514600 bytes (1378650 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [20]th stream
+6263856 bytes (1565964 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [21]th stream
+6887416 bytes (1721854 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [22]th stream
+7305232 bytes (1826308 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [23]th stream
+5939304 bytes (1484826 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [24]th stream
+4644016 bytes (1161004 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [25]th stream
+5122556 bytes (1280639 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [26]th stream
+5720628 bytes (1430157 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [27]th stream
+6671696 bytes (1667924 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [28]th stream
+6835660 bytes (1708915 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Pointers from [29]th stream
+5924968 bytes (1481242 words)
+MagicNumber:40d24100, HeaderLength=4(0x4), PointerLength=2(0x2), ExtensionLength=0(0x0), 
+*** Reading Patterns from [0]th stream
+5509736 bytes starting from 24
+*** Reading Patterns from [1]th stream
+5540972 bytes starting from 24
+*** Reading Patterns from [2]th stream
+6173540 bytes starting from 24
+*** Reading Patterns from [3]th stream
+6770192 bytes starting from 24
+*** Reading Patterns from [4]th stream
+5736588 bytes starting from 24
+*** Reading Patterns from [5]th stream
+5283600 bytes starting from 24
+*** Reading Patterns from [6]th stream
+5115024 bytes starting from 24
+*** Reading Patterns from [7]th stream
+5321804 bytes starting from 24
+*** Reading Patterns from [8]th stream
+6177948 bytes starting from 24
+*** Reading Patterns from [9]th stream
+6737952 bytes starting from 24
+*** Reading Patterns from [10]th stream
+5561560 bytes starting from 24
+*** Reading Patterns from [11]th stream
+5006016 bytes starting from 24
+*** Reading Patterns from [12]th stream
+4583520 bytes starting from 24
+*** Reading Patterns from [13]th stream
+4558092 bytes starting from 24
+*** Reading Patterns from [14]th stream
+6078188 bytes starting from 24
+*** Reading Patterns from [15]th stream
+6288220 bytes starting from 24
+*** Reading Patterns from [16]th stream
+6288672 bytes starting from 24
+*** Reading Patterns from [17]th stream
+5359680 bytes starting from 24
+*** Reading Patterns from [18]th stream
+4699924 bytes starting from 24
+*** Reading Patterns from [19]th stream
+5514576 bytes starting from 24
+*** Reading Patterns from [20]th stream
+6263832 bytes starting from 24
+*** Reading Patterns from [21]th stream
+6887392 bytes starting from 24
+*** Reading Patterns from [22]th stream
+7305208 bytes starting from 24
+*** Reading Patterns from [23]th stream
+5939280 bytes starting from 24
+*** Reading Patterns from [24]th stream
+4643992 bytes starting from 24
+*** Reading Patterns from [25]th stream
+5122532 bytes starting from 24
+*** Reading Patterns from [26]th stream
+5720604 bytes starting from 24
+*** Reading Patterns from [27]th stream
+6671672 bytes starting from 24
+*** Reading Patterns from [28]th stream
+6835636 bytes starting from 24
+*** Reading Patterns from [29]th stream
+5924944 bytes starting from 24
+File 0 should be updated cell_IDpointerCPDS=0(0x0), RelationRecordIndex=0(0x0), 
+File 1 should be updated cell_IDpointerCPDS=1(0x1), RelationRecordIndex=0(0x0), 
+File 2 should be updated cell_IDpointerCPDS=2(0x2), RelationRecordIndex=0(0x0), 
+File 3 should be updated cell_IDpointerCPDS=3(0x3), RelationRecordIndex=0(0x0), 
+File 4 should be updated cell_IDpointerCPDS=4(0x4), RelationRecordIndex=0(0x0), 
+File 5 should be updated cell_IDpointerCPDS=5(0x5), RelationRecordIndex=0(0x0), 
+File 6 should be updated cell_IDpointerCPDS=6(0x6), RelationRecordIndex=0(0x0), 
+File 7 should be updated cell_IDpointerCPDS=7(0x7), RelationRecordIndex=0(0x0), 
+File 8 should be updated cell_IDpointerCPDS=8(0x8), RelationRecordIndex=0(0x0), 
+File 9 should be updated cell_IDpointerCPDS=9(0x9), RelationRecordIndex=0(0x0), 
+File 10 should be updated cell_IDpointerCPDS=10(0xa), RelationRecordIndex=0(0x0), 
+File 11 should be updated cell_IDpointerCPDS=11(0xb), RelationRecordIndex=0(0x0), 
+File 12 should be updated cell_IDpointerCPDS=12(0xc), RelationRecordIndex=0(0x0), 
+File 13 should be updated cell_IDpointerCPDS=13(0xd), RelationRecordIndex=0(0x0), 
+File 14 should be updated cell_IDpointerCPDS=14(0xe), RelationRecordIndex=0(0x0), 
+File 15 should be updated cell_IDpointerCPDS=15(0xf), RelationRecordIndex=0(0x0), 
+File 16 should be updated cell_IDpointerCPDS=16(0x10), RelationRecordIndex=0(0x0), 
+File 17 should be updated cell_IDpointerCPDS=17(0x11), RelationRecordIndex=0(0x0), 
+File 18 should be updated cell_IDpointerCPDS=18(0x12), RelationRecordIndex=0(0x0), 
+File 19 should be updated cell_IDpointerCPDS=19(0x13), RelationRecordIndex=0(0x0), 
+File 20 should be updated cell_IDpointerCPDS=20(0x14), RelationRecordIndex=0(0x0), 
+File 21 should be updated cell_IDpointerCPDS=21(0x15), RelationRecordIndex=0(0x0), 
+File 22 should be updated cell_IDpointerCPDS=22(0x16), RelationRecordIndex=0(0x0), 
+File 23 should be updated cell_IDpointerCPDS=23(0x17), RelationRecordIndex=0(0x0), 
+File 24 should be updated cell_IDpointerCPDS=24(0x18), RelationRecordIndex=0(0x0), 
+File 25 should be updated cell_IDpointerCPDS=25(0x19), RelationRecordIndex=0(0x0), 
+File 26 should be updated cell_IDpointerCPDS=26(0x1a), RelationRecordIndex=0(0x0), 
+File 27 should be updated cell_IDpointerCPDS=27(0x1b), RelationRecordIndex=0(0x0), 
+File 28 should be updated cell_IDpointerCPDS=28(0x1c), RelationRecordIndex=0(0x0), 
+File 29 should be updated cell_IDpointerCPDS=29(0x1d), RelationRecordIndex=0(0x0), 
+CatCells (elapsed: 0d 00:00:00.43  cpu:0.326823s usr:0.02 sys:0.31 blk:0.00 rss:0.1 hwm:0.1 swp:0.0 mjr:0 min:4931)
+
+***** CatLinks *****
+Writing to output/crv/link.14
+Reading intermediate/fermi.output/contact_target/013_c/field_013_000/link.1 as [0]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_001/link.1 as [1]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_002/link.1 as [2]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_003/link.1 as [3]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_004/link.1 as [4]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_005/link.1 as [5]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_006/link.1 as [6]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_007/link.1 as [7]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_008/link.1 as [8]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_009/link.1 as [9]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_010/link.1 as [10]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_011/link.1 as [11]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_012/link.1 as [12]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_013/link.1 as [13]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_014/link.1 as [14]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_015/link.1 as [15]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_016/link.1 as [16]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_017/link.1 as [17]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_018/link.1 as [18]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_019/link.1 as [19]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_020/link.1 as [20]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_021/link.1 as [21]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_022/link.1 as [22]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_023/link.1 as [23]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_024/link.1 as [24]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_025/link.1 as [25]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_026/link.1 as [26]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_027/link.1 as [27]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_028/link.1 as [28]th stream
+Reading intermediate/fermi.output/contact_target/013_c/field_013_029/link.1 as [29]th stream
+
+**** CatLinksStream ****
+*** Reading from [0]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [1]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [2]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [3]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [4]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [5]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [6]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [7]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [8]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [9]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [10]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [11]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [12]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [13]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [14]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [15]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [16]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [17]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [18]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [19]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [20]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [21]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [22]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [23]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [24]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [25]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [26]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [27]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [28]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+*** Reading from [29]th stream
+MagicNumber:40d22000, HeaderLength=5(0x5), RelationLength=3(0x3), CellOperationLength=7(0x7), FileMappingLength=3(0x3), 
+File 0 should be updated cell_IDpointerCPDS=0(0x0), RelationRecordIndex=0(0x0), 
+File 1 should be updated cell_IDpointerCPDS=1(0x1), RelationRecordIndex=1(0x1), 
+File 2 should be updated cell_IDpointerCPDS=2(0x2), RelationRecordIndex=2(0x2), 
+File 3 should be updated cell_IDpointerCPDS=3(0x3), RelationRecordIndex=3(0x3), 
+File 4 should be updated cell_IDpointerCPDS=4(0x4), RelationRecordIndex=4(0x4), 
+File 5 should be updated cell_IDpointerCPDS=5(0x5), RelationRecordIndex=5(0x5), 
+File 6 should be updated cell_IDpointerCPDS=6(0x6), RelationRecordIndex=6(0x6), 
+File 7 should be updated cell_IDpointerCPDS=7(0x7), RelationRecordIndex=7(0x7), 
+File 8 should be updated cell_IDpointerCPDS=8(0x8), RelationRecordIndex=8(0x8), 
+File 9 should be updated cell_IDpointerCPDS=9(0x9), RelationRecordIndex=9(0x9), 
+File 10 should be updated cell_IDpointerCPDS=10(0xa), RelationRecordIndex=10(0xa), 
+File 11 should be updated cell_IDpointerCPDS=11(0xb), RelationRecordIndex=11(0xb), 
+File 12 should be updated cell_IDpointerCPDS=12(0xc), RelationRecordIndex=12(0xc), 
+File 13 should be updated cell_IDpointerCPDS=13(0xd), RelationRecordIndex=13(0xd), 
+File 14 should be updated cell_IDpointerCPDS=14(0xe), RelationRecordIndex=14(0xe), 
+File 15 should be updated cell_IDpointerCPDS=15(0xf), RelationRecordIndex=15(0xf), 
+File 16 should be updated cell_IDpointerCPDS=16(0x10), RelationRecordIndex=16(0x10), 
+File 17 should be updated cell_IDpointerCPDS=17(0x11), RelationRecordIndex=17(0x11), 
+File 18 should be updated cell_IDpointerCPDS=18(0x12), RelationRecordIndex=18(0x12), 
+File 19 should be updated cell_IDpointerCPDS=19(0x13), RelationRecordIndex=19(0x13), 
+File 20 should be updated cell_IDpointerCPDS=20(0x14), RelationRecordIndex=20(0x14), 
+File 21 should be updated cell_IDpointerCPDS=21(0x15), RelationRecordIndex=21(0x15), 
+File 22 should be updated cell_IDpointerCPDS=22(0x16), RelationRecordIndex=22(0x16), 
+File 23 should be updated cell_IDpointerCPDS=23(0x17), RelationRecordIndex=23(0x17), 
+File 24 should be updated cell_IDpointerCPDS=24(0x18), RelationRecordIndex=24(0x18), 
+File 25 should be updated cell_IDpointerCPDS=25(0x19), RelationRecordIndex=25(0x19), 
+File 26 should be updated cell_IDpointerCPDS=26(0x1a), RelationRecordIndex=26(0x1a), 
+File 27 should be updated cell_IDpointerCPDS=27(0x1b), RelationRecordIndex=27(0x1b), 
+File 28 should be updated cell_IDpointerCPDS=28(0x1c), RelationRecordIndex=28(0x1c), 
+File 29 should be updated cell_IDpointerCPDS=29(0x1d), RelationRecordIndex=29(0x1d), 
+CatLinks (elapsed: 0d 00:00:00.01  cpu:0.005217s usr:0.00 sys:0.00 blk:0.00 rss:0.1 hwm:0.1 swp:0.0 mjr:0 min:3)
+
+***** CatRefs *****
+Writing to output/crv/ref.14
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_000/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_001/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_002/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_003/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_004/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_005/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_006/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_007/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_008/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_009/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_010/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_011/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_012/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_013/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_014/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_015/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_016/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_017/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_018/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_019/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_020/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_021/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_022/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_023/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_024/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_025/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_026/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_027/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_028/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+*** Reading from intermediate/fermi.output/contact_target/013_c/field_013_029/ref.1
+MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=2(0x2), ExtensionLength=0(0x0), BlockDefinitionLength=8(0x8), 
+bytepos_block_definition = 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 28 
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_000/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_001/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_002/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_003/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_004/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_005/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_006/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_007/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_008/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_009/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_010/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_011/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_012/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_013/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_014/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_015/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_016/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_017/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_018/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_019/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_020/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_021/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_022/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_023/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_024/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_025/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_026/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_027/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_028/ref.1
+There are 1 Block Definitions in this file.
+*** Processing intermediate/fermi.output/contact_target/013_c/field_013_029/ref.1
+There are 1 Block Definitions in this file.
+Final header MagicNumber:40d20000, HeaderLength=5(0x5), BlockPointerLength=60(0x3c), ExtensionLength=0(0x0), BlockDefinitionLength=240(0xf0), 
+CatRefs (elapsed: 0d 00:00:00.02  cpu:0.013276s usr:0.01 sys:0.01 blk:0.00 rss:0.1 hwm:0.1 swp:0.0 mjr:0 min:3)
+
+----------------------------------------------------
+Returning from crv (exit 0)
+----------------------------------------------------
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+#   total microsec                 my usec                 child usec          my count (1th file write)
+      477875 total        2756 ( 0.57%) me       475119 (99.42%) kids           1 count ShotCatCRV_main <-- ShotCat_CRV
+      613783 total        4442 ( 0.72%) me       609341 (99.27%) kids           1 count ShotCat_Main
+        7527 total        7527 (  100%) me            0 (    0%) kids           1 count ShotCatPartitions::CatLinksStream <-- ShotCatPartitions::CatLinks
+       16058 total        8531 (53.12%) me         7527 (46.87%) kids           1 count ShotCatPartitions::CatLinks <-- ShotCatCRV_main
+      433509 total       10253 ( 2.36%) me       423256 (97.63%) kids           1 count ShotCatPartitions::CatCells <-- ShotCatCRV_main
+       25552 total       25552 (  100%) me            0 (    0%) kids           1 count ShotCatPartitions::CatRefs <-- ShotCatCRV_main
+      609341 total       53777 ( 8.82%) me       555564 (91.17%) kids           1 count ShotCat_CRV <-- ShotCat_Main
+       77689 total       77689 (  100%) me            0 (    0%) kids           1 count Mixing <-- ShotCat_CRV
+      423256 total      423256 (  100%) me            0 (    0%) kids           1 count ShotCatPartitions::CatCellsStream <-- ShotCatPartitions::CatCells
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+#####
+# stats: main(): Ended: 2023-12-15 (Fri) 12:22:56 EST
+# stats: main(): Duration: Real 0d 00:00:00.614049924; CPU 0d 00:00:00.420358119
+# stats: main(): Virtual Memory: 3,688,755,200 peak (+14,290,944); 3,681,447,936 cur (+7,168,000)
+# stats: main(): Resident Set Size: 148,115,456 peak (+15,577,088); 140,959,744 cur (+8,421,376)
+#####
+
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Ending at:
+#    Fri 15 Dec 2023 12:22:56 PM EST
+#    {ProgramFinishEpoch|1702660976.052870707}
+# Session Duration: 1 seconds
+#
+#
+#   Session Messages Summary
+#   Type       | Occurrences
+#  ------------+-----------------
+#   Fatal      | 0                 
+#   Error      | 0                 
+#   Warning    | 0                 
+#   All Others | 2,415             
+#  ------------+-----------------
+#
+#
+# Exit code:
+#    0 (success)
+#    {ProgramExitCode|0}
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+

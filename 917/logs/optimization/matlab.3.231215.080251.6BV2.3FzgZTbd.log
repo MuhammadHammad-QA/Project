@@ -1,0 +1,170 @@
+### libFMD: 2022/12/30 08:50 PST Setting Up GPU
+### libFMD: maxNumCompThreads = 4
+### libFMD: GPU memory max pool size is 1212.0 MiB.
+### Loading config file /mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/etc/tmilt_193i.toml.
+
+# CostFunctional Stage CTM
+### CostFunctional take FastQuantizer MRC Step before evaluate [false]
+@@@ Cached 20 of 20 kernels (12635.6 MiB GPU memory available)
+@@@ Cleared 640 MiB of Kernel Cache (14340 MiB GPU memory free).
+@@@ Cleared Kernel Cache (14340.5 MiB GPU memory available)
+### FastQuantizer mrcWidthSpaceIncrement set to 0.000000
+### FastQuantizer mrcMaxCorrection set to 0.000000
+### MRC Limts are width=12.5 space=12.5 area=500
+### MRC Limts are width=12.5 space=12.5 area=500
+
+# CostFunctional Stage QTM0
+#   CostFunctional.mu = 0.01
+#   CostFunctional.nu = 0.04
+### CostFunctional take FastQuantizer MRC Step before evaluate [false]
+@@@ Cached 20 of 20 kernels (12509.5 MiB GPU memory available)
+@@@ Cleared 640 MiB of Kernel Cache (13700 MiB GPU memory free).
+@@@ Cleared Kernel Cache (13700.5 MiB GPU memory available)
+### FastQuantizer addMask set to 1
+
+# CostFunctional Stage QTM1
+#   CostFunctional.mu = 0.1
+#   CostFunctional.nu = 0.4
+#   FastQuantizer.inverseTransitionCoeff = 0.2
+#   FastQuantizer.singlePixelCoeff = 0.1
+### CostFunctional take FastQuantizer MRC Step before evaluate [true]
+@@@ Cached 20 of 20 kernels (12317.5 MiB GPU memory available)
+@@@ Cleared 640 MiB of Kernel Cache (14340 MiB GPU memory free).
+@@@ Cleared Kernel Cache (14340.5 MiB GPU memory available)
+
+# CostFunctional Stage QTM2_0
+#   CostFunctional.mu = 0.2
+#   CostFunctional.nu = 0.8
+#   CostFunctional.tcSlope = 1.25
+#   CostFunctional.tcUpsampleFactor = 3
+#   FastQuantizer.inverseTransitionCoeff = 0.2
+#   FastQuantizer.singlePixelCoeff = 0.1
+#   FastQuantizer.areaCoeff = 1
+### CostFunctional take FastQuantizer MRC Step before evaluate [true]
+@@@ Cached 20 of 20 kernels (12445.5 MiB GPU memory available)
+@@@ Cleared 640 MiB of Kernel Cache (14084 MiB GPU memory free).
+@@@ Cleared Kernel Cache (14308.5 MiB GPU memory available)
+
+# CostFunctional Stage QTM2_1
+#   CostFunctional.mu = 0.2
+#   CostFunctional.nu = 0.8
+#   CostFunctional.tcSlope = 1.6
+#   CostFunctional.tcUpsampleFactor = 3
+#   FastQuantizer.inverseTransitionCoeff = 0.2
+#   FastQuantizer.singlePixelCoeff = 0.1
+#   FastQuantizer.areaCoeff = 1
+### CostFunctional take FastQuantizer MRC Step before evaluate [true]
+@@@ Cached 20 of 20 kernels (12445.5 MiB GPU memory available)
+@@@ Cleared 640 MiB of Kernel Cache (14340 MiB GPU memory free).
+@@@ Cleared Kernel Cache (14340.5 MiB GPU memory available)
+
+# CostFunctional Stage QTM2_2
+#   CostFunctional.mu = 0.2
+#   CostFunctional.nu = 0.8
+#   CostFunctional.tcSlope = 2
+#   CostFunctional.tcUpsampleFactor = 3
+#   FastQuantizer.inverseTransitionCoeff = 0.2
+#   FastQuantizer.singlePixelCoeff = 0.1
+#   FastQuantizer.areaCoeff = 1
+### CostFunctional take FastQuantizer MRC Step before evaluate [true]
+@@@ Cached 20 of 20 kernels (12445.5 MiB GPU memory available)
+@@@ Cleared 640 MiB of Kernel Cache (13700 MiB GPU memory free).
+@@@ Cleared Kernel Cache (13700.5 MiB GPU memory available)
+
+# CostFunctional Stage QTM2
+#   CostFunctional.mu = 0.2
+#   CostFunctional.nu = 0.8
+#   CostFunctional.tcSlope = 3
+#   CostFunctional.tcUpsampleFactor = 3
+#   FastQuantizer.inverseTransitionCoeff = 0.2
+#   FastQuantizer.singlePixelCoeff = 0.1
+#   FastQuantizer.areaCoeff = 1
+### CostFunctional take FastQuantizer MRC Step before evaluate [true]
+@@@ Cached 20 of 20 kernels (12445.5 MiB GPU memory available)
+@@@ Cleared 640 MiB of Kernel Cache (13700 MiB GPU memory free).
+@@@ Cleared Kernel Cache (13892.5 MiB GPU memory available)
+### FastQuantizer areaWatershedFraction set to 0.500000
+### FastQuantizer widthWatershedFraction set to 0.500000
+### FastQuantizer spaceWatershedFraction set to 0.500000
+
+# MRC Stage MRC1
+#   FastQuantizer.singlePixelCoeff = 0.1
+#   FastQuantizer.areaCoeff = 0.5
+#   FastQuantizer.plateauCoeff = 1
+#   FastQuantizer.use2xMrc = 1
+#   FastQuantizer.mrcStepSize = 0.2
+#   FastQuantizer.mrcIterations = 10
+### cleanMRC: iters = 10 pixel costs = [93,0] contour crossing costs = [1,0]
+### cleanMRC: iters = 10 pixel costs = [58,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [656,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [36,0] contour crossing costs = [9,0]
+### cleanMRC: iters = 10 pixel costs = [918,5] contour crossing costs = [48,0]
+### cleanMRC: iters = 10 pixel costs = [92,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [105,0] contour crossing costs = [3,0]
+### cleanMRC: iters = 10 pixel costs = [113,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [13,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [27,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [28,0] contour crossing costs = [0,1]
+### cleanMRC: iters = 10 pixel costs = [58,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [183,0] contour crossing costs = [4,0]
+### cleanMRC: iters = 10 pixel costs = [18,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [113,0] contour crossing costs = [4,0]
+### cleanMRC: iters = 10 pixel costs = [8205,2] contour crossing costs = [1005,0]
+### cleanMRC: iters = 10 pixel costs = [471,0] contour crossing costs = [43,0]
+### cleanMRC: iters = 10 pixel costs = [1407,1] contour crossing costs = [27,0]
+### cleanMRC: iters = 10 pixel costs = [498,0] contour crossing costs = [70,0]
+### cleanMRC: iters = 10 pixel costs = [5597,1] contour crossing costs = [49,0]
+### cleanMRC: iters = 10 pixel costs = [1075,3] contour crossing costs = [154,0]
+### cleanMRC: iters = 10 pixel costs = [31,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [17,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [33,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [747,0] contour crossing costs = [4,0]
+### cleanMRC: iters = 10 pixel costs = [155,0] contour crossing costs = [4,0]
+### cleanMRC: iters = 10 pixel costs = [1900,5] contour crossing costs = [540,1]
+### cleanMRC: iters = 10 pixel costs = [901,3] contour crossing costs = [124,3]
+### cleanMRC: iters = 10 pixel costs = [71,3] contour crossing costs = [2,0]
+### cleanMRC: iters = 10 pixel costs = [148,2] contour crossing costs = [11,0]
+### cleanMRC: iters = 10 pixel costs = [198,2] contour crossing costs = [7,0]
+### cleanMRC: iters = 10 pixel costs = [12,0] contour crossing costs = [5,0]
+### cleanMRC: iters = 10 pixel costs = [72,0] contour crossing costs = [1,0]
+### cleanMRC: iters = 10 pixel costs = [79,0] contour crossing costs = [9,0]
+### cleanMRC: iters = 10 pixel costs = [148,0] contour crossing costs = [7,0]
+### cleanMRC: iters = 10 pixel costs = [6590,4] contour crossing costs = [34,0]
+### cleanMRC: iters = 10 pixel costs = [326,0] contour crossing costs = [13,0]
+### cleanMRC: iters = 10 pixel costs = [1568,1] contour crossing costs = [171,0]
+### cleanMRC: iters = 10 pixel costs = [20,0] contour crossing costs = [4,4]
+### cleanMRC: iters = 10 pixel costs = [447,3] contour crossing costs = [41,0]
+### cleanMRC: iters = 10 pixel costs = [2688,5] contour crossing costs = [872,3]
+### cleanMRC: iters = 10 pixel costs = [3830,4] contour crossing costs = [1116,1]
+
+# CostFunctional Stage QTM3
+#   CostFunctional.mu = 0.2
+#   CostFunctional.nu = 0.8
+#   CostFunctional.tcSlope = 3
+#   CostFunctional.tcUpsampleFactor = 3
+#   CostFunctional.nominalOnly = 1
+#   FastQuantizer.inverseTransitionCoeff = 0.2
+#   FastQuantizer.singlePixelCoeff = 0.1
+#   FastQuantizer.areaCoeff = 0.25
+#   FastQuantizer.plateauCoeff = 1
+#   FastQuantizer.use2xMrc = 1
+#   FastQuantizer.mrcStepSize = 0.05
+#   FastQuantizer.mrcIterations = 1
+### CostFunctional take FastQuantizer MRC Step before evaluate [true]
+@@@ Cached 40 of 40 kernels (11023.5 MiB GPU memory available)
+@@@ Cleared 1280 MiB of Kernel Cache (13060 MiB GPU memory free).
+@@@ Cleared Kernel Cache (13060.5 MiB GPU memory available)
+
+# MRC Stage MRC2
+#   FastQuantizer.singlePixelCoeff = 0.1
+#   FastQuantizer.areaCoeff = 0.25
+#   FastQuantizer.plateauCoeff = 1
+#   FastQuantizer.use2xMrc = 1
+#   FastQuantizer.mrcStepSize = 0.025
+#   FastQuantizer.mrcIterations = 10
+### cleanMRC: iters = 10 pixel costs = [271,0] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [80,4] contour crossing costs = [0,0]
+### cleanMRC: iters = 10 pixel costs = [27,0] contour crossing costs = [0,4]
+### cleanMRC: iters = 10 pixel costs = [151,2] contour crossing costs = [4,0]
+### cleanMRC: iters = 10 pixel costs = [169,2] contour crossing costs = [4,0]
+@@@ Cleared 0 MiB of Kernel Cache (14344 MiB GPU memory free).

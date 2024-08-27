@@ -1,0 +1,247 @@
+INFO: /home/centos/11610 found
+INFO: Parsing csv files
+INFO: Finding Run stats
+INFO: Finding revision branch and commit from logs/controller*.log
+INFO: Finding revision date from controller log 
+INFO: Finding revision and branch name from controller log 
+INFO: Finding Design_size from logs/import/divi*.log
+INFO: Finding name from /home/centos/11610/input/*.oas or /input/*.gds
+INFO: Finding name for test table
+INFO: Finding Number of optimized partitions from tmilt.0*.log
+INFO: Finding Test Name from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: Finding process_condition from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: Finding number of GPUs
+INFO: Finding ncol
+INFO: Finding nrow
+INFO: Calculating partition
+INFO: Finding optimizer iterations
+INFO: Finding Grid
+INFO: Finding num_qtm3_iterations from /home/centos/11610/logs/optimization/tmilt.0.231215.075551.6BT+.3FzgZTbd.log
+INFO: Finding num_qtm4_iterations from /home/centos/11610/logs/optimization/tmilt.0.231215.075551.6BT+.3FzgZTbd.log
+INFO: Finding num_qtm5_iterations from /home/centos/11610/logs/optimization/tmilt.0.231215.075551.6BT+.3FzgZTbd.log
+INFO: Finding GlobalMaskNumDeletedShapes from /home/centos/11610/logs/optimization/tmilt.0.231215.075551.6BT+.3FzgZTbd.log
+INFO: Finding GlobalMaskNumUpsizedShapes from /home/centos/11610/logs/optimization/tmilt.0.231215.075551.6BT+.3FzgZTbd.log
+INFO: Finding GlobalNumPixelCorrections from /home/centos/11610/logs/optimization/tmilt.0.231215.075551.6BT+.3FzgZTbd.log
+INFO: Finding GlobalNumPartCorrections from /home/centos/11610/logs/optimization/tmilt.0.231215.075551.6BT+.3FzgZTbd.log
+INFO: Finding Runtime_with_50GPUs and Runtime_with_Single_GPU
+INFO:/home/centos/11610/logs/optimization exists
+INFO:/home/centos/11610/logs/optimization exists
+INFO:/home/centos/11610/logs/optimization exists
+ERROR [E102]:/home/centos/11610/logs/optimization/ilt-opt-flow.tmilt.cdp_mpirun.log does not exists
+ERROR: /log/optimization folder or mpi_retry_log file doesn't exists
+INFO: Finding time from logs/cdpcompletion*.log
+INFO: Finding host from logs/cdpcompletion*.log
+INFO: Finding user from logs/cdpcompletion*.log
+INFO: Finding mask file size from output/*.oas
+INFO:/home/centos/11610/output exists
+INFO:/home/centos/11610/output/contact_target.oas exists
+INFO: Finding directory file size from requested run
+INFO:/home/centos/11610/output/crv exists
+INFO: Directory size for /home/centos/11610/output/crv: 2662.4 MB
+INFO: Finding pdose simulation file size from output/*pdose.oas
+INFO:/home/centos/11610/output exists
+INFO:/home/centos/11610/output/contact_target.fermi_pdose.oas exists
+INFO: Finding pdefocus simulation file size from output/*pdefocus.oas
+INFO:/home/centos/11610/output exists
+INFO:/home/centos/11610/output/contact_target.fermi_pdefocus.oas exists
+INFO: Finding pdefocus simulation file size from output/*ndefocus.oas
+INFO:/home/centos/11610/output exists
+INFO:/home/centos/11610/output/contact_target.fermi_ndefocus.oas exists
+INFO: Finding nominal simulation file size from output/*nominal.oas
+INFO:/home/centos/11610/output exists
+INFO:/home/centos/11610/output/contact_target.fermi_nominal.oas exists
+INFO: Finding nominal simulation file size from output/*ndose.oas
+INFO:/home/centos/11610/output exists
+INFO:/home/centos/11610/output/contact_target.fermi_ndose.oas exists
+INFO: Finding target file size from output/*.target.oas
+INFO:/home/centos/11610/output exists
+INFO:/home/centos/11610/output/contact_target.target.oas exists
+INFO: Finding tmod_name from FERMI_PATH+/input/*.ini
+INFO: Fermi_ID found (11610).
+INFO: GPU found (8).
+INFO: expect_run_time_50_GPU found (583.88).
+INFO: expect_run_time_1_GPU found (29193.76).
+INFO: User found (d2susr06).
+INFO: Name found (contactsNew44L-design).
+ERROR: Max_err_per_partion not found.
+ERROR: Total_errors not found.
+INFO: Design_size found (0.85785 x 0.844296).
+INFO: Mask_file_size found (2258.88).
+ERROR: recipe_name not found.
+INFO: mbf_size found (2662.4).
+INFO: pdose_simulation_size found (413.95).
+INFO: pdefocus_simulation_size found (430.4).
+INFO: ndefocus_simulation_size found (430.4).
+INFO: nominal_simulation_size found (435.32).
+INFO: ndose_simulation_size found (459.48).
+INFO: target_file_size found (355.67).
+INFO: Machine_Name found (cdp38).
+INFO: Time found (2023-12-15 12:24:23.548924).
+INFO: revision_branch found (ILT.2023.02.RC1.20231212.212240).
+INFO: revision_commit found (tags/ILT.2023.02.RC1.20231212.212240-0-gf438a7dd7cc98d964a791c8cd048ee18c7d9b728).
+INFO: revision_date found (2023-12-13).
+INFO: Fermi_job_name found (ContactNew44L).
+INFO: tmod_name found (Micron44L-Fermi-Kernel2048nm-8nm-v14.tmod).
+INFO: process_condition found (f0d0_fp1d0_fn1d0_f0dp_f0dn_0.4_0_0.6_1).
+INFO: partition found (30 x 30).
+INFO: grid found (8).
+ERROR: optimizer_iterations not found.
+INFO: force_flag found (False).
+INFO: force_screenshot found (False).
+ERROR: mpi_retry_count not found.
+ERROR: num_qtm3_iterations not found.
+ERROR: num_qtm4_iterations not found.
+ERROR: num_qtm5_iterations not found.
+ERROR: mask_num_deleted_shapes not found.
+ERROR: mask_num_upsized_shapes not found.
+ERROR: num_pixel_corrections not found.
+ERROR: num_part_corrections not found.
+INFO: delete_mask_polygon_count found (None).
+INFO: delete_mask_polygon_max found (None).
+INFO: delete_mask_polygon_min found (None).
+INFO: upsizing_mask_polygon_count found (None).
+INFO: upsizing_mask_polygon_max found (None).
+INFO: upsizing_mask_polygon_min found (None).
+INFO: number_of_optimized_partitions found (900).
+INFO: total_number_of_partitions found (900).
+INFO: The_checker_runtime from output/CheckerOnly.index.html
+ERROR [E102]:/home/centos/11610/output/CheckerOnly.index.html does not exists
+ERROR [E102]:/home/centos/11610/targetprep_exec does not exists
+INFO: Extracting runtime statistics from tmilt*.log
+ERROR: Cannot compute total_prediction_time
+INFO: Target_Prep_Runtime found (399.8191).
+INFO: CTM_fg found (810.8500).
+INFO: QTM_fg found (3848.3311).
+INFO: CTM_prep found (2171.2153).
+INFO: QTM0_prep found (852.9773).
+INFO: QTM1_prep found (1043.2887).
+INFO: QTM2_prep found (1113.3378).
+INFO: QTM3_prep found (614.0774).
+INFO: QTM4_prep found (0).
+INFO: QTM5_prep found (0).
+INFO: QTM0_prep found (1259.5336).
+INFO: QTM1_prep found (1609.342).
+INFO: QTM2_prep found (1956.2838).
+INFO: QTM3_prep found (4419.0413).
+INFO: QTM4_prep found (0).
+INFO: QTM5_prep found (0).
+INFO: CTM_exec_time found (3150.6588).
+INFO: QTM_exec_time found (11062.5420).
+ERROR: total_prediction_time not found.
+INFO: mrc1_time found (1317.0721).
+INFO: mrc2_time found (486.0263).
+INFO: MBF_exec_time found (192.783).
+INFO: PostProcess_exec_time found (1333.140).
+INFO: Total_Fermi_Runtime found (16005).
+ERROR: The_checker_runtime not found.
+ERROR: Unable to convert None to float for key total_prediction_time
+ERROR: Unable to convert None to float for key The_checker_runtime
+INFO:/home/centos/11610/output/checktool.summary.html exists
+INFO:/home/centos/11610/output/checktool.summary.csv exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: getting ILMRC stats from d2sflow.ini
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO:/home/centos/11610/input/d2sflow.ini exists
+INFO: Extracting statistical stats from Fermi run
+INFO:/home/centos/11610/output/checktool.summary.html exists
+INFO:/home/centos/11610/output/checktool.summary.csv exists
+INFO: ErrorType:200:23 worst x and y values found at line no:336 in CheckerOnly.checker_part.csv
+INFO: marker_x found (833398.5).
+INFO: marker_y found (33297.5).
+INFO: Write epenegfocuspc screenshots lines to epe_clips.tcl 
+
+INFO: ErrorType:200:21 worst x and y values found at line no:136 in CheckerOnly.checker_part.csv
+INFO: marker_x found (680194.8).
+INFO: marker_y found (133342.9).
+INFO: Write epenegdosepc screenshots lines to epe_clips.tcl 
+
+INFO: ErrorType:200:20 worst x and y values found at line no:36 in CheckerOnly.checker_part.csv
+INFO: marker_x found (833396.2).
+INFO: marker_y found (33301.3).
+INFO: Write epenompc screenshots lines to epe_clips.tcl 
+
+INFO: ErrorType:200:24 worst x and y values found at line no:436 in CheckerOnly.checker_part.csv
+INFO: marker_x found (833398.5).
+INFO: marker_y found (33297.5).
+INFO: Write epeposfocuspc screenshots lines to epe_clips.tcl 
+
+INFO: ErrorType:200:22 worst x and y values found at line no:236 in CheckerOnly.checker_part.csv
+INFO: marker_x found (833397.7).
+INFO: marker_y found (33296.0).
+INFO: Write epeposdosepc screenshots lines to epe_clips.tcl 
+
+INFO: ErrorType:200:41 worst x and y values found at line no:536 in CheckerOnly.checker_part.csv
+INFO: marker_x found (635002.5).
+INFO: marker_y found (165332.7).
+INFO: Write pvwidth_dose screenshots lines to epe_clips.tcl 
+
+INFO: marker_x found (0).
+INFO: marker_y found (0).
+11610:: INFO: Parsing complete, token file generated

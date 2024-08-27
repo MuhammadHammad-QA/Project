@@ -1,0 +1,100 @@
+#!/bin/bash
+# vim: set fileencoding=utf8 textwidth=0 wrapmargin=0 syntax=off:
+#####
+# PATH='/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.bash:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.tcl.tm:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/bin:/usr/bin:/sbin:/usr/sbin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.third_party/bin:/opt/gridengine/bin/lx-amd64'
+# command: "/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin/perl5.22.0"
+#   args[1]: "-S"
+#   args[2]: "-I/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl"
+#   args[3]: "ebflow_wrap_cmd_launch_nomake.pl"
+#   args[4]: "--failed-logs-dir=logs/failures/20231215125537Z0ad1b1ab1d3f0600"
+#   args[5]: "--nickname=topcell11610._d__"
+#   args[6]: "--self-output=logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Etask.2Etopcell11610.2E.5Fd.5F.5F"
+#   args[7]: "--enqueue-log=logs.2Fqexec.2Etopcell11610.2E.5Fd.5F.5F"
+#   args[8]: "--enqueue-cmd=.20stdbuf.20.2D.2Doutput.3D0.20.2D.2Derror.3D0.20qsub.20.3C.2Fdev.2Fnull.202.3E.261.20.2Dsync.20y.20.2Dcwd.20.2Db.20y.20.2Dj.20y.20.2Dnow.20n.20.2DV.20.2Dhard.20.2Dshell.20no.20.2DR.20y.20.2Dnotify.20.2Do.20logs.2Fqexec.2Etopcell11610.2E.5Fd.5F.5F.20.2DN.20topcell11610.2E.5Fd.5F.5F.20.2Dl.20num.5Fthread.3D1.20.2Dl.20num.5Fgpu.3D0.20.2Dq.20all.2Eq.20.2Dp.20.2D999.20"
+#   args[9]: "--run-cmd=checktool.20.2Dl.20.27logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Elog.27.20summarize.20report.20.2Dreport.5Flist.5Ffile.20.27intermediate.2Fchecker.2Ereportlist.27.20.2Dsearch.5Ftag.20.27showCheckerError.27.20.2Dreplace.5Ftag.20.27showCheckerWaferQTMError.27.20.2Dremove.5Fline.5Ftags.20.27dummy.27.20.2Drange.20.27568.27.20.27568.27"
+#   args[10]: "--cmd-log=logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Elog"
+#   args[11]: "--produces="
+#####
+
+#!/bin/bash
+# vim: set fileencoding=utf8 textwidth=0 wrapmargin=0 syntax=off:
+
+
+
+: <<'__ALHwya5NxPZULbFdZANS_1SD2BytH0L7g518PQUi7_00259093dc7e_001__'
+
+{TaskStartEpoch|1702661027}
+
+
+failed-logs-dir => 'logs/failures/20231215125537Z0ad1b1ab1d3f0600'
+nickname        => 'topcell11610._d__'
+self-output     => 'logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Etask.2Etopcell11610.2E.5Fd.5F.5F'
+                => (logs/check.summary/checktool.report.568_568_568.task.topcell11610._d__)
+enqueue-cmd     => '.20stdbuf.20.2D.2Doutput.3D0.20.2D.2Derror.3D0.20qsub.20.3C.2Fdev.2Fnull.202.3E.261.20.2Dsync.20y.20.2Dcwd.20.2Db.20y.20.2Dj.20y.20.2Dnow.20n.20.2DV.20.2Dhard.20.2Dshell.20no.20.2DR.20y.20.2Dnotify.20.2Do.20logs.2Fqexec.2Etopcell11610.2E.5Fd.5F.5F.20.2DN.20topcell11610.2E.5Fd.5F.5F.20.2Dl.20num.5Fthread.3D1.20.2Dl.20num.5Fgpu.3D0.20.2Dq.20all.2Eq.20.2Dp.20.2D999.20'
+                => ( stdbuf --output=0 --error=0 qsub </dev/null 2>&1 -sync y -cwd -b y -j y -now n -V -hard -shell no -R y -notify -o logs/qexec.topcell11610._d__ -N topcell11610._d__ -l num_thread=1 -l num_gpu=0 -q all.q -p -999 )
+enqueue-log     => 'logs.2Fqexec.2Etopcell11610.2E.5Fd.5F.5F'
+                => (logs/qexec.topcell11610._d__)
+run-cmd         => 'checktool.20.2Dl.20.27logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Elog.27.20summarize.20report.20.2Dreport.5Flist.5Ffile.20.27intermediate.2Fchecker.2Ereportlist.27.20.2Dsearch.5Ftag.20.27showCheckerError.27.20.2Dreplace.5Ftag.20.27showCheckerWaferQTMError.27.20.2Dremove.5Fline.5Ftags.20.27dummy.27.20.2Drange.20.27568.27.20.27568.27'
+                => (checktool -l 'logs/check.summary/checktool.report.568_568_568.log' summarize report -report_list_file 'intermediate/checker.reportlist' -search_tag 'showCheckerError' -replace_tag 'showCheckerWaferQTMError' -remove_line_tags 'dummy' -range '568' '568')
+cmd-log         => 'logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Elog'
+                => (logs/check.summary/checktool.report.568_568_568.log)
+produces        => ''
+                => ()
+
+
+
+
+Attempt #1 to run the command, starting at Fri Dec 15 12:23:47 2023.
+
+Erase 'logs/qexec.topcell11610._d__': No such file or directory.
+Erase 'logs/check.summary/checktool.report.568_568_568.log': No such file or directory.
+
+[#1, Fri Dec 15 12:23:47 2023] Launching command via qsub:
+     stdbuf --output=0 --error=0 qsub </dev/null 2>&1 -sync y -cwd -b y -j y -now n -V -hard -shell no -R y -notify -o logs/qexec.topcell11610._d__ -N topcell11610._d__ -l num_thread=1 -l num_gpu=0 -q all.q -p -999  /bin/bash --norc --noprofile -c 'ebflow_wrap_cmd_execution_nomake.bash --run=checktool.20.2Dl.20.27logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Elog.27.20summarize.20report.20.2Dreport.5Flist.5Ffile.20.27intermediate.2Fchecker.2Ereportlist.27.20.2Dsearch.5Ftag.20.27showCheckerError.27.20.2Dreplace.5Ftag.20.27showCheckerWaferQTMError.27.20.2Dremove.5Fline.5Ftags.20.27dummy.27.20.2Drange.20.27568.27.20.27568.27 --log=logs.2Fcheck.2Esummary.2Fchecktool.2Ereport.2E568.5F568.5F568.2Elog --nickname=topcell11610._d__ '
+
+QSUB:Your job 6731419 ("topcell11610._d__") has been submitted
+QSUB:Job 6731419 exited with exit code 0.
+Received notification about qsub process ('1792272').
+info: 0/0000/0000000000000000 exit(y) wts=0 es=0 wss=0 wx=0 ex=0 scx=0.
+
+[#1, Fri Dec 15 12:23:49 2023] Determining whether task was successful...
+[#1, Fri Dec 15 12:23:49 2023] Determined exit code should be 0.
+
+
+[Fri Dec 15 12:23:49 2023] Capturing the job queue log for the run.
+{TaskAction|JobQueueLog|CaptureStart|1702661029}
+
+
+__ALHwya5NxPZULbFdZANS_1SD2BytH0L7g518PQUi7_00259093dc7e_001__
+
+
+# This next portion of this file is encoded.  If you run it through bash
+# then it will decode itself into plain text containing the log of
+# output captured from the task running on the remote node.  This output
+# is useful only rarely, so it's compressed and encoded here.
+
+base64 -d <<'__ALHwya5NxPZULbFdZANS_1SD2BytH0L7g518PQUi7_00259093dc7e_002__' | bunzip2
+QlpoOTFBWSZTWYLcDQ0AAAZfgEAQSIPDUAsCNICv79/wMAD2xYShIjTAaCBoMmjJpkEojUaaINNH
+qZqA0DQASUptR6mnpP1MiGIaAACnOOeOpjQwMjT8LjxFZMlYueZUe4YwKrBLRAkfdBGmxClNxQ8g
+MQ7ExokRjiFRcBeA0hWlV1DeGY7tWFj1xYtvgTLfDkmWMPvd6TopEgMZjdeM+ZntTq6e+xArp3qJ
+gYq56PrwcxJAKMxKHxFSYpk0qmjscbJTGgaTTqa3VVrkS2WpLsFzuDKkr4XUETwrTLVUSRpvGFBO
+CytxGZkdQ+k/EEPN6haTVdZF5NwqySL5Nej0ny0QUtS6os/i7kinChIQW4GhoA==
+
+__ALHwya5NxPZULbFdZANS_1SD2BytH0L7g518PQUi7_00259093dc7e_002__
+
+: <<'__ALHwya5NxPZULbFdZANS_1SD2BytH0L7g518PQUi7_00259093dc7e_003__'
+
+
+[Fri Dec 15 12:23:49 2023] Done capturing the job queue log for the run.
+{TaskAction|JobQueueLog|CaptureEnd|1702661029}
+
+
+
+
+Finished, exit code is 0
+
+
+{TaskFinishEpoch|1702661029}
+
+
+__ALHwya5NxPZULbFdZANS_1SD2BytH0L7g518PQUi7_00259093dc7e_003__

@@ -1,0 +1,345 @@
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# d2s Inverse Lithography Technology
+# D2S CDP Platform - version ILT.2023.02, 2023-Dec-13 - build 23347.gf438a7dd7c
+# 
+# D2S Inc. - www.design2silicon.com - support@design2silicon.com
+# Copyright D2S Inc., 2010-2023.  All rights reserved.
+# D2S Inc. Proprietary and Trade Secret.
+# D2S Inc. Proprietary and Confidential.
+# 
+# Covered by one or more patents: 
+#   Information: http://design2silicon.com/patents.
+# Other patents pending.
+# 
+# 
+# ------------------------------------------------------
+#  Some portions of this product suite may use
+#  third-party code which is either open source
+#  or purchased by D2S Inc. as a commercial product.
+#  Certain of these packages may require notices to
+#  be listed with the D2S Inc. copyright notice; these
+#  are listed below.  Since others may not have this
+#  requirement, this may not be a complete list.
+#  More details of packages and their terms may
+#  be found in the 'third_party/copyrights'
+#  directory of this product installation and/or
+#  in the purchase agreement for this product suite.
+#  Where the terms require D2S Inc. to make source
+#  code for a package available to our customers,
+#  the source can be found in the 'third_party/src'
+#  directory of this product installation.  In cases
+#  where D2S Inc. has made modifications to the source,
+#  both the unmodified and the modified versions
+#  will be found there.
+# ------------------------------------------------------
+# 
+# Some portions of this product suite may use some subsets
+# of the NLopt package from MIT.  Most of NLopt is covered
+# by the MIT license, but the 'luksan' subset is covered by
+# the GNU LGPL, version 2.1, and is used by permission.
+# A copy of all NLopt licenses is available in the
+# third_party/copyrights directory of this installation.
+# 
+# D2S uses an slightly modified version of the NLopt package; full
+# source code is for both the unmodified original and the modified
+# version we use is available in the third_party/src directory
+# of this installation.  The latest unmodified version of the source
+# may also be found online at:
+#    http://ab-initio.mit.edu/wiki/index.php/NLopt
+# 
+# A copy of Perl 5.22.0 is included in this release.  Perl is
+# free software; source is included in the third_party/src directory of
+# this installation and is also available online at http://www.perl.org and
+# http://www.cpan.org.
+# 
+# Portions of this product suite may use D2S-modified Eigen
+# version 3.0.4.  D2S-modified Eigen is used and distributed under
+# the terms of the GNU Lesser General Public License, version 3.
+# A copy of the license is included in the third_party/copyrights
+# directory of this installation.  A copy of the source for
+# D2S-modified Eigen is included in the third_party/src directory
+# of this installation.  The original unmodified source for Eigen
+# is also included in that directory and can be obtained online
+# at http://eigen.tuxfamily.org.
+# 
+# Some portions of this product suite use Python® 3, version 3.9.16.
+# ("Python" is a registered trademark of the Python Software Foundation.)
+# 
+# Python itself has not been modified; however, a number of extra
+# opensource packages have been added to this version as listed in the
+# table below.  None of these have been modified.  These are in addition
+# to the standard Python modules.  Note that this list is subject to
+# change without notice in future D2S product releases.
+# 
+# A tarkit containing the sources/wheels for this version of Python and all
+# the additional packages can be found in the third_party/src directory
+# of this product distribution.  Copyright/license info for the various
+# packages are included in their respective installation kits.
+# 
+# Package                       Version
+# --------------------          --------
+# absl-py                       1.4.0
+# alembic                       1.11.1
+# ansiwrap                      0.8.4
+# anyio                         3.7.0
+# argon2-cffi                   21.3.0
+# argon2-cffi-bindings          21.2.0
+# arrow                         1.2.3
+# asttokens                     2.2.1
+# astunparse                    1.6.3
+# attrs                         23.1.0
+# backcall                      0.2.0
+# beautifulsoup4                4.12.2
+# bleach                        6.0.0
+# cachetools                    5.3.1
+# certifi                       2023.5.7
+# cffi                          1.15.1
+# charset-normalizer            3.1.0
+# click                         8.1.3
+# cloudpickle                   2.2.1
+# cmaes                         0.9.1
+# colorlog                      6.7.0
+# comm                          0.1.3
+# contourpy                     1.1.0
+# cycler                        0.11.0
+# debugpy                       1.6.7
+# decorator                     5.1.1
+# defusedxml                    0.7.1
+# entrypoints                   0.4
+# exceptiongroup                1.1.1
+# executing                     1.2.0
+# fastjsonschema                2.17.1
+# flatbuffers                   23.5.26
+# fonttools                     4.40.0
+# fqdn                          1.5.1
+# gast                          0.4.0
+# google-auth                   2.21.0
+# google-auth-oauthlib          1.0.0
+# google-pasta                  0.2.0
+# greenlet                      2.0.2
+# grpcio                        1.56.0
+# h5py                          3.9.0
+# horovod                       0.28.1
+# idna                          3.4
+# importlib-metadata            6.7.0
+# importlib-resources           5.12.0
+# iniconfig                     2.0.0
+# ipykernel                     6.23.3
+# ipython                       8.14.0
+# ipython-genutils              0.2.0
+# ipywidgets                    8.0.6
+# isoduration                   20.11.0
+# jax                           0.4.13
+# jedi                          0.18.2
+# Jinja2                        3.1.2
+# jsonpointer                   2.4
+# jsonschema                    4.17.3
+# jupyter                       1.0.0
+# jupyter-console               6.6.3
+# jupyter-events                0.6.3
+# jupyter_client                8.3.0
+# jupyter_core                  5.3.1
+# jupyter_server                2.7.0
+# jupyter_server_terminals      0.4.4
+# jupyterlab-pygments           0.2.2
+# jupyterlab-widgets            3.0.7
+# keras                         2.12.0
+# kiwisolver                    1.4.4
+# libclang                      16.0.0
+# Mako                          1.2.4
+# Markdown                      3.4.3
+# MarkupSafe                    2.1.3
+# matplotlib                    3.7.1
+# matplotlib-inline             0.1.6
+# mistune                       3.0.1
+# ml-dtypes                     0.2.0
+# mpmath                        1.3.0
+# nbclassic                     1.0.0
+# nbclient                      0.8.0
+# nbconvert                     7.6.0
+# nbformat                      5.9.0
+# nest-asyncio                  1.5.6
+# notebook                      6.5.4
+# notebook_shim                 0.2.3
+# numpy                         1.23.5
+# oauthlib                      3.2.2
+# opencv-python                 4.7.0.72
+# opt-einsum                    3.3.0
+# optuna                        3.2.0
+# overrides                     7.3.1
+# packaging                     23.1
+# pandas                        2.0.2
+# pandocfilters                 1.5.0
+# papermill                     2.4.0
+# parso                         0.8.3
+# patsy                         0.5.3
+# pexpect                       4.8.0
+# pickleshare                   0.7.5
+# Pillow                        9.5.0
+# pip                           23.1.2
+# platformdirs                  3.8.0
+# pluggy                        1.2.0
+# ply                           3.11
+# prometheus-client             0.17.0
+# prompt-toolkit                3.0.38
+# protobuf                      4.23.3
+# psutil                        5.9.5
+# ptyprocess                    0.7.0
+# pure-eval                     0.2.2
+# pyasn1                        0.5.0
+# pyasn1-modules                0.3.0
+# pycparser                     2.21
+# pycrypto                      2.6.1
+# pydot                         1.4.2
+# Pygments                      2.15.1
+# pyparsing                     3.1.0
+# pyrsistent                    0.19.3
+# pyspeedtest                   1.2.7
+# pytest                        7.4.0
+# python-dateutil               2.8.2
+# python-json-logger            2.0.7
+# pytz                          2023.3
+# PyYAML                        6.0
+# pyzmq                         25.1.0
+# qtconsole                     5.4.3
+# QtPy                          2.3.1
+# requests                      2.31.0
+# requests-oauthlib             1.3.1
+# rfc3339-validator             0.1.4
+# rfc3986-validator             0.1.1
+# rsa                           4.9
+# scipy                         1.11.0
+# seaborn                       0.12.2
+# Send2Trash                    1.8.2
+# setuptools                    68.0.0
+# six                           1.16.0
+# sniffio                       1.3.0
+# soupsieve                     2.4.1
+# SQLAlchemy                    2.0.17
+# stack-data                    0.6.2
+# statsmodels                   0.14.0
+# sympy                         1.12
+# tenacity                      8.2.2
+# tensorboard                   2.12.3
+# tensorboard-data-server       0.7.1
+# tensorflow                    2.12.0
+# tensorflow-estimator          2.12.0
+# tensorflow-io-gcs-filesystem  0.32.0
+# termcolor                     2.3.0
+# terminado                     0.17.1
+# textwrap3                     0.9.2
+# tinycss2                      1.2.1
+# tomli                         2.0.1
+# tornado                       6.3.2
+# tqdm                          4.65.0
+# traitlets                     5.9.0
+# typing_extensions             4.6.3
+# tzdata                        2023.3
+# uri-template                  1.3.0
+# urllib3                       1.26.16
+# wcwidth                       0.2.6
+# webcolors                     1.13
+# webencodings                  0.5.1
+# websocket-client              1.6.1
+# Werkzeug                      2.3.6
+# wheel                         0.40.0
+# widgetsnbextension            4.0.7
+# wrapt                         1.14.1
+# zipp                          3.15.0
+# 
+# The version of Python3 included in this distribution includes
+# matplotlib, which includes color specifications and designs
+# developed by Cynthia Brewer (http://colorbrewer.org/).
+# 
+# Portions of this product suite use libquadmath, version 7.3.0.
+# Libquadmath is licensed under the GNU LGPL.  A copy of this license is
+# included in the "third_party/copyrights" directory of this installation.
+# A copy of the source for libquadmath is included with the source
+# for gcc 7.3.0, which can be found in the "third_party/src" directory
+# of this installation.
+# 
+# Some portions of the product suite may be based in part on
+# the work of the Qwt project (http://qwt.sf.net).  Source
+# code is available in the third_party/src directory of this
+# product distribution.
+# 
+# Portions of this product suite use the 'zlib' general purpose
+# compression library, version 1.2.5.
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Starting at:
+#    2023-12-15 (Fri) 12:24:23 EST
+#    {ProgramStartEpoch|1702661063}
+#
+# Command and args:
+#    mpirun -launcher ssh -genv IBV_FORK_SAFE=1 -genv MV2_BCAST_HWLOC_TOPOLOGY 0 -genv MV2_NUM_HCAS 1 -genv MV2_SHOW_ENV_INFO 3 -genv MV2_SHOW_CPU_BINDING 1 -genv MV2_ENABLE_AFFINITY 0 -genv MV2_USE_SHARED_MEM 0 -genv D2S_MPI_RETRY_CODE big-0-8.824424.1702661063.1 with_locked_gpu --logfile=logs/exporting -- d2spython3 --logfile=logs/exporting/publish_recipe.pyc.log /mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python/d2s/ILT/publish_recipe.pyc -i intermediate/tmilt_recipes/recipe_candidate -r output/tmilt_recipes -n recipe_candidate
+#
+# Initial working dir:
+#    /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610
+#
+# Location of installation:
+#    /mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+#   Host:         'big-0-8.local'
+#   User:         'uid=42108(d2susr06) gid=42101(d2s) groups=42101(d2s),1970(docker),20056,42122(cdle)'
+#   Real cwd:     '/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610'
+#   Umask:        0022
+#   Limits:
+#       core file size          (blocks, -c) unlimited
+#       data seg size           (kbytes, -d) unlimited
+#       scheduling priority             (-e) 0
+#       file size               (blocks, -f) unlimited
+#       pending signals                 (-i) 4125798
+#       max locked memory       (kbytes, -l) 536870912
+#       max memory size         (kbytes, -m) unlimited
+#       open files                      (-n) 65535
+#       pipe size            (512 bytes, -p) 8
+#       POSIX message queues     (bytes, -q) 819200
+#       real-time priority              (-r) 0
+#       stack size              (kbytes, -s) unlimited
+#       cpu time               (seconds, -t) unlimited
+#       max user processes              (-u) 4125798
+#       virtual memory          (kbytes, -v) unlimited
+#       file locks                      (-x) unlimited
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+Starting command:
+    →→→mpirun←←← →→→-launcher←←← →→→ssh←←← →→→-genv←←← →→→IBV_FORK_SAFE=1←←← →→→-genv←←← →→→MV2_BCAST_HWLOC_TOPOLOGY←←← →→→0←←← →→→-genv←←← →→→MV2_NUM_HCAS←←← →→→1←←← →→→-genv←←← →→→MV2_SHOW_ENV_INFO←←← →→→3←←← →→→-genv←←← →→→MV2_SHOW_CPU_BINDING←←← →→→1←←← →→→-genv←←← →→→MV2_ENABLE_AFFINITY←←← →→→0←←← →→→-genv←←← →→→MV2_USE_SHARED_MEM←←← →→→0←←← →→→-genv←←← →→→D2S_MPI_RETRY_CODE←←← →→→big-0-8.824424.1702661063.1←←← →→→with_locked_gpu←←← →→→--logfile=logs/exporting←←← →→→--←←← →→→d2spython3←←← →→→--logfile=logs/exporting/publish_recipe.pyc.log←←← →→→/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python/d2s/ILT/publish_recipe.pyc←←← →→→-i←←← →→→intermediate/tmilt_recipes/recipe_candidate←←← →→→-r←←← →→→output/tmilt_recipes←←← →→→-n←←← →→→recipe_candidate←←←
+Command 'mpirun' is pid #824603.
+The nVIDIA driver version installed on this machine is: '470.57.02'.
+NVRM version: NVIDIA UNIX x86_64 Kernel Module  470.57.02  Tue Jul 13 16:14:05 UTC 2021
+I've locked CUDA device #0, Tesla V100-PCIE-16GB, for use by this process.
+...
+...
+...
+Note: Published Recipe to output/tmilt_recipes/recipe_candidate
+Program has finished: 'Program exit code 0'.
+I've unlocked CUDA device #0, Tesla V100-PCIE-16GB.
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Ending at:
+#    2023-12-15 (Fri) 12:24:26 EST
+#    {ProgramFinishEpoch|1702661066}
+# Session Duration: 3 seconds
+#
+#
+#   Session Messages Summary
+#   Type       | Occurrences
+#  ------------+-----------------
+#   Fatal      | <NotAvailable>    
+#   Error      | <NotAvailable>    
+#   Warning    | <NotAvailable>    
+#   All Others | <NotAvailable>    
+#  ------------+-----------------
+#
+#
+# Exit code:
+#    0 (success)
+#    {ProgramExitCode|0}
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#

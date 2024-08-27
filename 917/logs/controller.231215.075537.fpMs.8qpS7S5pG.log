@@ -1,0 +1,2182 @@
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# d2s Inverse Lithography Technology
+# D2S CDP Platform - version ILT.2023.02, 2023-Dec-13 - build 23347.gf438a7dd7c
+# 
+# D2S Inc. - www.design2silicon.com - support@design2silicon.com
+# Copyright D2S Inc., 2010-2023.  All rights reserved.
+# D2S Inc. Proprietary and Trade Secret.
+# D2S Inc. Proprietary and Confidential.
+# 
+# Covered by one or more patents: 
+#   Information: http://design2silicon.com/patents.
+# Other patents pending.
+# 
+# 
+# ------------------------------------------------------
+#  Some portions of this product suite may use
+#  third-party code which is either open source
+#  or purchased by D2S Inc. as a commercial product.
+#  Certain of these packages may require notices to
+#  be listed with the D2S Inc. copyright notice; these
+#  are listed below.  Since others may not have this
+#  requirement, this may not be a complete list.
+#  More details of packages and their terms may
+#  be found in the 'third_party/copyrights'
+#  directory of this product installation and/or
+#  in the purchase agreement for this product suite.
+#  Where the terms require D2S Inc. to make source
+#  code for a package available to our customers,
+#  the source can be found in the 'third_party/src'
+#  directory of this product installation.  In cases
+#  where D2S Inc. has made modifications to the source,
+#  both the unmodified and the modified versions
+#  will be found there.
+# ------------------------------------------------------
+# 
+# Some portions of this product suite may use some subsets
+# of the NLopt package from MIT.  Most of NLopt is covered
+# by the MIT license, but the 'luksan' subset is covered by
+# the GNU LGPL, version 2.1, and is used by permission.
+# A copy of all NLopt licenses is available in the
+# third_party/copyrights directory of this installation.
+# 
+# D2S uses an slightly modified version of the NLopt package; full
+# source code is for both the unmodified original and the modified
+# version we use is available in the third_party/src directory
+# of this installation.  The latest unmodified version of the source
+# may also be found online at:
+#    http://ab-initio.mit.edu/wiki/index.php/NLopt
+# 
+# A copy of Perl 5.22.0 is included in this release.  Perl is
+# free software; source is included in the third_party/src directory of
+# this installation and is also available online at http://www.perl.org and
+# http://www.cpan.org.
+# 
+# Portions of this product suite may use D2S-modified Eigen
+# version 3.0.4.  D2S-modified Eigen is used and distributed under
+# the terms of the GNU Lesser General Public License, version 3.
+# A copy of the license is included in the third_party/copyrights
+# directory of this installation.  A copy of the source for
+# D2S-modified Eigen is included in the third_party/src directory
+# of this installation.  The original unmodified source for Eigen
+# is also included in that directory and can be obtained online
+# at http://eigen.tuxfamily.org.
+# 
+# Some portions of this product suite use Python® 3, version 3.9.16.
+# ("Python" is a registered trademark of the Python Software Foundation.)
+# 
+# Python itself has not been modified; however, a number of extra
+# opensource packages have been added to this version as listed in the
+# table below.  None of these have been modified.  These are in addition
+# to the standard Python modules.  Note that this list is subject to
+# change without notice in future D2S product releases.
+# 
+# A tarkit containing the sources/wheels for this version of Python and all
+# the additional packages can be found in the third_party/src directory
+# of this product distribution.  Copyright/license info for the various
+# packages are included in their respective installation kits.
+# 
+# Package                       Version
+# --------------------          --------
+# absl-py                       1.4.0
+# alembic                       1.11.1
+# ansiwrap                      0.8.4
+# anyio                         3.7.0
+# argon2-cffi                   21.3.0
+# argon2-cffi-bindings          21.2.0
+# arrow                         1.2.3
+# asttokens                     2.2.1
+# astunparse                    1.6.3
+# attrs                         23.1.0
+# backcall                      0.2.0
+# beautifulsoup4                4.12.2
+# bleach                        6.0.0
+# cachetools                    5.3.1
+# certifi                       2023.5.7
+# cffi                          1.15.1
+# charset-normalizer            3.1.0
+# click                         8.1.3
+# cloudpickle                   2.2.1
+# cmaes                         0.9.1
+# colorlog                      6.7.0
+# comm                          0.1.3
+# contourpy                     1.1.0
+# cycler                        0.11.0
+# debugpy                       1.6.7
+# decorator                     5.1.1
+# defusedxml                    0.7.1
+# entrypoints                   0.4
+# exceptiongroup                1.1.1
+# executing                     1.2.0
+# fastjsonschema                2.17.1
+# flatbuffers                   23.5.26
+# fonttools                     4.40.0
+# fqdn                          1.5.1
+# gast                          0.4.0
+# google-auth                   2.21.0
+# google-auth-oauthlib          1.0.0
+# google-pasta                  0.2.0
+# greenlet                      2.0.2
+# grpcio                        1.56.0
+# h5py                          3.9.0
+# horovod                       0.28.1
+# idna                          3.4
+# importlib-metadata            6.7.0
+# importlib-resources           5.12.0
+# iniconfig                     2.0.0
+# ipykernel                     6.23.3
+# ipython                       8.14.0
+# ipython-genutils              0.2.0
+# ipywidgets                    8.0.6
+# isoduration                   20.11.0
+# jax                           0.4.13
+# jedi                          0.18.2
+# Jinja2                        3.1.2
+# jsonpointer                   2.4
+# jsonschema                    4.17.3
+# jupyter                       1.0.0
+# jupyter-console               6.6.3
+# jupyter-events                0.6.3
+# jupyter_client                8.3.0
+# jupyter_core                  5.3.1
+# jupyter_server                2.7.0
+# jupyter_server_terminals      0.4.4
+# jupyterlab-pygments           0.2.2
+# jupyterlab-widgets            3.0.7
+# keras                         2.12.0
+# kiwisolver                    1.4.4
+# libclang                      16.0.0
+# Mako                          1.2.4
+# Markdown                      3.4.3
+# MarkupSafe                    2.1.3
+# matplotlib                    3.7.1
+# matplotlib-inline             0.1.6
+# mistune                       3.0.1
+# ml-dtypes                     0.2.0
+# mpmath                        1.3.0
+# nbclassic                     1.0.0
+# nbclient                      0.8.0
+# nbconvert                     7.6.0
+# nbformat                      5.9.0
+# nest-asyncio                  1.5.6
+# notebook                      6.5.4
+# notebook_shim                 0.2.3
+# numpy                         1.23.5
+# oauthlib                      3.2.2
+# opencv-python                 4.7.0.72
+# opt-einsum                    3.3.0
+# optuna                        3.2.0
+# overrides                     7.3.1
+# packaging                     23.1
+# pandas                        2.0.2
+# pandocfilters                 1.5.0
+# papermill                     2.4.0
+# parso                         0.8.3
+# patsy                         0.5.3
+# pexpect                       4.8.0
+# pickleshare                   0.7.5
+# Pillow                        9.5.0
+# pip                           23.1.2
+# platformdirs                  3.8.0
+# pluggy                        1.2.0
+# ply                           3.11
+# prometheus-client             0.17.0
+# prompt-toolkit                3.0.38
+# protobuf                      4.23.3
+# psutil                        5.9.5
+# ptyprocess                    0.7.0
+# pure-eval                     0.2.2
+# pyasn1                        0.5.0
+# pyasn1-modules                0.3.0
+# pycparser                     2.21
+# pycrypto                      2.6.1
+# pydot                         1.4.2
+# Pygments                      2.15.1
+# pyparsing                     3.1.0
+# pyrsistent                    0.19.3
+# pyspeedtest                   1.2.7
+# pytest                        7.4.0
+# python-dateutil               2.8.2
+# python-json-logger            2.0.7
+# pytz                          2023.3
+# PyYAML                        6.0
+# pyzmq                         25.1.0
+# qtconsole                     5.4.3
+# QtPy                          2.3.1
+# requests                      2.31.0
+# requests-oauthlib             1.3.1
+# rfc3339-validator             0.1.4
+# rfc3986-validator             0.1.1
+# rsa                           4.9
+# scipy                         1.11.0
+# seaborn                       0.12.2
+# Send2Trash                    1.8.2
+# setuptools                    68.0.0
+# six                           1.16.0
+# sniffio                       1.3.0
+# soupsieve                     2.4.1
+# SQLAlchemy                    2.0.17
+# stack-data                    0.6.2
+# statsmodels                   0.14.0
+# sympy                         1.12
+# tenacity                      8.2.2
+# tensorboard                   2.12.3
+# tensorboard-data-server       0.7.1
+# tensorflow                    2.12.0
+# tensorflow-estimator          2.12.0
+# tensorflow-io-gcs-filesystem  0.32.0
+# termcolor                     2.3.0
+# terminado                     0.17.1
+# textwrap3                     0.9.2
+# tinycss2                      1.2.1
+# tomli                         2.0.1
+# tornado                       6.3.2
+# tqdm                          4.65.0
+# traitlets                     5.9.0
+# typing_extensions             4.6.3
+# tzdata                        2023.3
+# uri-template                  1.3.0
+# urllib3                       1.26.16
+# wcwidth                       0.2.6
+# webcolors                     1.13
+# webencodings                  0.5.1
+# websocket-client              1.6.1
+# Werkzeug                      2.3.6
+# wheel                         0.40.0
+# widgetsnbextension            4.0.7
+# wrapt                         1.14.1
+# zipp                          3.15.0
+# 
+# The version of Python3 included in this distribution includes
+# matplotlib, which includes color specifications and designs
+# developed by Cynthia Brewer (http://colorbrewer.org/).
+# 
+# Portions of this product suite use libquadmath, version 7.3.0.
+# Libquadmath is licensed under the GNU LGPL.  A copy of this license is
+# included in the "third_party/copyrights" directory of this installation.
+# A copy of the source for libquadmath is included with the source
+# for gcc 7.3.0, which can be found in the "third_party/src" directory
+# of this installation.
+# 
+# Some portions of the product suite may be based in part on
+# the work of the Qwt project (http://qwt.sf.net).  Source
+# code is available in the third_party/src directory of this
+# product distribution.
+# 
+# Portions of this product suite use the 'zlib' general purpose
+# compression library, version 1.2.5.
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Starting at:
+#    Fri 15 Dec 2023 07:55:37 AM EST
+#    {ProgramStartEpoch|1702644937.729453252}
+#
+# Command and args:
+#    "/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin/controller" "--log-file-only" "--log-file" "/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/logs" "--work-dir" "/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610" "--mask-number" "11610" "--queue-priority" "-999" "--d2scdpd-host" "cdp38.design2silicon.com" "--d2scdpd-port" "23499" "/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/input/kickstart.flower"
+#
+# Initial working dir:
+#    /mnt/storage_d2s/d2suser06/releases
+#
+# Location of installation:
+#    /mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43
+#
+# This log file is:
+#    /mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/logs/controller.231215.075537.fpMs.8qpS7S5pG.log
+#
+# Running on:
+#     Host:        'cdp38.design2silicon.com'.''
+#     Current OS:   Linux/x86_64, 3.10.0-957.10.1.el7.x86_64 #1 SMP Mon Mar 18 15:06:45 UTC 2019
+#                   CentOS 7.6
+#     Uptime:       51d 18:11:38
+#     Load Avg:     0.6, 0.46, 0.35
+#     Process ID:   1576842 (parent=292452)
+#     RAM:          134,541,500,416
+#     Vendor ID:    'GenuineIntel'
+#     CPU Model:    'Intel(R) Xeon(R) CPU E5-2667 v4 @ 3.20GHz'
+#     Hypervisor:   false
+#     CPUs(Cores):  16
+#     CPU affinity: .123456789.12345
+#             mask: 1111111111111111
+#             bits: 0-15
+#
+# Build information:
+#   Program 'controller':
+#     nominally 'controller'
+#     release 'ILT.2023.02' ('ilt-cdp43')
+#     build '23347.gf438a7dd7c' (2023-12-13 03:30:36 UTC)
+#     by 'release'
+#     settings 'gcc-11.3.0/opt/64'
+#     debuggable? no
+#     revision 'tags/ILT.2023.02.RC1.20231212.212240-0-gf438a7dd7cc98d964a791c8cd048ee18c7d9b728'
+#     sandbox '/re/releases/candidates/ILT.2023.02/sandboxes/ILT.2023.02'
+#     host 'build03' (x86_64)
+#     system 'linux-x86_64' (Linux-3.10.0-957.21.3.el7.x86_64-x86_64-with-glibc2.17)
+#     distribution 'centos 7.6'
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Environment variables (236 defined):
+#     D2SINFO_DATE_HUMAN_FMT="+%F\x20(%a)\x20%T\x20%Z"
+#     D2SINFO_DATE_SECS_FMT="+%s"
+#     D2SINFO_EXIT_ARGV_ERROR_CODE="9"
+#     D2SINFO_EXIT_ARGV_REQUEST_CODE="96"
+#     D2SINFO_EXIT_BAD_EXCEPT_CODE="21"
+#     D2SINFO_EXIT_BAD_INSTALL_CODE="17"
+#     D2SINFO_EXIT_CPP_TERMINATE_CODE="20"
+#     D2SINFO_EXIT_DATA_VERSION_CODE="18"
+#     D2SINFO_EXIT_ERROR_CODE="2"
+#     D2SINFO_EXIT_EXCEPT_CODE="6"
+#     D2SINFO_EXIT_EXEC_CMD_FAIL_CODE="126"
+#     D2SINFO_EXIT_EXEC_FAILURE_CODE="10"
+#     D2SINFO_EXIT_FATAL_CODE="3"
+#     D2SINFO_EXIT_GPU_FAULT_CODE="15"
+#     D2SINFO_EXIT_GPU_RETRY_CODE="102"
+#     D2SINFO_EXIT_INCORRECT_INIT_CODE="26"
+#     D2SINFO_EXIT_INTERRUPT_CODE="4"
+#     D2SINFO_EXIT_LOGIN_FAILURE_CODE="12"
+#     D2SINFO_EXIT_LOG_OPEN_FAILED_CODE="8"
+#     D2SINFO_EXIT_LOST_LICENSE_CODE="7"
+#     D2SINFO_EXIT_NETWORK_CODE="28"
+#     D2SINFO_EXIT_NODE_BROKEN_CODE="24"
+#     D2SINFO_EXIT_NO_PERMISSION_CODE="23"
+#     D2SINFO_EXIT_NO_WORK_CODE="97"
+#     D2SINFO_EXIT_OK_CODE="0"
+#     D2SINFO_EXIT_OUTPUT_MISSING_CODE="16"
+#     D2SINFO_EXIT_OUT_OF_MEM_CODE="19"
+#     D2SINFO_EXIT_PROTOCOL_ERROR_CODE="13"
+#     D2SINFO_EXIT_QMASTER_CRASH_CODE="22"
+#     D2SINFO_EXIT_Q_SUB_CODE="1"
+#     D2SINFO_EXIT_Q_SUB_TWO_CODE="25"
+#     D2SINFO_EXIT_RESOURCE_LIMIT_CODE="29"
+#     D2SINFO_EXIT_RETRY_FLOW_CODE="101"
+#     D2SINFO_EXIT_RETRY_NEEDED_CODE="98"
+#     D2SINFO_EXIT_RETRY_PHASE_CODE="100"
+#     D2SINFO_EXIT_RETRY_TASK_CODE="99"
+#     D2SINFO_EXIT_SIGNAL_CODE="5"
+#     D2SINFO_EXIT_SPAWN_CODE="30"
+#     D2SINFO_EXIT_SYSTEM_SEGV_CODE="11"
+#     D2SINFO_EXIT_TERMINATED_CODE="14"
+#     D2SINFO_EXIT_THREAD_ERROR_CODE="27"
+#     D2SINFO_EXIT_TIME_LIMIT_CODE="31"
+#     D2SINFO_EXIT_VERIFY_FAILURE_CODE="65"
+#     D2SINFO_EXIT_VM_LIMIT_RETRY_CODE="66"
+#     D2SINFO_EXIT_WARNING_CODE="64"
+#     D2SINFO_INSTALL_BIN3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin"
+#     D2SINFO_INSTALL_BIN="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin"
+#     D2SINFO_INSTALL_DATA3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/data"
+#     D2SINFO_INSTALL_DATA="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/data"
+#     D2SINFO_INSTALL_ETC3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/etc"
+#     D2SINFO_INSTALL_ETC="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/etc"
+#     D2SINFO_INSTALL_LIB3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/lib"
+#     D2SINFO_INSTALL_LIB="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib"
+#     D2SINFO_INSTALL_LIB_BASH="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.bash"
+#     D2SINFO_INSTALL_LIB_CDP="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.cdp"
+#     D2SINFO_INSTALL_LIB_MAKE="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.make"
+#     D2SINFO_INSTALL_LIB_PERL="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl"
+#     D2SINFO_INSTALL_LIB_PYTHON="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python"
+#     D2SINFO_INSTALL_LIB_TCL="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.tcl.tm"
+#     D2SINFO_INSTALL_ROOT="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43"
+#     D2SINFO_OS_FAMILY="centos"
+#     D2S_CMD_ADDR2LINE="/usr/bin/addr2line"
+#     D2S_CMD_APTITUDE="/usr/bin/aptitude"
+#     D2S_CMD_APTITUDE_SHOWALL="/usr/bin/aptitude\x20-F\x20'%c%a%M%S\x20%40p\x20%35t\x20%55V'\x20-w\x20137\x20-O\x20'name,version'\x20search\x20'~i'"
+#     D2S_CMD_AR="/usr/bin/ar"
+#     D2S_CMD_ARP="/sbin/arp"
+#     D2S_CMD_ARP_A="/sbin/arp\x20-a"
+#     D2S_CMD_AWK="/bin/awk"
+#     D2S_CMD_BASENAME="/bin/basename"
+#     D2S_CMD_BASH="/bin/bash"
+#     D2S_CMD_BLKID="/sbin/blkid"
+#     D2S_CMD_BUNZIP2="/usr/bin/bunzip2"
+#     D2S_CMD_BZIP2="/usr/bin/bzip2"
+#     D2S_CMD_CAT="/bin/cat"
+#     D2S_CMD_CHMOD="/bin/chmod"
+#     D2S_CMD_CHOWN="/bin/chown"
+#     D2S_CMD_CMP="/usr/bin/cmp"
+#     D2S_CMD_COLUMN="/usr/bin/column"
+#     D2S_CMD_CP="/bin/cp"
+#     D2S_CMD_CPIO="/bin/cpio"
+#     D2S_CMD_DATE="/bin/date"
+#     D2S_CMD_DD="/bin/dd"
+#     D2S_CMD_DF="/bin/df"
+#     D2S_CMD_DIFF="/usr/bin/diff"
+#     D2S_CMD_DIRNAME="/usr/bin/dirname"
+#     D2S_CMD_DMESG="/bin/dmesg"
+#     D2S_CMD_DU="/usr/bin/du"
+#     D2S_CMD_ECHO="/bin/echo"
+#     D2S_CMD_EGREP="/bin/egrep"
+#     D2S_CMD_ENV="/usr/bin/env"
+#     D2S_CMD_EP3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin/ep3\x20-line_comment\x20'_EP3_LINE_COMMENT_'\x20-start_comment\x20'_EP3_START_COMMENT_'\x20-end_comment\x20'_EP3_END_COMMENT_'\x20-nocomment\x20-protect"
+#     D2S_CMD_FALSE="/bin/false"
+#     D2S_CMD_FIND="/usr/bin/find"
+#     D2S_CMD_FMT="/usr/bin/fmt"
+#     D2S_CMD_FREE="/usr/bin/free"
+#     D2S_CMD_FREE_MT="/usr/bin/free\x20-m\x20-t"
+#     D2S_CMD_GNUPLOT="/usr/bin/gnuplot"
+#     D2S_CMD_GREP="/bin/grep"
+#     D2S_CMD_GUNZIP="/bin/gunzip"
+#     D2S_CMD_GZIP="/bin/gzip"
+#     D2S_CMD_HEAD="/usr/bin/head"
+#     D2S_CMD_HOSTID="/usr/bin/hostid"
+#     D2S_CMD_HOSTNAME="/bin/hostname"
+#     D2S_CMD_ID="/usr/bin/id"
+#     D2S_CMD_IFCONFIG_A="/sbin/ifconfig\x20-a"
+#     D2S_CMD_IOSTAT="/usr/bin/iostat"
+#     D2S_CMD_IOSTAT_DMN="/usr/bin/iostat\x20-m\x20-d\x20-n"
+#     D2S_CMD_IP="/sbin/ip"
+#     D2S_CMD_KILL="/bin/kill"
+#     D2S_CMD_LDCONFIG="/sbin/ldconfig"
+#     D2S_CMD_LDCONFIG_PRINT="/sbin/ldconfig\x20-p"
+#     D2S_CMD_LESS="/usr/bin/less"
+#     D2S_CMD_LN="/bin/ln"
+#     D2S_CMD_LN_S="/bin/ln\x20-s"
+#     D2S_CMD_LS="/bin/ls"
+#     D2S_CMD_LSHAL="/usr/bin/lshal"
+#     D2S_CMD_LSMOD="/sbin/lsmod"
+#     D2S_CMD_MAKE="/usr/bin/make"
+#     D2S_CMD_MD5SUM="/usr/bin/md5sum"
+#     D2S_CMD_MKDIR="/bin/mkdir"
+#     D2S_CMD_MKDIR_P="/bin/mkdir\x20-p"
+#     D2S_CMD_MKFIFO="/usr/bin/mkfifo"
+#     D2S_CMD_MORE="/usr/bin/less"
+#     D2S_CMD_MOUNT="/bin/mount"
+#     D2S_CMD_MV="/bin/mv"
+#     D2S_CMD_NETSTAT="/bin/netstat"
+#     D2S_CMD_NVIDIASMI="/usr/bin/nvidia-smi"
+#     D2S_CMD_NVIDIASMI_A="/usr/bin/nvidia-smi\x20-a"
+#     D2S_CMD_NVIDIASMI_L="/usr/bin/nvidia-smi\x20-L"
+#     D2S_CMD_NVIDIASMI_Q="/usr/bin/nvidia-smi\x20-q"
+#     D2S_CMD_OD="/usr/bin/od"
+#     D2S_CMD_PERL="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin/perl5.22.0"
+#     D2S_CMD_PR="/usr/bin/pr"
+#     D2S_CMD_PRINTENV="/usr/bin/printenv"
+#     D2S_CMD_PRINTF="/usr/bin/printf"
+#     D2S_CMD_PS="/bin/ps"
+#     D2S_CMD_PS_EFF="/bin/ps\x20-ef\x20f"
+#     D2S_CMD_PWD="/bin/pwd"
+#     D2S_CMD_PYTHON3="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin/python3.9"
+#     D2S_CMD_READLINK="/usr/bin/readlink"
+#     D2S_CMD_RM="/bin/rm"
+#     D2S_CMD_RM_RF="/bin/rm\x20-rf"
+#     D2S_CMD_RPM="/bin/rpm"
+#     D2S_CMD_RPM_SHOWALL="/bin/rpm\x20-q\x20-a\x20--qf\x20'%{DISTRIBUTION}\x20==\x20%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}.rpm\x20==\x20%{INSTALLTIME:date}\x20==\x20%{SUMMARY}\x5cn'"
+#     D2S_CMD_RSYNC="/usr/bin/rsync"
+#     D2S_CMD_SCP="/usr/bin/scp"
+#     D2S_CMD_SED="/bin/sed"
+#     D2S_CMD_SEQ="/usr/bin/seq"
+#     D2S_CMD_SGE_QDEL="/opt/gridengine/bin/lx-amd64/qdel"
+#     D2S_CMD_SGE_QRSH="/opt/gridengine/bin/lx-amd64/qrsh"
+#     D2S_CMD_SGE_QSTAT="/opt/gridengine/bin/lx-amd64/qstat"
+#     D2S_CMD_SGE_QSTAT_U="/opt/gridengine/bin/lx-amd64/qstat\x20-u\x20\x5c*"
+#     D2S_CMD_SGE_QSUB="/opt/gridengine/bin/lx-amd64/qsub"
+#     D2S_CMD_SHA1SUM="/usr/bin/sha1sum"
+#     D2S_CMD_SHA256SUM="/usr/bin/sha256sum"
+#     D2S_CMD_SHA512SUM="/usr/bin/sha512sum"
+#     D2S_CMD_SLEEP="/bin/sleep"
+#     D2S_CMD_SMARTCTL="/usr/sbin/smartctl"
+#     D2S_CMD_SORT="/bin/sort"
+#     D2S_CMD_SSH="/usr/bin/ssh"
+#     D2S_CMD_SU="/bin/su"
+#     D2S_CMD_SUDO="/usr/bin/sudo"
+#     D2S_CMD_SYMLINK="/bin/ln\x20-s"
+#     D2S_CMD_TAIL="/usr/bin/tail"
+#     D2S_CMD_TAR="/bin/tar"
+#     D2S_CMD_TEE="/usr/bin/tee"
+#     D2S_CMD_TIMEOUT="/usr/bin/timeout"
+#     D2S_CMD_TOUCH="/bin/touch"
+#     D2S_CMD_TR="/usr/bin/tr"
+#     D2S_CMD_TRUE="/bin/true"
+#     D2S_CMD_UNAME="/bin/uname"
+#     D2S_CMD_VMSTAT="/usr/bin/vmstat"
+#     D2S_CMD_VMSTAT_SM="/usr/bin/vmstat\x20-S\x20M"
+#     D2S_CMD_WHICH="/usr/bin/which"
+#     D2S_CMD_WHO="/usr/bin/who"
+#     D2S_CMD_WHOAMI="/usr/bin/whoami"
+#     D2S_CMD_XARGS="/usr/bin/xargs"
+#     D2S_CMD_XMLLINT="/usr/bin/xmllint"
+#     D2S_CMD_XXD="/usr/bin/xxd"
+#     D2S_CMD_YUM="/usr/bin/yum"
+#     D2S_CMD_YUM_SHOWALL="/usr/bin/yum\x20list\x20installed\x20--color=never"
+#     D2S_ROOT_CMD_CHKCONFIG="/sbin/chkconfig"
+#     D2S_ROOT_CMD_CHKCONFIG_LIST="/sbin/chkconfig\x20--list"
+#     D2S_ROOT_CMD_DMIDECODE="/usr/sbin/dmidecode"
+#     D2S_ROOT_CMD_FDISK="/sbin/fdisk"
+#     D2S_ROOT_CMD_FDISK_L="/sbin/fdisk\x20-l"
+#     D2S_ROOT_CMD_IPMITOOL="/usr/bin/ipmitool"
+#     D2S_ROOT_CMD_IPTABLES="/sbin/iptables"
+#     D2S_ROOT_CMD_IPTABLES_LIST="/sbin/iptables\x20--list"
+#     D2S_ROOT_CMD_LSBLK="/bin/lsblk"
+#     D2S_ROOT_CMD_LSCGROUP="/bin/lscgroup"
+#     D2S_ROOT_CMD_LSCPU="/usr/bin/lscpu"
+#     D2S_ROOT_CMD_LSOF="/usr/sbin/lsof"
+#     D2S_ROOT_CMD_LSPCI="/sbin/lspci"
+#     D2S_ROOT_CMD_LSPCMCIA="/sbin/lspcmcia"
+#     D2S_ROOT_CMD_LSSCSI="/usr/bin/lsscsi"
+#     D2S_ROOT_CMD_LSSUBSYS="/bin/lssubsys"
+#     D2S_ROOT_CMD_LSTOPO_NO_GRAPHICS="/usr/bin/lstopo-no-graphics"
+#     D2S_ROOT_CMD_LSUSB="/usr/bin/lsusb"
+#     D2S_ROOT_CMD_MCELOG="/usr/sbin/mcelog"
+#     D2S_ROOT_CMD_MDADM="/sbin/mdadm"
+#     D2S_ROOT_CMD_PARTED="/sbin/parted"
+#     D2S_ROOT_CMD_PARTED_LIST="/sbin/parted\x20--list"
+#     D2S_ROOT_CMD_SERVICE="/sbin/service"
+#     D2S_ROOT_CMD_SERVICE_LIST="/sbin/service\x20--status-all"
+#     DISPLAY="localhost:25.0"
+#     HISTSIZE="1000"
+#     HOME="/home/d2suser06"
+#     HOSTNAME="cdp38.design2silicon.com"
+#     LANG="en_US.UTF-8"
+#     LC_CTYPE="en_US.UTF-8"
+#     LIBC_FATAL_STDERR_="1"
+#     LOGNAME="d2susr06"
+#     MAIL="/var/spool/mail/d2susr06"
+#     PATH="/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.bash:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.tcl.tm:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.python:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/lib/d2s.perl:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/bin:/bin:/usr/bin:/sbin:/usr/sbin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/third_party/bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.bin:/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/noship.third_party/bin:/opt/gridengine/bin/lx-amd64"
+#     PWD="/mnt/storage_d2s/d2suser06/releases"
+#     QTDIR="/usr/lib64/qt-3.3"
+#     QTINC="/usr/lib64/qt-3.3/include"
+#     QTLIB="/usr/lib64/qt-3.3/lib"
+#     QT_GRAPHICSSYSTEM_CHECKED="1"
+#     QT_PLUGIN_PATH="/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins"
+#     ROCKSROOT="/opt/rocks/share/devel"
+#     ROCKS_ROOT="/opt/rocks"
+#     ROLLSROOT="/opt/rocks/share/devel/src/roll"
+#     SGE_ARCH="lx-amd64"
+#     SGE_CELL="default"
+#     SGE_EXECD_PORT="537"
+#     SGE_QMASTER_PORT="536"
+#     SGE_ROOT="/opt/gridengine"
+#     SHELL="/bin/bash"
+#     SHLVL="0"
+#     TERM="xterm"
+#     USER="d2susr06"
+#     XDG_DATA_DIRS="/home/d2suser06/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+#     XDG_RUNTIME_DIR="/run/user/42108"
+#     XDG_SESSION_ID="15262"
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+
+#####
+# stats: main(): Started: 2023-12-15 (Fri) 07:55:37 EST
+#####
+
+Date: Fri 15 Dec 2023 07:55:37 AM EST.
+The d2scdpd is at port 23499 on host 'cdp38.design2silicon.com'.
+Reading flower file:
+  Request  '/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/input/kickstart.flower'
+  Actual   '/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/input/kickstart.flower'
+Reading flower file:
+  Request  '/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/data/appliance/flows/ILT.flower'
+  Actual   '/mnt/storage_d2s/d2suser06/releases/ILT.2023.02.ilt-cdp43/data/appliance/flows/ILT.flower'
+Running phase 'model_check' at Fri 15 Dec 2023 07:55:37 AM EST.
+
+  Produced files 0/1 in phase 'model_check' (Fri 15 Dec 2023 07:55:37 AM EST).
+  Phase 'model_check', so far...
+   - Records in tokenfile: ok=0, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 213503982334601d 07:00:15
+
+
+  Produced files 1/1 in phase 'model_check' (Fri 15 Dec 2023 07:55:41 AM EST).
+  Phase 'model_check', so far...
+   - Records in tokenfile: ok=1, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:00
+
+  Phase duration: 0d 00:00:03 ('model_check') at Fri 15 Dec 2023 07:55:41 AM EST
+Running phase 'import' at Fri 15 Dec 2023 07:55:41 AM EST.
+
+  Produced files 0/1 in phase 'import' (Fri 15 Dec 2023 07:55:41 AM EST).
+  Phase 'import', so far...
+   - Records in tokenfile: ok=0, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 213503982334601d 07:00:15
+
+
+  Produced files 1/1 in phase 'import' (Fri 15 Dec 2023 07:55:44 AM EST).
+  Phase 'import', so far...
+   - Records in tokenfile: ok=1, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:00
+
+  Phase duration: 0d 00:00:03 ('import') at Fri 15 Dec 2023 07:55:44 AM EST
+Running phase 'recipe' at Fri 15 Dec 2023 07:55:44 AM EST.
+
+  Produced files 0/4 in phase 'recipe' (Fri 15 Dec 2023 07:55:45 AM EST).
+  Phase 'recipe', so far...
+   - Records in tokenfile: ok=0, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 213503982334601d 07:00:15
+
+
+  Produced files 1/4 in phase 'recipe' (Fri 15 Dec 2023 07:55:46 AM EST).
+  Phase 'recipe', so far...
+   - Records in tokenfile: ok=1, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:10
+
+
+  Produced files 2/4 in phase 'recipe' (Fri 15 Dec 2023 07:55:48 AM EST).
+  Phase 'recipe', so far...
+   - Records in tokenfile: ok=2, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:05
+
+
+  Produced files 3/4 in phase 'recipe' (Fri 15 Dec 2023 07:55:49 AM EST).
+  Phase 'recipe', so far...
+   - Records in tokenfile: ok=3, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:02
+
+  Phase duration: 0d 00:00:04 ('recipe') at Fri 15 Dec 2023 07:55:49 AM EST
+Running phase 'optimization' at Fri 15 Dec 2023 07:55:49 AM EST.
+Remote server host identification: '23499'@'cdp38.design2silicon.com'.
+Remote server version information:
+-----
+| d2s Inverse Lithography Technology
+| D2S CDP Platform - version ILT.2023.02, 2023-Dec-13 - build 23347.gf438a7dd7c
+| 
+| D2S Inc. - www.design2silicon.com - support@design2silicon.com
+| Copyright D2S Inc., 2010-2023.  All rights reserved.
+| D2S Inc. Proprietary and Trade Secret.
+| D2S Inc. Proprietary and Confidential.
+| 
+| Covered by one or more patents: 
+|   Information: http://design2silicon.com/patents.
+| Other patents pending.
+| 
+| 
+| ------------------------------------------------------
+|  Some portions of this product suite may use
+|  third-party code which is either open source
+|  or purchased by D2S Inc. as a commercial product.
+|  Certain of these packages may require notices to
+|  be listed with the D2S Inc. copyright notice; these
+|  are listed below.  Since others may not have this
+|  requirement, this may not be a complete list.
+|  More details of packages and their terms may
+|  be found in the 'third_party/copyrights'
+|  directory of this product installation and/or
+|  in the purchase agreement for this product suite.
+|  Where the terms require D2S Inc. to make source
+|  code for a package available to our customers,
+|  the source can be found in the 'third_party/src'
+|  directory of this product installation.  In cases
+|  where D2S Inc. has made modifications to the source,
+|  both the unmodified and the modified versions
+|  will be found there.
+| ------------------------------------------------------
+| 
+| Some portions of this product suite may use some subsets
+| of the NLopt package from MIT.  Most of NLopt is covered
+| by the MIT license, but the 'luksan' subset is covered by
+| the GNU LGPL, version 2.1, and is used by permission.
+| A copy of all NLopt licenses is available in the
+| third_party/copyrights directory of this installation.
+| 
+| D2S uses an slightly modified version of the NLopt package; full
+| source code is for both the unmodified original and the modified
+| version we use is available in the third_party/src directory
+| of this installation.  The latest unmodified version of the source
+| may also be found online at:
+|    http://ab-initio.mit.edu/wiki/index.php/NLopt
+| 
+| A copy of Perl 5.22.0 is included in this release.  Perl is
+| free software; source is included in the third_party/src directory of
+| this installation and is also available online at http://www.perl.org and
+| http://www.cpan.org.
+| 
+| Portions of this product suite may use D2S-modified Eigen
+| version 3.0.4.  D2S-modified Eigen is used and distributed under
+| the terms of the GNU Lesser General Public License, version 3.
+| A copy of the license is included in the third_party/copyrights
+| directory of this installation.  A copy of the source for
+| D2S-modified Eigen is included in the third_party/src directory
+| of this installation.  The original unmodified source for Eigen
+| is also included in that directory and can be obtained online
+| at http://eigen.tuxfamily.org.
+| 
+| Some portions of this product suite use Python® 3, version 3.9.16.
+| ("Python" is a registered trademark of the Python Software Foundation.)
+| 
+| Python itself has not been modified; however, a number of extra
+| opensource packages have been added to this version as listed in the
+| table below.  None of these have been modified.  These are in addition
+| to the standard Python modules.  Note that this list is subject to
+| change without notice in future D2S product releases.
+| 
+| A tarkit containing the sources/wheels for this version of Python and all
+| the additional packages can be found in the third_party/src directory
+| of this product distribution.  Copyright/license info for the various
+| packages are included in their respective installation kits.
+| 
+| Package                       Version
+| --------------------          --------
+| absl-py                       1.4.0
+| alembic                       1.11.1
+| ansiwrap                      0.8.4
+| anyio                         3.7.0
+| argon2-cffi                   21.3.0
+| argon2-cffi-bindings          21.2.0
+| arrow                         1.2.3
+| asttokens                     2.2.1
+| astunparse                    1.6.3
+| attrs                         23.1.0
+| backcall                      0.2.0
+| beautifulsoup4                4.12.2
+| bleach                        6.0.0
+| cachetools                    5.3.1
+| certifi                       2023.5.7
+| cffi                          1.15.1
+| charset-normalizer            3.1.0
+| click                         8.1.3
+| cloudpickle                   2.2.1
+| cmaes                         0.9.1
+| colorlog                      6.7.0
+| comm                          0.1.3
+| contourpy                     1.1.0
+| cycler                        0.11.0
+| debugpy                       1.6.7
+| decorator                     5.1.1
+| defusedxml                    0.7.1
+| entrypoints                   0.4
+| exceptiongroup                1.1.1
+| executing                     1.2.0
+| fastjsonschema                2.17.1
+| flatbuffers                   23.5.26
+| fonttools                     4.40.0
+| fqdn                          1.5.1
+| gast                          0.4.0
+| google-auth                   2.21.0
+| google-auth-oauthlib          1.0.0
+| google-pasta                  0.2.0
+| greenlet                      2.0.2
+| grpcio                        1.56.0
+| h5py                          3.9.0
+| horovod                       0.28.1
+| idna                          3.4
+| importlib-metadata            6.7.0
+| importlib-resources           5.12.0
+| iniconfig                     2.0.0
+| ipykernel                     6.23.3
+| ipython                       8.14.0
+| ipython-genutils              0.2.0
+| ipywidgets                    8.0.6
+| isoduration                   20.11.0
+| jax                           0.4.13
+| jedi                          0.18.2
+| Jinja2                        3.1.2
+| jsonpointer                   2.4
+| jsonschema                    4.17.3
+| jupyter                       1.0.0
+| jupyter-console               6.6.3
+| jupyter-events                0.6.3
+| jupyter_client                8.3.0
+| jupyter_core                  5.3.1
+| jupyter_server                2.7.0
+| jupyter_server_terminals      0.4.4
+| jupyterlab-pygments           0.2.2
+| jupyterlab-widgets            3.0.7
+| keras                         2.12.0
+| kiwisolver                    1.4.4
+| libclang                      16.0.0
+| Mako                          1.2.4
+| Markdown                      3.4.3
+| MarkupSafe                    2.1.3
+| matplotlib                    3.7.1
+| matplotlib-inline             0.1.6
+| mistune                       3.0.1
+| ml-dtypes                     0.2.0
+| mpmath                        1.3.0
+| nbclassic                     1.0.0
+| nbclient                      0.8.0
+| nbconvert                     7.6.0
+| nbformat                      5.9.0
+| nest-asyncio                  1.5.6
+| notebook                      6.5.4
+| notebook_shim                 0.2.3
+| numpy                         1.23.5
+| oauthlib                      3.2.2
+| opencv-python                 4.7.0.72
+| opt-einsum                    3.3.0
+| optuna                        3.2.0
+| overrides                     7.3.1
+| packaging                     23.1
+| pandas                        2.0.2
+| pandocfilters                 1.5.0
+| papermill                     2.4.0
+| parso                         0.8.3
+| patsy                         0.5.3
+| pexpect                       4.8.0
+| pickleshare                   0.7.5
+| Pillow                        9.5.0
+| pip                           23.1.2
+| platformdirs                  3.8.0
+| pluggy                        1.2.0
+| ply                           3.11
+| prometheus-client             0.17.0
+| prompt-toolkit                3.0.38
+| protobuf                      4.23.3
+| psutil                        5.9.5
+| ptyprocess                    0.7.0
+| pure-eval                     0.2.2
+| pyasn1                        0.5.0
+| pyasn1-modules                0.3.0
+| pycparser                     2.21
+| pycrypto                      2.6.1
+| pydot                         1.4.2
+| Pygments                      2.15.1
+| pyparsing                     3.1.0
+| pyrsistent                    0.19.3
+| pyspeedtest                   1.2.7
+| pytest                        7.4.0
+| python-dateutil               2.8.2
+| python-json-logger            2.0.7
+| pytz                          2023.3
+| PyYAML                        6.0
+| pyzmq                         25.1.0
+| qtconsole                     5.4.3
+| QtPy                          2.3.1
+| requests                      2.31.0
+| requests-oauthlib             1.3.1
+| rfc3339-validator             0.1.4
+| rfc3986-validator             0.1.1
+| rsa                           4.9
+| scipy                         1.11.0
+| seaborn                       0.12.2
+| Send2Trash                    1.8.2
+| setuptools                    68.0.0
+| six                           1.16.0
+| sniffio                       1.3.0
+| soupsieve                     2.4.1
+| SQLAlchemy                    2.0.17
+| stack-data                    0.6.2
+| statsmodels                   0.14.0
+| sympy                         1.12
+| tenacity                      8.2.2
+| tensorboard                   2.12.3
+| tensorboard-data-server       0.7.1
+| tensorflow                    2.12.0
+| tensorflow-estimator          2.12.0
+| tensorflow-io-gcs-filesystem  0.32.0
+| termcolor                     2.3.0
+| terminado                     0.17.1
+| textwrap3                     0.9.2
+| tinycss2                      1.2.1
+| tomli                         2.0.1
+| tornado                       6.3.2
+| tqdm                          4.65.0
+| traitlets                     5.9.0
+| typing_extensions             4.6.3
+| tzdata                        2023.3
+| uri-template                  1.3.0
+| urllib3                       1.26.16
+| wcwidth                       0.2.6
+| webcolors                     1.13
+| webencodings                  0.5.1
+| websocket-client              1.6.1
+| Werkzeug                      2.3.6
+| wheel                         0.40.0
+| widgetsnbextension            4.0.7
+| wrapt                         1.14.1
+| zipp                          3.15.0
+| 
+| The version of Python3 included in this distribution includes
+| matplotlib, which includes color specifications and designs
+| developed by Cynthia Brewer (http://colorbrewer.org/).
+| 
+| Portions of this product suite use libquadmath, version 7.3.0.
+| Libquadmath is licensed under the GNU LGPL.  A copy of this license is
+| included in the "third_party/copyrights" directory of this installation.
+| A copy of the source for libquadmath is included with the source
+| for gcc 7.3.0, which can be found in the "third_party/src" directory
+| of this installation.
+| 
+| Some portions of the product suite may be based in part on
+| the work of the Qwt project (http://qwt.sf.net).  Source
+| code is available in the third_party/src directory of this
+| product distribution.
+| 
+| Portions of this product suite use the 'zlib' general purpose
+| compression library, version 1.2.5.
+| 
+| Program 'd2scdpd':
+|   nominally 'd2scdpd'
+|   release 'ILT.2023.02' ('ilt-cdp43')
+|   build '23347.gf438a7dd7c' (2023-12-13 03:30:36 UTC)
+|   by 'release'
+|   settings 'gcc-11.3.0/opt/64'
+|   debuggable? no
+|   revision 'tags/ILT.2023.02.RC1.20231212.212240-0-gf438a7dd7cc98d964a791c8cd048ee18c7d9b728'
+|   sandbox '/re/releases/candidates/ILT.2023.02/sandboxes/ILT.2023.02'
+|   host 'build03' (x86_64)
+|   system 'linux-x86_64' (Linux-3.10.0-957.21.3.el7.x86_64-x86_64-with-glibc2.17)
+|   distribution 'centos 7.6'
+-----
+
+#####
+# stats: hardware: Started: 2023-12-15 (Fri) 07:55:50 EST
+#####
+
+
+#####
+# stats: hardware: Ended: 2023-12-15 (Fri) 07:55:50 EST
+# stats: hardware: Duration: Real 0d 00:00:00.000888284; CPU 0d 00:00:00.000804172
+# stats: hardware: Virtual Memory: 3,621,683,200 peak (+0); 3,621,679,104 cur (+0)
+# stats: hardware: Resident Set Size: 145,420,288 peak (+90,112); 145,420,288 cur (+90,112)
+#####
+
+"partitions=900, available gpus=8, requested gpus=8"
+
+  Produced files 0/1 in phase 'optimization' (Fri 15 Dec 2023 07:55:50 AM EST).
+  Phase 'optimization', so far...
+   - Records in tokenfile: ok=0, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 213503982334601d 07:00:15
+
+
+  Produced files 1/1 in phase 'optimization' (Fri 15 Dec 2023 12:22:40 PM EST).
+  Phase 'optimization', so far...
+   - Records in tokenfile: ok=1, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:00
+
+  Phase duration: 0d 04:26:51 ('optimization') at Fri 15 Dec 2023 12:22:40 PM EST
+Running phase 'reassembly' at Fri 15 Dec 2023 12:22:40 PM EST.
+
+  Produced files 0/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:41 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=0, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 213503982334601d 07:00:15
+
+
+  Produced files 6/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:43 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=6, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:26
+
+
+  Produced files 7/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:44 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=7, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:28
+
+
+  Produced files 10/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:50 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=10, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:42
+
+
+  Produced files 11/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:50 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=11, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:36
+
+
+  Produced files 12/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:51 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=12, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:34
+
+
+  Produced files 13/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:52 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=13, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:33
+
+
+  Produced files 17/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:53 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=17, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:22
+
+
+  Produced files 18/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:54 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=18, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:20
+
+
+  Produced files 20/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:55 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=20, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:16
+
+
+  Produced files 21/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:55 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=21, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:14
+
+
+  Produced files 22/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:55 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=22, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:13
+
+
+  Produced files 23/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:55 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=23, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:11
+
+
+  Produced files 24/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:55 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=24, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:10
+
+
+  Produced files 25/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:57 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=25, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:09
+
+
+  Produced files 26/36 in phase 'reassembly' (Fri 15 Dec 2023 12:22:58 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=26, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:08
+
+
+  Produced files 27/36 in phase 'reassembly' (Fri 15 Dec 2023 12:23:00 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=27, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:08
+
+
+  Produced files 28/36 in phase 'reassembly' (Fri 15 Dec 2023 12:23:02 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=28, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:08
+
+
+  Produced files 29/36 in phase 'reassembly' (Fri 15 Dec 2023 12:23:12 PM EST).
+  Phase 'reassembly', so far...
+   - Records in tokenfile: ok=29, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:09
+
+  Phase duration: 0d 00:00:31 ('reassembly') at Fri 15 Dec 2023 12:23:12 PM EST
+Running phase 'check_summary' at Fri 15 Dec 2023 12:23:12 PM EST.
+
+  Produced files 0/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:12 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=0, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 213503982334601d 07:00:15
+
+
+  Produced files 10/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:13 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=10, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:05:29
+
+
+  Produced files 25/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:14 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=25, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:03:19
+
+
+  Produced files 39/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:15 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=39, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:43
+
+
+  Produced files 40/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:16 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=40, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:46
+
+
+  Produced files 52/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:17 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=52, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:35
+
+
+  Produced files 56/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:17 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=56, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:26
+
+
+  Produced files 60/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:18 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=60, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:41
+
+
+  Produced files 71/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:18 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=71, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:14
+
+
+  Produced files 72/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:18 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=72, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:14
+
+
+  Produced files 74/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:19 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=74, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:30
+
+
+  Produced files 80/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:19 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=80, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:18
+
+
+  Produced files 88/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:19 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=88, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:04
+
+
+  Produced files 89/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:20 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=89, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:19
+
+
+  Produced files 94/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:20 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=94, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:13
+
+
+  Produced files 104/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:20 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=104, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:58
+
+
+  Produced files 106/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:21 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=106, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:09
+
+
+  Produced files 112/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:21 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=112, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:02:01
+
+
+  Produced files 116/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:21 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=116, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:58
+
+
+  Produced files 120/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:21 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=120, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:54
+
+
+  Produced files 127/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:22 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=127, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:57
+
+
+  Produced files 135/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:22 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=135, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:49
+
+
+  Produced files 136/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:22 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=136, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:48
+
+
+  Produced files 139/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:23 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=139, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:55
+
+
+  Produced files 149/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:23 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=149, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:46
+
+
+  Produced files 152/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:23 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=152, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:43
+
+
+  Produced files 154/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:24 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=154, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:50
+
+
+  Produced files 156/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:24 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=156, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:48
+
+
+  Produced files 157/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:24 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=157, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:48
+
+
+  Produced files 167/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:24 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=167, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:40
+
+
+  Produced files 168/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:24 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=168, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:40
+
+
+  Produced files 171/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:25 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=171, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:44
+
+
+  Produced files 173/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:25 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=173, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:43
+
+
+  Produced files 175/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:25 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=175, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:42
+
+
+  Produced files 183/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:25 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=183, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:37
+
+
+  Produced files 191/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:26 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=191, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:37
+
+
+  Produced files 199/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:26 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=199, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:32
+
+
+  Produced files 200/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:27 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=200, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:38
+
+
+  Produced files 207/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:27 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=207, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:34
+
+
+  Produced files 216/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:27 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=216, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:28
+
+
+  Produced files 219/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:28 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=219, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:32
+
+
+  Produced files 223/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:28 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=223, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:30
+
+
+  Produced files 227/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:28 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=227, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:28
+
+
+  Produced files 231/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:29 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=231, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:25
+
+
+  Produced files 232/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:29 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=232, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:25
+
+
+  Produced files 234/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:30 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=234, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:29
+
+
+  Produced files 238/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:30 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=238, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:27
+
+
+  Produced files 239/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:30 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=239, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:27
+
+
+  Produced files 242/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:30 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=242, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:26
+
+
+  Produced files 254/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:31 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=254, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:24
+
+
+  Produced files 258/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:31 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=258, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:23
+
+
+  Produced files 261/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:32 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=261, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:24
+
+
+  Produced files 272/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:32 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=272, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:19
+
+
+  Produced files 273/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:32 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=273, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:19
+
+
+  Produced files 274/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:32 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=274, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:19
+
+
+  Produced files 278/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:33 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=278, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:20
+
+
+  Produced files 285/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:33 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=285, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:17
+
+
+  Produced files 289/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:33 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=289, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:15
+
+
+  Produced files 290/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:33 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=290, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:16
+
+
+  Produced files 295/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:34 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=295, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:16
+
+
+  Produced files 306/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:34 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=306, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:12
+
+
+  Produced files 307/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:35 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=307, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:15
+
+
+  Produced files 318/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:35 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=318, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:11
+
+
+  Produced files 322/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:35 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=322, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:10
+
+
+  Produced files 338/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:36 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=338, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:06
+
+
+  Produced files 354/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:37 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=354, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:04
+
+
+  Produced files 360/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:38 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=360, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:04
+
+
+  Produced files 362/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:38 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=362, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:03
+
+
+  Produced files 370/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:38 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=370, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:01
+
+
+  Produced files 373/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:39 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=373, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:02
+
+
+  Produced files 376/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:39 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=376, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:01
+
+
+  Produced files 377/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:39 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=377, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:01
+
+
+  Produced files 385/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:39 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=385, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:59
+
+
+  Produced files 388/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:40 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=388, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:01:00
+
+
+  Produced files 402/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:41 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=402, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:56
+
+
+  Produced files 403/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:42 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=403, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:57
+
+
+  Produced files 407/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:42 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=407, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:56
+
+
+  Produced files 410/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:42 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=410, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:56
+
+
+  Produced files 414/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:42 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=414, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:54
+
+
+  Produced files 417/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:42 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=417, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:54
+
+
+  Produced files 418/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:42 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=418, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:54
+
+
+  Produced files 424/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:43 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=424, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:54
+
+
+  Produced files 434/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:43 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=434, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:51
+
+
+  Produced files 435/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:44 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=435, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:52
+
+
+  Produced files 441/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:44 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=441, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:51
+
+
+  Produced files 450/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:44 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=450, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:49
+
+
+  Produced files 455/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:45 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=455, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:49
+
+
+  Produced files 463/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:45 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=463, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:47
+
+
+  Produced files 466/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:45 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=466, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:46
+
+
+  Produced files 473/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:46 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=473, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:46
+
+
+  Produced files 481/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:46 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=481, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:44
+
+
+  Produced files 483/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:47 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=483, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:45
+
+
+  Produced files 486/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:47 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=486, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:44
+
+
+  Produced files 497/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:47 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=497, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:42
+
+
+  Produced files 504/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:48 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=504, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:41
+
+
+  Produced files 509/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:48 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=509, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:40
+
+
+  Produced files 513/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:48 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=513, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:40
+
+
+  Produced files 514/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:48 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=514, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:39
+
+
+  Produced files 516/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:49 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=516, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:40
+
+
+  Produced files 522/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:49 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=522, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:39
+
+
+  Produced files 529/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:49 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=529, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:37
+
+
+  Produced files 530/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:50 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=530, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:38
+
+
+  Produced files 545/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:50 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=545, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:35
+
+
+  Produced files 546/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:51 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=546, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:36
+
+
+  Produced files 548/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:51 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=548, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:36
+
+
+  Produced files 550/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:51 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=550, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:35
+
+
+  Produced files 551/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:51 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=551, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:35
+
+
+  Produced files 559/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:51 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=559, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:34
+
+
+  Produced files 561/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:52 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=561, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:33
+
+
+  Produced files 578/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:53 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=578, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:31
+
+
+  Produced files 584/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:54 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=584, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:31
+
+
+  Produced files 594/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:54 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=594, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:29
+
+
+  Produced files 610/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:55 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=610, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:27
+
+
+  Produced files 614/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:56 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=614, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:27
+
+
+  Produced files 626/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:56 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=626, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:25
+
+
+  Produced files 641/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:57 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=641, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:24
+
+
+  Produced files 642/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:57 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=642, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:24
+
+
+  Produced files 644/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:58 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=644, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:24
+
+
+  Produced files 650/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:58 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=650, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:23
+
+
+  Produced files 657/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:58 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=657, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:22
+
+
+  Produced files 658/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:58 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=658, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:22
+
+
+  Produced files 674/901 in phase 'check_summary' (Fri 15 Dec 2023 12:23:59 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=674, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:20
+
+
+  Produced files 682/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:00 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=682, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:19
+
+
+  Produced files 690/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:00 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=690, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:18
+
+
+  Produced files 698/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:01 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=698, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:18
+
+
+  Produced files 703/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:01 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=703, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:17
+
+
+  Produced files 705/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:01 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=705, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:17
+
+
+  Produced files 706/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:01 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=706, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:17
+
+
+  Produced files 714/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:02 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=714, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:16
+
+
+  Produced files 717/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:03 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=717, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:16
+
+
+  Produced files 722/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:03 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=722, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:15
+
+
+  Produced files 731/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:04 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=731, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:14
+
+
+  Produced files 738/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:04 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=738, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:14
+
+
+  Produced files 745/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:05 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=745, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:13
+
+
+  Produced files 754/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:05 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=754, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:12
+
+
+  Produced files 769/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:06 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=769, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:11
+
+
+  Produced files 777/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:07 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=777, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:10
+
+
+  Produced files 778/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:07 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=778, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:10
+
+
+  Produced files 779/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:07 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=779, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:10
+
+
+  Produced files 786/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:07 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=786, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:09
+
+
+  Produced files 795/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:08 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=795, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:08
+
+
+  Produced files 802/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:08 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=802, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:08
+
+
+  Produced files 805/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:09 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=805, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:08
+
+
+  Produced files 807/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:09 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=807, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:07
+
+
+  Produced files 818/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:09 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=818, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:06
+
+
+  Produced files 821/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:10 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=821, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:06
+
+
+  Produced files 823/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:10 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=823, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:06
+
+
+  Produced files 825/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:10 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=825, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:06
+
+
+  Produced files 826/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:10 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=826, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:06
+
+
+  Produced files 834/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:10 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=834, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:05
+
+
+  Produced files 839/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:11 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=839, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:05
+
+
+  Produced files 842/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:11 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=842, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:04
+
+
+  Produced files 843/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:11 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=843, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:04
+
+
+  Produced files 847/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:11 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=847, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:04
+
+
+  Produced files 848/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:11 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=848, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:04
+
+
+  Produced files 852/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:12 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=852, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:04
+
+
+  Produced files 855/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:12 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=855, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:03
+
+
+  Produced files 857/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:12 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=857, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:03
+
+
+  Produced files 865/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:12 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=865, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:03
+
+
+  Produced files 866/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:12 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=866, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:03
+
+
+  Produced files 868/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:13 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=868, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:02
+
+
+  Produced files 874/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:13 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=874, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:02
+
+
+  Produced files 881/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:13 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=881, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:01
+
+
+  Produced files 884/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:14 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=884, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:01
+
+
+  Produced files 898/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:14 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=898, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:00
+
+
+  Produced files 900/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:15 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=900, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:00
+
+
+  Produced files 901/901 in phase 'check_summary' (Fri 15 Dec 2023 12:24:22 PM EST).
+  Phase 'check_summary', so far...
+   - Records in tokenfile: ok=900, warn=0, verif_err=1, sys_err=0
+  Estimated time until phase completion: 0d 00:00:00
+
+  Phase duration: 0d 00:01:10 ('check_summary') at Fri 15 Dec 2023 12:24:22 PM EST
+Running phase 'summarizing' at Fri 15 Dec 2023 12:24:22 PM EST.
+
+  Produced files 0/3 in phase 'summarizing' (Fri 15 Dec 2023 12:24:22 PM EST).
+  Phase 'summarizing', so far...
+   - Records in tokenfile: ok=0, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 213503982334601d 07:00:15
+
+
+  Produced files 1/3 in phase 'summarizing' (Fri 15 Dec 2023 12:24:25 PM EST).
+  Phase 'summarizing', so far...
+   - Records in tokenfile: ok=1, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:10
+
+
+  Produced files 2/3 in phase 'summarizing' (Fri 15 Dec 2023 12:24:29 PM EST).
+  Phase 'summarizing', so far...
+   - Records in tokenfile: ok=2, warn=0, verif_err=0, sys_err=0
+  Estimated time until phase completion: 0d 00:00:05
+
+  Phase duration: 0d 00:00:07 ('summarizing') at Fri 15 Dec 2023 12:24:29 PM EST
+Finished all phases.
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+#   total microsec                 my usec                 child usec          my count (1th file write)
+          15 total          15 (  100%) me            0 (    0%) kids           7 count static void d2s::Ebflow::ExecNoMake::DoStuffAfterPhaseEnds() <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::RunPhases(d2s::Ebflow::FlowerProgramInfo*)
+          17 total          17 (  100%) me            0 (    0%) kids           7 count static void d2s::Ebflow::ExecNoMake::ExitIfSignal(Sut_Timer*, const string&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::RunPhases(d2s::Ebflow::FlowerProgramInfo*)
+ 16131984172 total          45 (    0%) me  16131984127 (99.99%) kids           1 count d2s::Sut::ExitCode d2s::Ebflow::ExecuteFlowerFlowNoMake(d2s::Ebflow::FlowerProgramInfo*)
+        7614 total          54 (  0.7%) me         7560 (99.29%) kids           7 count d2s::Tokenadmin::Tokens::Tokens(const string&, const d2s::Tokenadmin::Tokens::Options&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+          62 total          62 (  100%) me            0 (    0%) kids          25 count d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() <-- void d2s::Tokenadmin::Tokens::Open(const string&, const d2s::Tokenadmin::Tokens::Options&)
+         381 total         381 (  100%) me            0 (    0%) kids         206 count static void d2s::Ebflow::ExecNoMake::ExitIfSignal(Sut_Timer*, const string&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+         398 total         398 (  100%) me            0 (    0%) kids           7 count bool d2s::Ebflow::ProducePhaseVariables(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, const string&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+         937 total         937 (  100%) me            0 (    0%) kids         938 count const d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() const <-- static bool d2s::Ebflow::ExecNoMake::NeedsExecute(d2s::Ebflow::GraphNode*, const d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*)
+        1277 total        1277 (  100%) me            0 (    0%) kids           1 count tcl command 'hardware' <-- Tcl_RecordAndEval()
+        1444 total        1444 (  100%) me            0 (    0%) kids         938 count bool d2s::Ebflow::CheckWaitsforReallyDoneWithTool(const std::vector<d2s::Ebflow::GraphIO>&, const Files&, const d2s::Tokenadmin::Tokens&, std::string*) <-- bool d2s::Ebflow::GraphNode::AreAllWaitsforReallyDoneWithTool(const string&, int32_t, const Files&, const d2s::Tokenadmin::Tokens&, std::string*) const
+       34794 total        1554 ( 4.46%) me        33240 (95.53%) kids         192 count static std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>::iterator d2s::Ebflow::ExecNoMake::MoveFromPendingToRunning(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, size_t) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+        4305 total        1692 ( 39.3%) me         2613 (60.69%) kids         938 count bool d2s::Tokenadmin::Tokens::Find(const string&, d2s::Tokenadmin::TokenEntry*) const <-- static bool d2s::Ebflow::ExecNoMake::NeedsExecute(d2s::Ebflow::GraphNode*, const d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*)
+        1778 total        1778 (  100%) me            0 (    0%) kids         938 count static void d2s::Ebflow::ExecNoMake::WriteLogOnExit(const string&, int, int, int, const string&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::CheckIfAnyTasksExited(int&, d2s::Sut::ExitCode&, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+        2077 total        2077 (  100%) me            0 (    0%) kids         938 count d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() <-- static void d2s::Ebflow::ExecNoMake::AddTokenForTask(d2s::Ebflow::GraphNode*, int, uint64_t, d2s::Tokenadmin::Tokens&)
+        2134 total        2134 (  100%) me            0 (    0%) kids         938 count int d2s::Tokenadmin::TokenHeader::GetPhaseIndex(const string&) const <-- void d2s::Tokenadmin::Tokens::Add(const d2s::Tokenadmin::TokenEntry&)
+        2152 total        2152 (  100%) me            0 (    0%) kids         938 count d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() <-- uint64_t& d2s::Tokenadmin::Tokens::ClassifyExitCodeCounter(int, int)
+        7415 total        2173 ( 29.3%) me         5242 (70.69%) kids         938 count static bool d2s::Ebflow::ExecNoMake::NeedsExecute(d2s::Ebflow::GraphNode*, const d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*) <-- static bool d2s::Ebflow::ExecNoMake::PushToPendingNodes(const string&, int32_t, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*>&, d2s::Ebflow::GraphNode*, d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*)
+ 16131981281 total        2707 (    0%) me  16131978574 (99.99%) kids           1 count static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::RunPhases(d2s::Ebflow::FlowerProgramInfo*) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::Run(d2s::Ebflow::FlowerProgramInfo*)
+ 16131984127 total        2846 (    0%) me  16131981281 (99.99%) kids           1 count static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::Run(d2s::Ebflow::FlowerProgramInfo*) <-- d2s::Sut::ExitCode d2s::Ebflow::ExecuteFlowerFlowNoMake(d2s::Ebflow::FlowerProgramInfo*)
+        4684 total        3240 (69.17%) me         1444 (30.82%) kids         938 count bool d2s::Ebflow::GraphNode::AreAllWaitsforReallyDoneWithTool(const string&, int32_t, const Files&, const d2s::Tokenadmin::Tokens&, std::string*) const <-- static std::vector<d2s::Ebflow::GraphNode*> d2s::Ebflow::ExecNoMake::MoveToRunning(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>::iterator&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, size_t)
+        8427 total        3257 (38.64%) me         5170 (61.35%) kids        1883 count d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetIndexLink(const string&) <-- static bool d2s::Ebflow::ExecNoMake::PushToPendingNodes(const string&, int32_t, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*>&, d2s::Ebflow::GraphNode*, d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*)
+        5804 total        3652 (62.92%) me         2152 (37.07%) kids         938 count uint64_t& d2s::Tokenadmin::Tokens::ClassifyExitCodeCounter(int, int) <-- void d2s::Tokenadmin::Tokens::Add(const d2s::Tokenadmin::TokenEntry&)
+       47304 total        3821 ( 8.07%) me        43483 (91.92%) kids         923 count static bool d2s::Ebflow::ExecNoMake::PushToPendingNodes(const string&, int32_t, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*>&, d2s::Ebflow::GraphNode*, d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*) <-- static void d2s::Ebflow::ExecNoMake::PrepareNextTask(const string&, int32_t, d2s::Ebflow::GraphNode*, d2s::Tokenadmin::Tokens&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+       15060 total        3877 (25.74%) me        11183 (74.25%) kids         938 count d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetTailLink(const string&, int64_t*) <-- void d2s::Tokenadmin::Tokens::Add(const d2s::Tokenadmin::TokenEntry&)
+       51315 total        4011 ( 7.81%) me        47304 (92.18%) kids         938 count static void d2s::Ebflow::ExecNoMake::PrepareNextTask(const string&, int32_t, d2s::Ebflow::GraphNode*, d2s::Tokenadmin::Tokens&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::CheckIfAnyTasksExited(int&, d2s::Sut::ExitCode&, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+        5453 total        4176 (76.58%) me         1277 (23.41%) kids           2 count Tcl_RecordAndEval() <-- virtual void d2s::Ebflow::StmtPhase::DoExecution(d2s::Ebflow::Context*, d2s::Ebflow::Graph*, const std::vector<d2s::Ebflow::FlowInterface*>&) const
+       11183 total        4191 (37.47%) me         6992 (62.52%) kids         938 count d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetIndexLink(const string&) <-- d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetTailLink(const string&, int64_t*)
+       22466 total        4505 (20.05%) me        17961 (79.94%) kids         914 count static bool d2s::Ebflow::ExecNoMake::PushToPendingNodes(const string&, int32_t, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*>&, d2s::Ebflow::GraphNode*, d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+       11567 total        4709 (40.71%) me         6858 (59.28%) kids         938 count d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetIndexLink(const string&) <-- static void d2s::Ebflow::ExecNoMake::AddTokenForTask(d2s::Ebflow::GraphNode*, int, uint64_t, d2s::Tokenadmin::Tokens&)
+       45602 total        5211 (11.42%) me        40391 (88.57%) kids        1837 count bool d2s::Ebflow::GraphNode::AreAllRequiresReallyDone(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::string*) const <-- static bool d2s::Ebflow::ExecNoMake::PushToPendingNodes(const string&, int32_t, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*>&, d2s::Ebflow::GraphNode*, d2s::Tokenadmin::Tokens&, d2s::Sut::ExitCode*)
+        5752 total        5752 (  100%) me            0 (    0%) kids        2632 count const d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() const <-- static void d2s::Ebflow::ExecNoMake::UpdateProgress(d2s::Ebflow::FlowerProgramInfo*, const string&, d2s::Tokenadmin::Tokens&, bool)
+        7560 total        7498 (99.17%) me           62 ( 0.82%) kids           7 count void d2s::Tokenadmin::Tokens::Open(const string&, const d2s::Tokenadmin::Tokens::Options&) <-- d2s::Tokenadmin::Tokens::Tokens(const string&, const d2s::Tokenadmin::Tokens::Options&)
+        8003 total        8003 (  100%) me            0 (    0%) kids        3753 count d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() <-- void d2s::Tokenadmin::Tokens::Add(const d2s::Tokenadmin::TokenEntry&)
+       40391 total        8510 (21.06%) me        31881 (78.93%) kids        1837 count bool d2s::Ebflow::GraphNode::AreReallyDone(const std::vector<d2s::Ebflow::GraphIO>&, const d2s::Tokenadmin::Tokens&, std::string*) const <-- bool d2s::Ebflow::GraphNode::AreAllRequiresReallyDone(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::string*) const
+       10565 total       10493 (99.31%) me           72 ( 0.68%) kids           7 count static void d2s::Ebflow::ExecNoMake::UpdateProgress(d2s::Ebflow::FlowerProgramInfo*, const string&, d2s::Tokenadmin::Tokens&, bool) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+       11163 total       11163 (  100%) me            0 (    0%) kids        1520 count int d2s::Tokenadmin::TokenHeader::GetPhaseIndex(const string&) const <-- static void d2s::Ebflow::ExecNoMake::UpdateProgress(d2s::Ebflow::FlowerProgramInfo*, const string&, d2s::Tokenadmin::Tokens&, bool)
+       12805 total       12805 (  100%) me            0 (    0%) kids         384 count static void d2s::Ebflow::ExecNoMake::SetupFileExists(d2s::Tool::FileExists&, const std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&) <-- static std::vector<d2s::Ebflow::GraphNode*> d2s::Ebflow::ExecNoMake::MoveToRunning(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>::iterator&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, size_t)
+       19020 total       13193 (69.36%) me         5827 (30.63%) kids        3759 count const d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetIndexLink(const string&) const <-- d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetIndexLink(const string&)
+       13295 total       13295 (  100%) me            0 (    0%) kids        7841 count const d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() const <-- const d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetIndexLink(const string&) const
+       20856 total       13388 (64.19%) me         7468 ( 35.8%) kids        4082 count const d2s::Tokenadmin::TokenLink* d2s::Tokenadmin::Tokens::GetIndexLink(const string&) const <-- bool d2s::Tokenadmin::Tokens::Find(const string&, d2s::Tokenadmin::TokenEntry*) const
+       89027 total       13497 (15.16%) me        75530 (84.83%) kids         938 count static void d2s::Ebflow::ExecNoMake::AddTokenForTask(d2s::Ebflow::GraphNode*, int, uint64_t, d2s::Tokenadmin::Tokens&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::CheckIfAnyTasksExited(int&, d2s::Sut::ExitCode&, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+       31881 total       13638 (42.77%) me        18243 (57.22%) kids        3144 count bool d2s::Tokenadmin::Tokens::Find(const string&, d2s::Tokenadmin::TokenEntry*) const <-- bool d2s::Ebflow::GraphNode::AreReallyDone(const std::vector<d2s::Ebflow::GraphIO>&, const d2s::Tokenadmin::Tokens&, std::string*) const
+       33240 total       15751 (47.38%) me        17489 (52.61%) kids         384 count static std::vector<d2s::Ebflow::GraphNode*> d2s::Ebflow::ExecNoMake::MoveToRunning(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>::iterator&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, size_t) <-- static std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>::iterator d2s::Ebflow::ExecNoMake::MoveFromPendingToRunning(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, size_t)
+ 16131978542 total       27579 (    0%) me  16131950963 (99.99%) kids           7 count static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::RunPhases(d2s::Ebflow::FlowerProgramInfo*)
+       61886 total       30885 ( 49.9%) me        31001 (50.09%) kids         938 count void d2s::Tokenadmin::Tokens::Add(const d2s::Tokenadmin::TokenEntry&) <-- static void d2s::Ebflow::ExecNoMake::AddTokenForTask(d2s::Ebflow::GraphNode*, int, uint64_t, d2s::Tokenadmin::Tokens&)
+       34815 total       34815 (  100%) me            0 (    0%) kids       16243 count static void d2s::Ebflow::ExecNoMake::SetupFileExists(d2s::Tool::FileExists&, const std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&) <-- static bool d2s::Ebflow::ExecNoMake::AnyWaitsforFileArrived(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+       41042 total       41042 (  100%) me            0 (    0%) kids       16493 count static void d2s::Ebflow::ExecNoMake::TickChildrenCheckTimer(size_t, const string&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+     2090557 total       43286 ( 2.07%) me      2047271 (97.92%) kids         192 count static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteNodes(const string&, int32_t, d2s::Ebflow::FlowerProgramInfo*, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>::iterator) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+      127419 total       92604 (72.67%) me        34815 (27.32%) kids       16243 count static bool d2s::Ebflow::ExecNoMake::AnyWaitsforFileArrived(const string&, int32_t, const d2s::Tokenadmin::Tokens&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+      117786 total      117786 (  100%) me            0 (    0%) kids       16685 count static void d2s::Ebflow::ExecNoMake::ExitIfSignal(Sut_Timer*, const string&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+      423485 total      137259 (32.41%) me       286226 (67.58%) kids       16685 count static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::CheckIfAnyTasksExited(int&, d2s::Sut::ExitCode&, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+      144106 total      144106 (  100%) me            0 (    0%) kids       31528 count static pid_t d2s::Ebflow::ExecNoMake::Wrapped_waitpid(pid_t, int*, int) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::CheckIfAnyTasksExited(int&, d2s::Sut::ExitCode&, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+     1101210 total      454742 (41.29%) me       646468 ( 58.7%) kids           7 count std::vector<std::__cxx11::basic_string<char> > d2s::Tokenadmin::Tokens::GetAllNames(std::vector<std::__cxx11::basic_string<char> >*) const <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+      648178 total      631335 ( 97.4%) me        16843 ( 2.59%) kids         373 count static void d2s::Ebflow::ExecNoMake::UpdateProgress(d2s::Ebflow::FlowerProgramInfo*, const string&, d2s::Tokenadmin::Tokens&, bool) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+      646468 total      646468 (  100%) me            0 (    0%) kids      458759 count const d2s::Tokenadmin::TokenHeader& d2s::Tokenadmin::Tokens::Hdr() const <-- std::vector<std::__cxx11::basic_string<char> > d2s::Tokenadmin::Tokens::GetAllNames(std::vector<std::__cxx11::basic_string<char> >*) const
+      866619 total      861166 (99.37%) me         5453 ( 0.62%) kids           7 count virtual void d2s::Ebflow::StmtPhase::DoExecution(d2s::Ebflow::Context*, d2s::Ebflow::Graph*, const std::vector<d2s::Ebflow::FlowInterface*>&) const <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+     1866468 total     1866468 (  100%) me            0 (    0%) kids         192 count static void d2s::Ebflow::ExecNoMake::BackupTokensFile(const d2s::Tokenadmin::Tokens&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+     2047271 total     2047271 (  100%) me            0 (    0%) kids         938 count static pid_t d2s::Ebflow::ExecNoMake::ForkChildProcess(const string&, int32_t, d2s::Ebflow::GraphNode*, d2s::Ebflow::FlowerProgramInfo*) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteNodes(const string&, int32_t, d2s::Ebflow::FlowerProgramInfo*, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>::iterator)
+    11052900 total    11052900 (  100%) me            0 (    0%) kids         192 count static void d2s::Ebflow::ExecNoMake::EraseBackupTokensFile(const d2s::Tokenadmin::Tokens&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&)
+ 16127816359 total 16113539081 (99.91%) me     14277278 ( 0.08%) kids         192 count static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::WaitRunningTasks(d2s::Ebflow::FlowerProgramInfo*, const string&, int32_t, const string&, d2s::Tokenadmin::Tokens&, std::__cxx11::list<d2s::Ebflow::ExecNoMake::RunningTask>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&, std::set<d2s::Ebflow::GraphNode*, d2s::Ebflow::CompareGraphNode>&) <-- static d2s::Sut::ExitCode d2s::Ebflow::ExecNoMake::ExecuteFlowerPhase(d2s::Ebflow::FlowerProgramInfo*, d2s::Ebflow::StmtPhase*, size_t, int)
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+Fri 15 Dec 2023 12:24:29 PM EST
+Current status is 'exit with data verification errors' (VerifyFailure, 65).
+Running post-flow finishing and cleanup.
++
+
+Fri 15 Dec 2023 12:24:30 PM EST
+Duration: 0d 04:28:53 ('/mnt/storage_d2s/d2suser06/fermi/cdp-data/designs/11610/input/kickstart.flower').
+
+
+#####
+# stats: main(): Ended: 2023-12-15 (Fri) 12:24:30 EST
+# stats: main(): Duration: Real 0d 04:28:53.088308969; CPU 0d 00:00:07.329934681
+# stats: main(): Virtual Memory: 3,630,374,912 peak (+30,097,408); 3,619,319,808 cur (+19,308,544)
+# stats: main(): Resident Set Size: 150,777,856 peak (+31,854,592); 83,193,856 cur (-35,729,408)
+#####
+
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+# Ending at:
+#    Fri 15 Dec 2023 12:24:30 PM EST
+#    {ProgramFinishEpoch|1702661070.820815275}
+# Session Duration: 16133 seconds
+#
+#
+#   Session Messages Summary
+#   Type       | Occurrences
+#  ------------+-----------------
+#   Fatal      | 0                 
+#   Error      | 0                 
+#   Warning    | 0                 
+#   All Others | 634               
+#  ------------+-----------------
+#
+#
+# Exit code:
+#    65 (exit with data verification errors)
+#    {ProgramExitCode|65}
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+

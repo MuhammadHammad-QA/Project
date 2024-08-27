@@ -1,0 +1,225 @@
+WARNING: Error in initializing MVAPICH2 ptmalloc library.Continuing without InfiniBand registration cache support.
+
+ MVAPICH2-2.3.6 Parameters
+---------------------------------------------------------------------
+	PROCESSOR ARCH NAME            : MV2_ARCH_INTEL_GENERIC
+	PROCESSOR FAMILY NAME          : MV2_CPU_FAMILY_INTEL
+	PROCESSOR MODEL NUMBER         : 79
+	HCA NAME                       : MV2_HCA_MLX_CX_CONNIB
+	HETEROGENEOUS HCA              : NO
+	MV2_VBUF_TOTAL_SIZE            : 16384
+	MV2_IBA_EAGER_THRESHOLD        : 16384
+	MV2_RDMA_FAST_PATH_BUF_SIZE    : 4096
+	MV2_PUT_FALLBACK_THRESHOLD     : 8192
+	MV2_GET_FALLBACK_THRESHOLD     : 262144
+	MV2_EAGERSIZE_1SC              : 4096
+	MV2_SMP_EAGERSIZE              : 65536
+	MV2_SMP_QUEUE_LENGTH           : 262144
+	MV2_SMP_NUM_SEND_BUFFER        : 256
+	MV2_SMP_BATCH_SIZE             : 8
+	Tuning Table:                  : MV2_ARCH_UNKWN MV2_HCA_UNKWN
+---------------------------------------------------------------------
+
+ MVAPICH2 All Parameters
+	MV2_COMM_WORLD_LOCAL_RANK           : 0
+	MPIRUN_RSH_LAUNCH                   : 0
+	MV2_SHMEM_BACKED_UD_CM              : 0
+	MV2_3DTORUS_SUPPORT                 : 0
+	MV2_NUM_SA_QUERY_RETRIES            : 20
+	MV2_NUM_SLS                         : 8
+	MV2_DEFAULT_SERVICE_LEVEL           : 0
+	MV2_PATH_SL_QUERY                   : 0
+	MV2_USE_QOS                         : 0
+	MV2_ALLGATHER_BRUCK_THRESHOLD       : 524288
+	MV2_ALLGATHER_RD_THRESHOLD          : 81920
+	MV2_ALLGATHER_REVERSE_RANKING       : 1
+	MV2_ALLGATHERV_RD_THRESHOLD         : 0
+	MV2_ALLREDUCE_2LEVEL_MSG            : 262144
+	MV2_ALLREDUCE_SHORT_MSG             : 2048
+	MV2_ALLTOALL_MEDIUM_MSG             : 16384
+	MV2_ALLTOALL_SMALL_MSG              : 2048
+	MV2_ALLTOALL_THROTTLE_FACTOR        : 32
+	MV2_BCAST_TWO_LEVEL_SYSTEM_SIZE     : 64
+	MV2_GATHER_SWITCH_PT                : 0
+	MV2_INTRA_SHMEM_REDUCE_MSG          : 2048
+	MV2_KNOMIAL_2LEVEL_BCAST_MESSAGE_SIZE_THRESHOLD : 2048
+	MV2_KNOMIAL_2LEVEL_BCAST_SYSTEM_SIZE_THRESHOLD : 64
+	MV2_KNOMIAL_INTER_LEADER_THRESHOLD  : 65536
+	MV2_KNOMIAL_INTER_NODE_FACTOR       : 4
+	MV2_KNOMIAL_INTRA_NODE_FACTOR       : 4
+	MV2_KNOMIAL_INTRA_NODE_THRESHOLD    : 131072
+	MV2_RED_SCAT_LARGE_MSG              : 524288
+	MV2_RED_SCAT_SHORT_MSG              : 64
+	MV2_REDUCE_2LEVEL_MSG               : 16384
+	MV2_REDUCE_SHORT_MSG                : 8192
+	MV2_SCATTER_MEDIUM_MSG              : 0
+	MV2_SCATTER_SMALL_MSG               : 0
+	MV2_SHMEM_ALLREDUCE_MSG             : 32768
+	MV2_SHMEM_COLL_MAX_MSG_SIZE         : 131072
+	MV2_SHMEM_COLL_NUM_COMM             : 32
+	MV2_SHMEM_COLL_NUM_PROCS            : 64
+	MV2_SHMEM_COLL_SPIN_COUNT           : 5
+	MV2_SHMEM_REDUCE_MSG                : 4096
+	MV2_USE_BCAST_SHORT_MSG             : 16384
+	MV2_USE_DIRECT_GATHER               : 1
+	MV2_USE_DIRECT_GATHER_SYSTEM_SIZE_MEDIUM : 1024
+	MV2_USE_DIRECT_GATHER_SYSTEM_SIZE_SMALL : 384
+	MV2_USE_DIRECT_SCATTER              : 1
+	MV2_USE_OSU_COLLECTIVES             : 1
+	MV2_USE_OSU_NB_COLLECTIVES          : 1
+	MV2_USE_KNOMIAL_2LEVEL_BCAST        : 1
+	MV2_USE_KNOMIAL_INTER_LEADER_BCAST  : 1
+	MV2_USE_SCATTER_RD_INTER_LEADER_BCAST : 1
+	MV2_USE_SCATTER_RING_INTER_LEADER_BCAST : 1
+	MV2_USE_SHMEM_ALLREDUCE             : 1
+	MV2_USE_SHMEM_BARRIER               : 1
+	MV2_USE_SHMEM_BCAST                 : 1
+	MV2_USE_SHMEM_COLL                  : 0
+	MV2_USE_SHMEM_REDUCE                : 1
+	MV2_USE_TWO_LEVEL_GATHER            : 1
+	MV2_USE_TWO_LEVEL_SCATTER           : 1
+	MV2_USE_XOR_ALLTOALL                : 1
+	MV2_ENABLE_SOCKET_AWARE_COLLECTIVES : 0
+	MV2_USE_SOCKET_AWARE_ALLREDUCE      : 0
+	MV2_USE_SOCKET_AWARE_BARRIER        : 0
+	MV2_USE_SOCKET_AWARE_SHARP_ALLREDUCE : 0
+	MV2_SOCKET_AWARE_ALLREDUCE_MAX_MSG  : 2048
+	MV2_SOCKET_AWARE_ALLREDUCE_MIN_MSG  : 1
+	MV2_DEFAULT_SRC_PATH_BITS           : 0
+	MV2_DEFAULT_STATIC_RATE             : 0
+	MV2_DEFAULT_TIME_OUT                : 330772
+	MV2_DEFAULT_MTU                     : 5
+	MV2_DEFAULT_PKEY                    : 0
+	MV2_DEFAULT_QKEY                    : 0
+	MV2_DEFAULT_PORT                    : 1
+	MV2_DEFAULT_GID_INDEX               : 0
+	MV2_DEFAULT_PSN                     : 0
+	MV2_DEFAULT_MAX_RECV_WQE            : 128
+	MV2_DEFAULT_MAX_SEND_WQE            : 64
+	MV2_DEFAULT_MAX_SG_LIST             : 1
+	MV2_DEFAULT_MIN_RNR_TIMER           : 12
+	MV2_DEFAULT_QP_OUS_RD_ATOM          : 272
+	MV2_DEFAULT_RETRY_COUNT             : 84677639
+	MV2_DEFAULT_RNR_RETRY               : 202639111
+	MV2_DEFAULT_MAX_CQ_SIZE             : 40000
+	MV2_DEFAULT_MAX_RDMA_DST_OPS        : 4
+	MV2_INITIAL_PREPOST_DEPTH           : 10
+	MV2_IWARP_MULTIPLE_CQ_THRESHOLD     : 32
+	MV2_NUM_HCAS                        : 1
+	MV2_NUM_PORTS                       : 1
+	MV2_NUM_QP_PER_PORT                 : 1
+	MV2_MAX_RDMA_CONNECT_ATTEMPTS       : 20
+	MV2_ON_DEMAND_UD_INFO_EXCHANGE      : 1
+	MV2_PREPOST_DEPTH                   : 64
+	MV2_HOMOGENEOUS_CLUSTER             : 1
+	MV2_NUM_CQES_PER_POLL               : 96
+	MV2_COALESCE_THRESHOLD              : 6
+	MV2_DREG_CACHE_LIMIT                : 0
+	MV2_IBA_EAGER_THRESHOLD             : 16384
+	MV2_MAX_INLINE_SIZE                 : 168
+	MV2_MAX_R3_PENDING_DATA             : 524288
+	MV2_MED_MSG_RAIL_SHARING_POLICY     : 0
+	MV2_NDREG_ENTRIES                   : 8224
+	MV2_NUM_RDMA_BUFFER                 : 16
+	MV2_NUM_SPINS_BEFORE_LOCK           : 2000
+	MV2_POLLING_LEVEL                   : 1
+	MV2_POLLING_SET_LIMIT               : 64
+	MV2_POLLING_SET_THRESHOLD           : 256
+	MV2_R3_NOCACHE_THRESHOLD            : 32768
+	MV2_R3_THRESHOLD                    : 32768
+	MV2_RAIL_SHARING_LARGE_MSG_THRESHOLD : 16384
+	MV2_RAIL_SHARING_MED_MSG_THRESHOLD  : 2048
+	MV2_RAIL_SHARING_POLICY             : 4
+	MV2_RDMA_EAGER_LIMIT                : 32
+	MV2_RDMA_FAST_PATH_BUF_SIZE         : 4096
+	MV2_RDMA_NUM_EXTRA_POLLS            : 1
+	MV2_RNDV_EXT_SENDQ_SIZE             : 5
+	MV2_RNDV_PROTOCOL                   : 4
+	MV2_SMP_RNDV_PROTOCOL               : 4
+	MV2_SMALL_MSG_RAIL_SHARING_POLICY   : 0
+	MV2_SPIN_COUNT                      : 5000
+	MV2_SRQ_LIMIT                       : 10
+	MV2_SRQ_MAX_SIZE                    : 32767
+	MV2_SRQ_SIZE                        : 80
+	MV2_STRIPING_THRESHOLD              : 16384
+	MV2_USE_COALESCE                    : 1
+	MV2_USE_XRC                         : 0
+	MV2_VBUF_MAX                        : -1
+	MV2_VBUF_POOL_SIZE                  : 80
+	MV2_VBUF_SECONDARY_POOL_SIZE        : 16
+	MV2_VBUF_TOTAL_SIZE                 : 16384
+	MV2_USE_IWARP_MODE                  : 0
+	MV2_USE_HWLOC_CPU_BINDING           : 1
+	MV2_ENABLE_AFFINITY                 : 0
+	MV2_ENABLE_LEASTLOAD                : 0
+	MV2_SMP_BATCH_SIZE                  : 8
+	MV2_SMP_EAGERSIZE                   : 65536
+	MV2_SMP_QUEUE_LENGTH                : 262144
+	MV2_SMP_NUM_SEND_BUFFER             : 256
+	MV2_SMP_SEND_BUF_SIZE               : 8192
+	MV2_USE_SHARED_MEM                  : 0
+	MV2_SMP_CMA_MAX_SIZE                : 0
+	MV2_SMP_LIMIC2_MAX_SIZE             : 0
+	MV2_SHOW_ENV_INFO                   : 3
+	MV2_DEFAULT_PUT_GET_LIST_SIZE       : 200
+	MV2_EAGERSIZE_1SC                   : 4096
+	MV2_GET_FALLBACK_THRESHOLD          : 262144
+	MV2_PIN_POOL_SIZE                   : 2097152
+	MV2_PUT_FALLBACK_THRESHOLD          : 8192
+	MV2_USE_RDMA_CM                     : 0
+	MV2_UD_MAX_ACK_PENDING              : 100
+	MV2_UD_MAX_RECV_WQE                 : 4096
+	MV2_UD_MAX_RETRY_TIMEOUT            : 20000000
+	MV2_UD_MAX_SEND_WQE                 : 256
+	MV2_UD_MTU                          : 4096
+	MV2_UD_NUM_MSG_LIMIT                : 100
+	MV2_UD_NUM_ZCOPY_RNDV_QPS           : 64
+	MV2_UD_PROGRESS_SPIN                : 1200
+	MV2_UD_PROGRESS_TIMEOUT             : 48000
+	MV2_UD_RECVWINDOW_SIZE              : 2501
+	MV2_UD_RETRY_COUNT                  : 1024
+	MV2_UD_RETRY_TIMEOUT                : 500000
+	MV2_UD_SENDWINDOW_SIZE              : 400
+	MV2_UD_VBUF_POOL_SIZE               : 8192
+	MV2_UD_ZCOPY_RQ_SIZE                : 4096
+	MV2_UD_ZCOPY_THRESHOLD              : 16384
+	MV2_UD_ZCOPY_NUM_RETRY              : 50000
+	MV2_USE_UD_ZCOPY                    : 1
+	MV2_USE_UD_HYBRID                   : 0
+	MV2_USE_ONLY_UD                     : 0
+	MV2_USE_UD_SRQ                      : 0
+	MV2_UD_SRQ_SIZE                     : 4096
+	MV2_UD_SRQ_LIMIT                    : 128
+	MV2_UD_SRQ_MAX_SIZE                 : 32767
+	MV2_HYBRID_ENABLE_THRESHOLD         : 512
+	MV2_HYBRID_MAX_RC_CONN              : 32
+	MV2_ASYNC_THREAD_STACK_SIZE         : 1048576
+	MV2_THREAD_YIELD_SPIN_THRESHOLD     : 5
+	MV2_SUPPORT_DPM                     : 0
+	MV2_USE_HUGEPAGES                   : 1
+---------------------------------------------------------------------
+
+Collective Tuning Tables
+	Collective           Architecture                             Interconnect                            
+	Allgather            MV2_ARCH_UNKWN                           MV2_HCA_UNKWN                           
+	Allreduce            MV2_ARCH_UNKWN                           MV2_HCA_UNKWN                           
+	Alltoall             MV2_ARCH_UNKWN                           MV2_HCA_UNKWN                           
+	Alltoallv            MV2_ARCH_INTEL_GENERIC                   MV2_HCA_MLX_CX_CONNIB                   
+	Broadcast            MV2_ARCH_UNKWN                           MV2_HCA_UNKWN                           
+	Gather               MV2_ARCH_UNKWN                           MV2_HCA_UNKWN                           
+	Reduce               MV2_ARCH_UNKWN                           MV2_HCA_UNKWN                           
+	Scatter              MV2_ARCH_UNKWN                           MV2_HCA_UNKWN                           
+
+---------------------------------------------------------------------
+[big-0-11.local:mpi_rank_0][MPID_Init] [Performance Suggestion]: Application has requested for multi-thread capability. If allocating memory from different pthreads/OpenMP threads, please consider setting MV2_USE_ALIGNED_ALLOC=1 for improved performance.
+Use MV2_USE_THREAD_WARNING=0 to suppress this error message.
+-------------CPU AFFINITY-------------
+OMP_NUM_THREADS           : 0
+MV2_THREADS_PER_PROCESS   : 1
+MV2_CPU_BINDING_POLICY    : Bunch
+--------------------------------------
+RANK: 0  CPU_SET:    0   1   2   3   4   5   6   7
+RANK: 1  CPU_SET:    0   1   2   3   4   5   6   7
+RANK: 2  CPU_SET:    0   1   2   3   4   5   6   7
+RANK: 3  CPU_SET:    0   1   2   3   4   5   6   7
+-------------------------------------
