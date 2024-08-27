@@ -1,11 +1,13 @@
 import sqlalchemy as db
-from sqlalchemy import create_engine, Column, Integer, String, insert
+from sqlalchemy import create_engine, Column, Integer, String, insert, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import inspect
+import sys, os
 
 # Define the database URL
-DATABASE_URL = 'mysql+pymysql://d2s:d2s_1234@localhost/emumba_qor'
+#DATABASE_URL = 'mysql+pymysql://d2s:d2s_1234@localhost/emumba_qor'
+DATABASE_URL = 'mysql+pymysql://d2s:d2s_1234@db/emumba_qor'
 
 # Use the correct import for declarative_base in SQLAlchemy 2.x
 Base = db.orm.declarative_base()
@@ -13,6 +15,7 @@ Base = db.orm.declarative_base()
 def parse_fermi_file(file_path):
     data = {}
     current_section = None
+    job_id = None
 
     with open(file_path, 'r') as file:
         for line in file:
@@ -22,13 +25,19 @@ def parse_fermi_file(file_path):
                 data[current_section] = []
             elif '=' in line:
                 key, value = line.split('=', 1)
-                data[current_section].append((key.strip(), value.strip()))
-    return data
+                if key.strip() == 'fermi_id':
+                    job_id = value.strip()
+                    data[current_section].append((key.strip(), value.strip()))
+                else:
+                    data[current_section].append((key.strip(), value.strip()))
+    
+    return data, job_id
 
 def create_table_class(table_name):
     attrs = {
         '__tablename__': table_name,
         'id': Column(Integer, primary_key=True, autoincrement=True),  # Primary key
+        'job_id': Column(String(255)),  # Column for job_id
         'properties': Column(String(255)),  # Column for keys
         'value': Column(String(255))  # Column for values
     }
@@ -38,11 +47,11 @@ def create_combined_table_class():
     attrs = {
         '__tablename__': 'All_Data',
         'id': Column(Integer, primary_key=True, autoincrement=True),  # Primary key
+        'job_id': Column(String(255)),  # Column for job_id
         'properties': Column(String(255)),  # Column for keys
         'value': Column(String(255))  # Column for values
     }
     return type('All_Data', (Base,), attrs)
-
 
 def create_tables_from_log(data):
     inspector = inspect(engine)  # Create an inspector instance
@@ -52,29 +61,26 @@ def create_tables_from_log(data):
             continue
         
         table_name = section.replace(' ', '_')
-        # Create table class with id, properties, and value columns
+        # Create table class with id, job_id, properties, and value columns
         table_class = create_table_class(table_name)
         
-        # Drop table if it already exists (for debugging purposes)
-        if inspector.has_table(table_name):
-            print(f"Dropping existing table: {table_name}")
-            Base.metadata.drop_all(engine, tables=[table_class.__table__])
-        
-        Base.metadata.create_all(engine, tables=[table_class.__table__])
-        
-        # Verify table creation
-        print(f"Created table: {table_name} with columns: {[c.name for c in table_class.__table__.columns]}")
+        # Create table if it does not exist
+        if not inspector.has_table(table_name):
+            print(f"Creating table: {table_name}")
+            Base.metadata.create_all(engine, tables=[table_class.__table__])
+        else:
+            print(f"Table {table_name} already exists")
 
-    # Create the combined table
+    # Create the combined table if it does not exist
     combined_table_class = create_combined_table_class()
-    if inspector.has_table('All_Data'):
-        print(f"Dropping existing table: All_Data")
-        Base.metadata.drop_all(engine, tables=[combined_table_class.__table__])
-    
-    Base.metadata.create_all(engine, tables=[combined_table_class.__table__])
-    print(f"Created table: All_Data with columns: {[c.name for c in combined_table_class.__table__.columns]}")
+    if not inspector.has_table('All_Data'):
+        print(f"Creating table: All_Data")
+        Base.metadata.create_all(engine, tables=[combined_table_class.__table__])
+    else:
+        print(f"Table All_Data already exists")
 
-def insert_data_to_tables(data):
+
+def insert_data_to_tables(data, job_id):
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -89,17 +95,39 @@ def insert_data_to_tables(data):
 
             table = Base.metadata.tables[table_name]
             
+            # Check if job_id already exists
+            existing_job = session.query(table).filter_by(job_id=job_id).first()
+            
             for key, value in entries:
                 entry_dict = {
+                    'job_id': job_id,
                     'properties': key,
                     'value': value
                 }
                 
-                try:
-                    stmt = insert(table).values(entry_dict)
-                    session.execute(stmt)
-                except Exception as e:
-                    print(f"Error adding record to table {table_name}: {e}")
+                if existing_job:
+                    # Update existing records
+                    try:
+                        stmt = text(f"""
+                            UPDATE {table_name}
+                            SET value = :value
+                            WHERE job_id = :job_id AND properties = :properties
+                        """)
+                        session.execute(stmt, entry_dict)
+                    except Exception as e:
+                        print(f"Error updating record in table {table_name}: {e}")
+                else:
+                    # Insert new records
+                    try:
+                        stmt = text(f"""
+                            INSERT INTO {table_name} (job_id, properties, value)
+                            VALUES (:job_id, :properties, :value)
+                            ON DUPLICATE KEY UPDATE
+                            value = VALUES(value)
+                        """)
+                        session.execute(stmt, entry_dict)
+                    except Exception as e:
+                        print(f"Error adding record to table {table_name}: {e}")
                     
             try:
                 session.commit()
@@ -107,20 +135,43 @@ def insert_data_to_tables(data):
                 print(f"Error committing session for table {table_name}: {e}")
                 session.rollback()
 
-        # Insert data into the combined table
+        # Insert or update data into the combined table
         combined_table = Base.metadata.tables['All_Data']
+        
+        existing_combined_job = session.query(combined_table).filter_by(job_id=job_id).first()
         
         for section, entries in data.items():
             for key, value in entries:
                 entry_dict = {
+                    'job_id': job_id,
                     'properties': key,
                     'value': value
                 }
-                try:
-                    stmt = insert(combined_table).values(entry_dict)
-                    session.execute(stmt)
-                except Exception as e:
-                    print(f"Error adding record to table All_Data: {e}")
+                
+                if existing_combined_job:
+                    
+                    # Update existing records in the combined table
+                    try:
+                        stmt = text("""
+                            UPDATE All_Data
+                            SET value = :value
+                            WHERE job_id = :job_id AND properties = :properties
+                        """)
+                        session.execute(stmt, entry_dict)
+                    except Exception as e:
+                        print(f"Error updating record in table All_Data: {e}")
+                else:
+                    # Insert new records into the combined table
+                    try:
+                        stmt = text("""
+                            INSERT INTO All_Data (job_id, properties, value)
+                            VALUES (:job_id, :properties, :value)
+                            ON DUPLICATE KEY UPDATE
+                            value = VALUES(value)
+                        """)
+                        session.execute(stmt, entry_dict)
+                    except Exception as e:
+                        print(f"Error adding record to table All_Data: {e}")
                     
         try:
             session.commit()
@@ -132,9 +183,19 @@ def insert_data_to_tables(data):
 
 
 if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("Usage: python3 script_name.py <file_path>")
+        sys.exit(1)
+    
+
+    file_path = sys.argv[1]
+
+    if not os.path.isfile(file_path):
+        print(f"Error: The file '{file_path}' does not exist or is not accessible.")
+        sys.exit(1)
+
     # Parse the log file
-    file_path = '../11610/qor/fermi.txt'
-    data = parse_fermi_file(file_path)
+    data, job_id = parse_fermi_file(file_path)
 
     # Set up the database engine
     engine = create_engine(DATABASE_URL)
@@ -143,4 +204,7 @@ if __name__ == '__main__':
     create_tables_from_log(data)
 
     # Insert data
-    insert_data_to_tables(data)
+    insert_data_to_tables(data, job_id)
+
+
+

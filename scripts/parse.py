@@ -172,7 +172,7 @@ def main():
             error_logger.error("File does not exist")
 
     if args.rsync and combined_path:
-        rsync_dir = os.path.join(locat, "rsync/qor")
+        rsync_dir = os.path.join(locat, f"rsync/{runName}/qor")
         if not os.path.isdir(rsync_dir):
             try:
                 os.makedirs(rsync_dir, exist_ok=True)

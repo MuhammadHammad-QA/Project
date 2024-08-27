@@ -1,6 +1,6 @@
 [Main_Stats]
 fermi_id = 11610
-revision = None
+revision = master
 gpu = 4
 expect_run_time_50_gpu = 720.15
 expect_run_time_1_gpu = 34500.25

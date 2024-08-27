@@ -1,3 +1,490 @@
+
+# from flask import Flask, jsonify, request, render_template
+# from sqlalchemy import create_engine, text
+# from sqlalchemy.orm import sessionmaker
+
+# app = Flask(__name__)
+
+# # Database connection details
+# DATABASE_URL = 'mysql+pymysql://d2s:d2s_1234@localhost/emumba_qor'
+
+# # Set up the database engine and session
+# engine = create_engine(DATABASE_URL)
+# Session = sessionmaker(bind=engine)
+# session = Session()
+
+# # Reusable function to execute queries
+# def execute_query(query, params=None):
+#     with engine.connect() as connection:
+#         result = connection.execute(text(query), params or {})
+#         columns = result.keys()
+#         data = [dict(zip(columns, row)) for row in result.fetchall()]
+#     return data
+
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
+
+# @app.route('/search', methods=['GET'])
+# def search():
+#     table_name = request.args.get('table_name')
+#     if not table_name:
+#         return render_template('error.html', message="Table name is required."), 400
+    
+#     query = f'SELECT * FROM {table_name}'
+#     data = execute_query(query)
+#     if not data:
+#         return render_template('error.html', message=f"No data found for table '{table_name}'."), 404
+
+#     return render_template('results.html', data=data, table_name=table_name)
+
+
+# @app.route('/search_by_property', methods=['GET'])
+# def search_by_property():
+#     property_name = request.args.get('property_name')
+#     if not property_name:
+#         return render_template('error.html', message="Property name is required."), 400
+
+#     query = '''
+#         SELECT * FROM All_Data
+#         WHERE properties = :property_name
+#     '''
+#     data = execute_query(query, {'property_name': property_name})
+#     if not data:
+#         return render_template('error.html', message=f"No data found for property '{property_name}'."), 404
+
+#     return render_template('results.html', data=data, table_name='All_Data')
+
+
+
+# @app.route('/search_by_runs', methods=['GET'])
+# def search_by_runs():
+#     fermi_id = request.args.get('fermi_id')
+#     user = request.args.get('user')
+#     name = request.args.get('name')
+#     revision = request.args.get('revision')
+
+#     if not fermi_id and not user and not name and not revision:
+#         return render_template('error.html', message="Please enter at least one search criterion."), 400
+
+#     conditions = []
+#     params = {}
+
+#     if fermi_id:
+#         conditions.append("properties = 'fermi_id' AND value = :fermi_id")
+#         params['fermi_id'] = fermi_id
+#     if user:
+#         conditions.append("properties = 'user' AND value = :user")
+#         params['user'] = user
+#     if name:
+#         conditions.append("properties = 'name' AND value = :name")
+#         params['name'] = name
+#     if revision:
+#         conditions.append("properties = 'revision' AND value = :revision")
+#         params['revision'] = revision
+
+#     # Check for each individual condition
+#     for condition in conditions:
+#         check_query = f'''
+#             SELECT 1 FROM All_Data
+#             WHERE {condition}
+#         '''
+#         check_data = execute_query(check_query, params)
+#         if not check_data:
+#             return render_template('error.html', message="Data not found for the given criteria."), 404
+
+#     # If all conditions are valid, proceed with data retrieval
+#     query = '''
+#         SELECT * FROM All_Data
+#     '''
+#     data = execute_query(query)
+
+#     return render_template('results.html', data=data, table_name='All_Data')
+
+
+# @app.route('/<analysis_type>', methods=['GET'])
+# def get_analysis_data(analysis_type):
+#     valid_tables = {
+#         'geometric-analysis': 'Geometric_Analysis_Stats_Fermi',
+#         'main-stats': 'Main_Stats',
+#         'runtime-analysis': 'Runtime_Analysis_Stats',
+#         'statistical-analysis': 'Statistical_Analysis'
+#     }
+
+#     table_name = valid_tables.get(analysis_type)
+#     if not table_name:
+#         return "Invalid analysis type", 400
+
+#     query = f'SELECT * FROM {table_name}'
+#     data = execute_query(query)
+#     return render_template('results.html', data=data, table_name=analysis_type)
+
+# if __name__ == '__main__':
+#     app.run(debug=True, host='localhost', port=7000)
+
+
+
+
+# @app.route('/search_by_id', methods=['GET'])
+# def search_by_id():
+#     record_id = request.args.get('id')
+#     if not record_id:
+#         return "ID is required", 400
+    
+#     query = 'SELECT * FROM All_Data WHERE id = :id'
+#     data = execute_query(query, {'id': record_id})
+#     return render_template('results.html', data=data, table_name='All_Data')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# import sqlalchemy as db
+# from sqlalchemy import create_engine, text
+# from sqlalchemy.orm import sessionmaker
+# from sqlalchemy import inspect
+
+# # Define the database URL
+# DATABASE_URL = 'mysql+pymysql://d2s:d2s_1234@localhost/emumba_qor'
+
+# # Create the engine and session
+# engine = create_engine(DATABASE_URL)
+# Session = sessionmaker(bind=engine)
+# session = Session()
+
+# def delete_all_data():
+#     inspector = inspect(engine)  # Create an inspector instance
+#     tables = inspector.get_table_names()  # Get all table names
+    
+#     try:
+#         for table in tables:
+#             print(f"Deleting all data from table: {table}")
+#             #stmt = text(f"DELETE FROM {table}")
+#             stmt = text(f"DROP TABLE {table}")
+#             session.execute(stmt)
+        
+#         session.commit()
+#         print("All data deleted successfully.")
+#     except Exception as e:
+#         print(f"Error deleting data: {e}")
+#         session.rollback()
+#     finally:
+#         session.close()
+
+# if __name__ == '__main__':
+#     delete_all_data()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# @app.route('/search_by_runs', methods=['GET'])
+# def search_by_runs():
+#     fermi_id = request.args.get('fermi_id')
+#     user = request.args.get('user')
+#     name = request.args.get('name')
+#     revision = request.args.get('revision')
+
+#     if not fermi_id and not user and not name and not revision:
+#         return render_template('error.html', message="Please enter at least one search criterion."), 400
+
+#     conditions = []
+#     params = {}
+
+#     if fermi_id:
+#         conditions.append("properties = 'fermi_id' AND value = :fermi_id")
+#         params['fermi_id'] = fermi_id
+#     if user:
+#         conditions.append("properties = 'user' AND value = :user")
+#         params['user'] = user
+#     if name:
+#         conditions.append("properties = 'name' AND value = :name")
+#         params['name'] = name
+#     if revision:
+#         conditions.append("properties = 'revision' AND value = :revision")
+#         params['revision'] = revision
+
+#     # Check for each individual condition
+#     for condition in conditions:
+#         check_query = f'''
+#             SELECT 1 FROM All_Data
+#             WHERE {condition}
+#         '''
+#         check_data = execute_query(check_query, params)
+#         if not check_data:
+#             return render_template('error.html', message="Data not found for the given criteria."), 404
+
+#     # If all conditions are valid, proceed with data retrieval
+#     query = '''
+#         SELECT * FROM All_Data
+#     '''
+#     data = execute_query(query)
+
+#     return render_template('results.html', data=data, table_name='All_Data')
+
+
+
+# @app.route('/search_by_runs', methods=['GET'])
+# def search_by_runs():
+#     job_id = request.args.get('job_id')
+#     user = request.args.get('user')
+#     name = request.args.get('name')
+#     revision = request.args.get('revision')
+
+#     if not job_id and not user and not name and not revision:
+#         return render_template('error.html', message="Please enter at least one search criterion."), 400
+
+#     conditions = []
+#     params = {}
+
+#     # If job_id is provided, add it directly to the conditions
+#     if job_id:
+#         conditions.append("job_id = :job_id")
+#         params['job_id'] = job_id
+
+#     # Build a subquery to find all job_ids that match the user, name, or revision
+#     if user:
+#         conditions.append("(properties = 'user' AND value = :user)")
+#         params['user'] = user
+#     if name:
+#         conditions.append("(properties = 'name' AND value = :name)")
+#         params['name'] = name
+#     if revision:
+#         conditions.append("(properties = 'revision' AND value = :revision)")
+#         params['revision'] = revision
+
+#     job_ids = []
+    
+#     if not job_id:
+#         # If job_id is not provided, find all matching job_ids based on other conditions
+#         subquery = f'''
+#             SELECT DISTINCT job_id FROM All_Data
+#             WHERE {" OR ".join(conditions)}
+#         '''
+#         result = execute_query(subquery, params)
+
+#         if not result:
+#             return render_template('error.html', message="Data not found for the given criteria."), 404
+
+#         # Collect all matching job_ids
+#         job_ids = [row['job_id'] for row in result]
+#     else:
+#         job_ids = [job_id]
+
+#     # Now we'll query all data that matches any of the found job_ids
+#     query = f'''
+#         SELECT * FROM All_Data
+#         WHERE job_id IN ({",".join([":job_id" + str(i) for i in range(len(job_ids))])})
+#     '''
+    
+#     for i, jid in enumerate(job_ids):
+#         params[f'job_id{i}'] = jid
+
+#     data = execute_query(query, params)
+
+#     if not data:
+#         return render_template('error.html', message="Data not found for the given criteria."), 404
+
+#     return render_template('results.html', data=data, table_name='All_Data')
+
+
+
+
+# @app.route('/search_by_runs', methods=['GET'])
+# def search_by_runs():
+#     # Retrieve query parameters from the GET request
+#     job_id = request.args.get('job_id')
+#     user = request.args.get('user')
+#     name = request.args.get('name')
+#     revision = request.args.get('revision')
+
+#     # Check if at least one search criterion is provided
+#     if not job_id and not user and not name and not revision:
+#         return render_template('error.html', message="Please enter at least one search criterion."), 400
+
+#     # Initialize conditions and parameters for the SQL query
+#     conditions = []
+#     params = {}
+    
+#     # Build the conditions and parameters based on provided fields
+#     if job_id:
+#         conditions.append("job_id = :job_id")
+#         params['job_id'] = job_id
+#     if user:
+#         conditions.append("(properties = 'user' AND value = :user)")
+#         params['user'] = user
+#     if name:
+#         conditions.append("(properties = 'name' AND value = :name)")
+#         params['name'] = name
+#     if revision:
+#         conditions.append("(properties = 'revision' AND value = :revision)")
+#         params['revision'] = revision
+
+#     # If no conditions are created, return an error
+#     if not conditions:
+#         return render_template('error.html', message="No valid search criteria provided."), 400
+
+#     # Create a subquery to find job_ids based on the provided conditions
+#     subquery_conditions = " OR ".join(conditions)
+#     subquery = f'''
+#         SELECT DISTINCT job_id FROM All_Data
+#         WHERE {subquery_conditions}
+#         GROUP BY job_id
+#         HAVING COUNT(DISTINCT properties) = {len(conditions)}
+#     '''
+    
+#     job_id_results = execute_query(subquery, params)
+    
+#     # If no job_ids are found, return an error
+#     if not job_id_results:
+#         return render_template('error.html', message="No matching data found for the given criteria."), 404
+    
+#     job_ids = [row['job_id'] for row in job_id_results]
+    
+#     # If no valid job_ids are found, return an error
+#     if not job_ids:
+#         return render_template('error.html', message="No matching data found for the given criteria."), 404
+    
+#     # Build the query to fetch all data for the valid job_ids
+#     job_ids_placeholder = ', '.join([f":job_id{i}" for i in range(len(job_ids))])
+#     data_query = f'''
+#         SELECT * FROM All_Data
+#         WHERE job_id IN ({job_ids_placeholder})
+#     '''
+    
+#     # Add job_id parameters to the final parameters dictionary
+#     for i, jid in enumerate(job_ids):
+#         params[f'job_id{i}'] = jid
+
+#     # Execute the query to fetch the data
+#     data = execute_query(data_query, params)
+
+#     # If no data is found, return an error
+#     if not data:
+#         return render_template('error.html', message="Data not found for the given criteria."), 404
+
+#     # Render the results template with the retrieved data
+#     return render_template('results.html', data=data, table_name='All_Data')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # from flask import Flask, jsonify, request, render_template
 # from sqlalchemy import create_engine, text
 # from sqlalchemy.orm import sessionmaker

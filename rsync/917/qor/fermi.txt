@@ -1,10 +1,10 @@
 [Main_Stats]
-fermi_id = 11610
+fermi_id = 917
 revision = master
 gpu = 4
 expect_run_time_50_gpu = 720.15
 expect_run_time_1_gpu = 34500.25
-user = exampleuser
+user = exampleuser2
 name = exampleDesign01
 max_err_per_partion = None
 total_errors = None
