@@ -158,7 +158,7 @@ def search_by_runs():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 
 # docker-compose run web python3 scripts/record.py rsync/917/qor/fermi.txt
