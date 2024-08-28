@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "1d86cee2-cc78-436d-a49c-fdce5259687a",
+		"name": "Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37841936"
+	},
+	"item": [
+		{
+			"name": "Home page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",  () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Content-Type is HTML\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+							"});",
+							"",
+							"pm.test(\"Response contains <title> tag\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Search\");",
+							"});",
+							"",
+							"pm.test(\"Response contains expected text\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Search Data\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Extract Tables data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",  () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is HTML\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+							"});",
+							"",
+							"",
+							"// Get the table_name parameter from the query parameters",
+							"let tableName = pm.request.url.query.get(\"table_name\");",
+							"",
+							"// Debugging: Print the table_name to verify it's set correctly",
+							"console.log(\"Table Name:\", tableName);",
+							"",
+							"// Define expected title based on table_name",
+							"let expectedTitle = \"\";",
+							"if (tableName === \"Main_Stats\") {",
+							"    expectedTitle = \"<title>Main_stats Results</title>\";",
+							"} else if (tableName === \"Geometric_Analysis_Stats_Fermi\") {",
+							"    expectedTitle = \"<title>Geometric_analysis_stats_fermi Results</title>\";",
+							"} else if (tableName === \"Runtime_Analysis_Stats\") {",
+							"    expectedTitle = \"<title>Runtime_analysis_stats Results</title>\";",
+							"} else if (tableName === \"Statistical_Analysis\") {",
+							"    expectedTitle = \"<title>Statistical_analysis Results</title>\";",
+							"} else {",
+							"    expectedTitle = \"<title>Unknown Table</title>\";",
+							"}",
+							"",
+							"",
+							"// Test if the response contains the expected title",
+							"pm.test(\"Title matches table_name\", function () {",
+							"    pm.expect(pm.response.text()).to.include(expectedTitle);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/search?table_name=Geometric_Analysis_Stats_Fermi",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "table_name",
+							"value": "Main_Stats",
+							"disabled": true
+						},
+						{
+							"key": "table_name",
+							"value": "Geometric_Analysis_Stats_Fermi"
+						},
+						{
+							"key": "table_name",
+							"value": "Runtime_Analysis_Stats",
+							"disabled": true
+						},
+						{
+							"key": "table_name",
+							"value": "Statistical_Analysis",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific property",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",  () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is HTML\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+							"});",
+							"",
+							"pm.test(\"Response contains <title> tag\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"All_data Results\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/search_by_property?property_name=mean_fermi",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"search_by_property"
+					],
+					"query": [
+						{
+							"key": "property_name",
+							"value": "fermi_id",
+							"disabled": true
+						},
+						{
+							"key": "property_name",
+							"value": "mean_fermi"
+						},
+						{
+							"key": "property_name",
+							"value": "gpu",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find data by run,user,design name and revision",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",  () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is HTML\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+							"});",
+							"",
+							"pm.test(\"Response contains <title> tag\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"All_data Results\");",
+							"});",
+							"",
+							"pm.test(\"Response contains expected text\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"fermi_id\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/search_by_runs?fermi_id=11610&user=exampleuser&name=exampleDesign01&revision=master",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"search_by_runs"
+					],
+					"query": [
+						{
+							"key": "fermi_id",
+							"value": "11610"
+						},
+						{
+							"key": "user",
+							"value": "exampleuser"
+						},
+						{
+							"key": "name",
+							"value": "exampleDesign01"
+						},
+						{
+							"key": "revision",
+							"value": "master"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:5000"
+		}
+	]
+}
