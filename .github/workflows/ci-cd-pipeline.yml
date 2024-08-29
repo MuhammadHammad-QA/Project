@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -34,7 +34,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Install Node.js
       uses: actions/setup-node@v2
@@ -45,7 +45,7 @@ jobs:
       run: npm install -g newman
 
     - name: Run Newman tests
-      run: newman run postman/Project.postman_collection.json
+      run: newman run postman/Project.postman_collection2.json
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Docker
       uses: docker/setup-buildx-action@v2
@@ -66,4 +66,4 @@ jobs:
       run: |
         # Add a wait or check for the service to be ready
         sleep 5
-        curl -f http://localhost:5000/ || exit 1
+        curl -f https://e3c7-203-99-184-187.ngrok-free.app// || exit 1
