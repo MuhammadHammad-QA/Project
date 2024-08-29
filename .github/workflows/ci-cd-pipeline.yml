@@ -1,9 +1,9 @@
 name: CI/CD Pipeline
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
-  actions: read
+  actions: write
 
 on:
   push:
