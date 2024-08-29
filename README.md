@@ -6,6 +6,9 @@ This project is designed to achieve the following functionalities:
 * Parse data: Read the data from log file to generate new file and write the desired data to it. 
 * Record data: Read data from generated file (fermi.txt) and write to mysql databse.
 * API: Extract and show the data using apis.
+* Docker: Setup application docker.
+* Postman: API testing using postman.
+* CI/CD: Automate the process.
  
 ## Project Structure
 
