@@ -26,6 +26,7 @@ services:
       - db
     volumes:
       - .:/app
+      - ./scripts/app.py:/app/scripts/api.py
 
 volumes:
   db_data:
