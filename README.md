@@ -3,6 +3,7 @@
 This project appears to be a Python project based on the presence of files like requirements.txt and api.py. 
 
 Here's a breakdown of the directory structure:
+<pre>
 
 ├── Project
 │   ├── .github
@@ -105,6 +106,7 @@ Here's a breakdown of the directory structure:
 │   ├── merge.txt
 │   ├── README.md
 
+</pre>
 
 This is a basic breakdown of the project structure based on the image you provided. You can add more specific information to the README.md file as you learn more about the project.
 </blockquote>
