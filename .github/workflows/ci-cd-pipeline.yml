@@ -58,6 +58,11 @@ jobs:
     - name: Set up Docker
       uses: docker/setup-buildx-action@v2
 
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
+
     - name: Run Docker Compose
       run: |
         docker-compose up -d
@@ -66,4 +71,4 @@ jobs:
       run: |
         # Add a wait or check for the service to be ready
         sleep 5
-        curl -f https://e3c7-203-99-184-187.ngrok-free.app// || exit 1
+        curl -f http://localhost:5000/ || exit 1
