@@ -122,8 +122,7 @@ jobs:
 
     - name: Run Docker Compose
       run: docker-compose up -d --force-recreate --build
-
     - name: Wait for services to be ready
       run: |
-        sleep 10
+        sleep 5
         curl -f http://localhost:5000/ || exit 1
