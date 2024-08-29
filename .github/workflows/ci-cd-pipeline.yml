@@ -1,4 +1,3 @@
-
 name: CI/CD Pipeline
 
 on:
@@ -67,10 +66,41 @@ jobs:
         pr_number=$(gh pr list --state open --json number -q '.[0].number')
         gh pr merge $pr_number --merge
 
-  deploy:
+  deploy_push:
     runs-on: ubuntu-latest
-    needs: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' ? 'test' : 'merge' }}
-    if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.action == 'closed')
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
+    - name: Install Docker Compose
+      run: sudo apt-get update && sudo apt-get install -y docker-compose
+
+    - name: Stop and Remove Existing Containers
+      run: |
+        docker-compose down || true
+        docker-compose rm -f
+
+    - name: Build Docker images
+      run: docker-compose build --no-cache
+
+    - name: Run Docker Compose
+      run: docker-compose up -d --force-recreate --build
+
+    - name: Wait for services to be ready
+      run: |
+        sleep 10
+        curl -f http://localhost:5000/ || exit 1
+
+  deploy_pr:
+    runs-on: ubuntu-latest
+    needs: merge
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
 
     steps:
     - name: Checkout code
