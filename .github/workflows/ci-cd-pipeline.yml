@@ -370,10 +370,7 @@ jobs:
 
     - name: Run Newman tests
       run: |
-        newman run postman/Project.postman_collection2.json --env-var "base_url=$BASE_URL"
-        if [ $? -ne 0 ]; then
-          echo "Newman tests failed."
-          exi
+        newman run postman/Project.postman_collection2.json --env-var "base_url=$BASE_URL" || exit 1
 
   merge:
     runs-on: ubuntu-latest
