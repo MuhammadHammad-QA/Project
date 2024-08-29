@@ -53,6 +53,10 @@ jobs:
 
   merge:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     needs: test
     if: github.event_name == 'pull_request' && github.event.pull_request.merged == false
     steps:
