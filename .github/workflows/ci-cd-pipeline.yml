@@ -372,8 +372,15 @@ jobs:
     - name: Install Newman
       run: npm install -g newman
 
+    # - name: Run Newman tests
+    #   run: newman run postman/Project.postman_collection.json
     - name: Run Newman tests
-      run: newman run postman/Project.postman_collection.json
+      run: |
+        newman run postman/Project.postman_collection.json --reporters cli,json --reporter-json-export=newman-report.json
+        if [ $? -ne 0 ]; then
+          echo "Newman tests failed."
+          exit 1
+        fi
     
     - name: Run Docker Compose
       run: docker-compose down
