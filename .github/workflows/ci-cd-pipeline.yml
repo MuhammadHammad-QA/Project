@@ -54,7 +54,7 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    if: github.event_name == 'pull_request' && github.event.action == 'ready_for_review'
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
