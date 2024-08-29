@@ -132,7 +132,8 @@ def main():
         error_logger.error("Combined path not set. Exiting.")
         return
 
-
+    #
+    
     # Check if no arguments are provided
     if not (args.location or args.id or args.parse or args.rsync):
         error_logger.error("No arguments provided. Exiting.")
