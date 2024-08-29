@@ -28,8 +28,6 @@ jobs:
         source venv/bin/activate
         pip install -r scripts/requirements.txt
 
-
-
   test:
     runs-on: ubuntu-latest
     needs: build
@@ -45,15 +43,10 @@ jobs:
     - name: Install Newman
       run: npm install -g newman
 
-    
-
-    # - name: Set Base URL for External Service
-    #   run: echo "BASE_URL=https://8c99-203-99-184-187.ngrok-free.app/" >> $GITHUB_ENV
-
     - name: Run Newman tests
       run: |
-        newman run postman/Project.postman_collection2.json 
-        
+        newman run postman/Project.postman_collection2.json
+
   merge:
     runs-on: ubuntu-latest
     needs: test
@@ -76,7 +69,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: merge
+    needs: [test, merge]
     if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.action == 'closed')
 
     steps:
@@ -104,4 +97,5 @@ jobs:
       run: |
         sleep 10
         curl -f http://localhost:5000/ || exit 1
+
 
