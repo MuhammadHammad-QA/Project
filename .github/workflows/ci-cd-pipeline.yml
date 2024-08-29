@@ -77,13 +77,13 @@ jobs:
     - name: Run Docker Compose
       run: docker-compose up -d --force-recreate --build
 
-    - name: Set Base URL for External Service
-      run: echo "BASE_URL=https://8c99-203-99-184-187.ngrok-free.app/" >> $GITHUB_ENV
+    # - name: Set Base URL for External Service
+    #   run: echo "BASE_URL=https://8c99-203-99-184-187.ngrok-free.app/" >> $GITHUB_ENV
 
     - name: Run Newman tests
       run: |
-        newman run postman/Project.postman_collection2.json --env-var "base_url=$BASE_URL" || exit 1
-
+        newman run postman/Project.postman_collection2.json 
+        
   merge:
     runs-on: ubuntu-latest
     needs: test
