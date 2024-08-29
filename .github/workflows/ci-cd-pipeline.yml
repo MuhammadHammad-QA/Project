@@ -373,7 +373,7 @@ jobs:
       run: npm install -g newman
 
     - name: Run Newman tests
-      run: newman run postman/Project.postman_collection2.json
+      run: newman run postman/Project.postman_collection.json
     
     - name: Run Docker Compose
       run: docker-compose down
