@@ -353,7 +353,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -366,15 +365,15 @@ jobs:
     - name: Install Newman
       run: npm install -g newman
 
-    # - name: Run Newman tests
-    #   run: newman run postman/Project.postman_collection.json
+    - name: Set Base URL for External Service
+      run: echo "BASE_URL=https://8c99-203-99-184-187.ngrok-free.app/" >> $GITHUB_ENV
+
     - name: Run Newman tests
       run: |
-        newman run postman/Project.postman_collection2.json 
+        newman run postman/Project.postman_collection2.json --env-var "base_url=$BASE_URL"
         if [ $? -ne 0 ]; then
           echo "Newman tests failed."
-          exit 1
-        fi
+          exi
 
   merge:
     runs-on: ubuntu-latest
