@@ -153,7 +153,7 @@
 #     if not data:
 #         return render_template('error.html', message="Data not found for the given criteria."), 404
 
-#     # Render the results template with the retrieved data
+     # Render the results template with the retrieved data
 #     return render_template('results.html', data=data, table_name='All_Data')
 
 
