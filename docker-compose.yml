@@ -15,7 +15,7 @@ services:
 
   web:
     build: .
-    command: flask run --host=0.0.0.0
+    command: flask run --host=0.0.0.0 --reload
     ports:
       - "5000:5000"
     environment:
@@ -26,7 +26,7 @@ services:
       - db
     volumes:
       - .:/app
-      - ./scripts/app.py:/app/scripts/api.py
+      - ./scripts/app.py:/app/scripts/app.py
 
 volumes:
   db_data:

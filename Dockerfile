@@ -14,4 +14,4 @@ COPY . .
 RUN pip install -r scripts/requirements.txt
 
 # Specify the command to run the Flask application
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0", "--reload"]
