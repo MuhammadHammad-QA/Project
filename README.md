@@ -1,6 +1,13 @@
-# Project
+# Flask App 
 
-This project appears to be a Python project based on the presence of files like requirements.txt and api.py. 
+## Overview
+
+This project is designed to achieve the following functionalities:
+* Parse data: Read the data from log file to generate new file and write the desired data to it. 
+* Record data: Read data from generated file (fermi.txt) and write to mysql databse.
+* API: Extract and show the data using apis.
+ 
+## Project Structure
 
 Here's a breakdown of the directory structure:
 <pre>
@@ -108,7 +115,88 @@ Here's a breakdown of the directory structure:
 
 </pre>
 
-This is a basic breakdown of the project structure based on the image you provided. You can add more specific information to the README.md file as you learn more about the project.
-</blockquote>
+## Setup
 
-Since the image doesn't contain the content of the files, some parts of the README.md  file are educated guesses based on file extensions and common practices.
+### Prerequisites
+
+- Python 3.x
+- Docker (if using Docker)
+- Virtual Environment (optional but recommended)
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone <repository-url>
+    cd <repository-directory>
+
+    git clone git@github.com:MuhammadHammad-QA/Project.git
+    cd Project
+    ```
+
+2. Set up a virtual environment (optional but recommended):
+    ```sh
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+
+3. Install the required Python packages:
+    ```sh
+    pip3 install -r scripts/requirements.txt
+    ```
+
+## Usage
+
+### Running the Parser
+
+The main script for parsing log files is [`scripts/parse.py`]. It provides several command-line options:
+
+- `-l`, `--location`: The location or path of the folder.
+- `-id`, `--id`: Folder name (ID of the run).
+- `-p`, `--parse`: Only parse the file and create `fermi.txt`.
+- `-r`, `--rsync`: Directory of rsync, which will contain only the `qor` folder.
+
+Example usage:
+```sh
+python3 scripts/parse.py -l <location> -id <id> -p -r
+```
+
+### Running the Recorder
+
+The script to record data to database:
+
+Example usage:
+```sh
+python3 scripts/record.py rsync/917/qor/fermi.txt
+```
+
+
+### Running the API
+
+Extract and visulize data:
+
+Example usage:
+```sh
+python3 scripts/app.py 
+```
+
+
+### Docker 
+
+To build and run the project using Docker:
+Files: Dockerfile, docker-compose.yml
+
+Example usage:
+```sh
+docker-compose build
+docker-compose up
+```
+
+
+### CI/CD
+
+The project includes a CI/CD pipeline configuration in .github/workflows/ci-cd-pipeline.yml.
+
+### Postman
+
+Postman collections for API testing are available in the postman/ directory.
