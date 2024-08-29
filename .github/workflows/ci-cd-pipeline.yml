@@ -350,12 +350,6 @@ jobs:
     - name: Run Docker Compose
       run: docker-compose up -d
 
-    # - name: Wait for services to be ready
-    #   run: |
-    #     # Adjust sleep duration as needed
-    #     sleep 10
-    #     curl -f http://localhost:5000/ || exit 1
-
   test:
     runs-on: ubuntu-latest
     needs: build
@@ -376,7 +370,7 @@ jobs:
     #   run: newman run postman/Project.postman_collection.json
     - name: Run Newman tests
       run: |
-        newman run postman/Project.postman_collection.json --reporters cli,json --reporter-json-export=newman-report.json
+        newman run postman/Project.postman_collection2.json 
         if [ $? -ne 0 ]; then
           echo "Newman tests failed."
           exit 1
