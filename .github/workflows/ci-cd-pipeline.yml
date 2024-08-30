@@ -230,7 +230,7 @@ jobs:
         sudo apt-get install -y docker-compose
     
     - name: Log in to Docker Hub
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
@@ -240,10 +240,13 @@ jobs:
 
     - name: Tag Docker images
       run: |
-        docker tag my-app:latest hammadqa/proj/my-app:latest
+        docker tag web_container:latest hammadqa/proj/web_container:latest
+        docker tag db_container:latest hammadqa/proj/db_container:latest
 
     - name: Push Docker images
-      run: docker-compose push
+      run: |
+        docker push hammadqa/proj/web_container:latest
+        docker push hammadqa/proj/db_container:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -265,7 +268,8 @@ jobs:
     
     - name: Pull Docker images by name
       run: |
-        docker pull hammadqa/proj/my-app:latest
+        docker pull hammadqa/proj/web_container:latest
+        docker pull hammadqa/proj/db_container:latest
 
     - name: Stop and Remove Existing Containers
       run: |
