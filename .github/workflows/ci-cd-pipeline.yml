@@ -241,7 +241,7 @@ jobs:
     - name: Tag Docker images
       run: |
         docker tag project_web:latest hammadqa/proj/web_container:latest
-        docker tag db:8.0 hammadqa/proj/db_container:latest
+        docker tag mysql:8.0 hammadqa/proj/db_container:latest
 
     - name: Push Docker images
       run: |
