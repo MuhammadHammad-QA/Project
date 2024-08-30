@@ -211,7 +211,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: [test, check-merge]
+    needs: [test, merge]
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.workflow_run.outputs.merge_result == 'success')
     steps:
     - name: Checkout code
