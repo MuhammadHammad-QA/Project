@@ -185,28 +185,6 @@ jobs:
       run: |
         newman run postman/Project.postman_collection2.json
 
-  merge:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      repository-projects: write
-    needs: test
-    if: github.event_name == 'pull_request' && github.event.pull_request.merged == false
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Install GitHub CLI
-      run: sudo apt-get install -y gh
-
-    - name: Authenticate GitHub CLI
-      run: echo "${{ secrets.PAT }}" | gh auth login --with-token
-
-    - name: Merge pull request
-      run: |
-        pr_number=${{ github.event.pull_request.number }}
-        gh pr merge $pr_number --merge
 
   merge:
     runs-on: ubuntu-latest
