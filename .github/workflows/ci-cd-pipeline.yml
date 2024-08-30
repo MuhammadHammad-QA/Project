@@ -211,7 +211,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: test
+    needs: ${{ github.event_name == 'push' && 'test' || github.event_name == 'pull_request' && 'merge' }}
     if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true) }}
 
     steps:
