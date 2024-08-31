@@ -1,10 +1,5 @@
 name: CI/CD Pipeline
 
-# permissions:
-#   contents: write
-#   pull-requests: write
-#   actions: write
-
 on:
   push:
     branches:
@@ -37,12 +32,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    # - name: Remove conflicting containerd package
-    #   run: sudo apt-get remove -y containerd || true
-
-    # - name: Fix broken dependencies
-    #   run: sudo apt-get install -f -y
 
     - name: Install Docker Compose
       run: |

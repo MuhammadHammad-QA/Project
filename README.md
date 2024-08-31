@@ -198,7 +198,7 @@ docker-compose up
 
 ### CI/CD
 
-The project includes a CI/CD pipeline configuration in .github/workflows/ci-cd-pipeline.yml.
+The project includes a CI/CD pipeline configuration in .github/workflows/push-pipeline.yml and pull-pipeline.yml.
 
 ### Postman
 
