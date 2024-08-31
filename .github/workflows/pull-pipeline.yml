@@ -1,4 +1,4 @@
-name: Pull Pipeline
+name: Pull-request Pipeline
 
 permissions:
   contents: write
