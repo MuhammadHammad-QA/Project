@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Pull Pipeline
 
 permissions:
   contents: write

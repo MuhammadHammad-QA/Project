@@ -1,8 +1,11 @@
-name: CI/CD Pipeline
+name: Push Pipeline
 
 on:
   push:
     branches:
+      - main
+  pull_request:
+    branches-ignore:
       - main
 
 jobs:
