@@ -27,7 +27,7 @@ def merge_sect(parsed_groups, fermi_id=None):
     groups = {
         'group1': {'gpu', 'machine_name', 'design_size'},
         'group2': {'high_curvature_internal_checking_count', 'mrc_area_count'},
-        'group3': {'mean_fermi'},
+        'group3': {'mean_fermi', 'abc'},
         'group4': {'target_prep_runtime'}
     }
 
@@ -94,7 +94,7 @@ def parse_logfile(logfile_path, output_file_path, fermi_id=None):
         '[Geometric_Analysis_Stats_Fermi]',
         '[Statistical_Analysis]'
     ]
-    
+
     # Check if the number of headers matches the number of output list elements
     if len(headers) != len(output_list):
         error_logger.error("The number of headers does not match the number of output list elements.")

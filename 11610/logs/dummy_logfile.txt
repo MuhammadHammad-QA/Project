@@ -57,7 +57,7 @@ qtm5_total = 0
 ctm_exec_time = 3200.00
 qtm_exec_time = 11200.00
 total_prediction_time = None
-mrc1_time = 1350.25
+mrc1_time = 123
 mrc2_time = 500.00
 mbf_exec_time = 200.00
 postprocess_exec_time = 1400.00
@@ -83,6 +83,7 @@ ndose_simulation_size = 470.30
 target_file_size = 370.85
 machine_name = cdp50
 run_date_time = 2024-08-01 14:45:12.654321
+
 
 mean_fermi = 3.10
 std_fermi = 0.62
