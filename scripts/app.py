@@ -129,6 +129,7 @@ def search_by_runs():
     if not job_id_results:
         return render_template('error.html', message="No matching data found for the given criteria."), 404
     
+    # Extract the job_ids from the results
     job_ids = [row['job_id'] for row in job_id_results]
     
     # If no valid job_ids are found, return an error
