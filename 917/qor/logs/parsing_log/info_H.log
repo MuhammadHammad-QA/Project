@@ -1,5 +1,7 @@
-2024-08-30 01:00:37,109 - INFO - The input file /home/emumba/Desktop/Random/Project/917/logs/optimization/dummy_logfile.txt exists
-2024-08-30 01:00:37,110 - INFO - Parsing the file and creating fermi.txt
-2024-08-30 01:00:37,110 - INFO - Reading file /home/emumba/Desktop/Random/Project/917/logs/optimization/dummy_logfile.txt
-2024-08-30 01:00:37,110 - INFO - Data extracted from input file /home/emumba/Desktop/Random/Project/917/logs/optimization/dummy_logfile.txt and written to /home/emumba/Desktop/Random/Project/917/qor/fermi.txt
-2024-08-30 01:00:37,110 - INFO - Parsing complete
+2024-09-02 10:15:36,023 - INFO - The input file /home/emumba/Desktop/Random/Project/917/logs/optimization/dummy_logfile.txt exists
+2024-09-02 10:15:36,024 - INFO - Parsing the file and creating fermi.txt
+2024-09-02 10:15:36,024 - INFO - Reading file /home/emumba/Desktop/Random/Project/917/logs/optimization/dummy_logfile.txt
+2024-09-02 10:15:36,024 - INFO - Data extracted from input file /home/emumba/Desktop/Random/Project/917/logs/optimization/dummy_logfile.txt and written to /home/emumba/Desktop/Random/Project/917/qor/fermi.txt
+2024-09-02 10:15:36,024 - INFO - Parsing complete
+2024-09-02 10:15:36,024 - INFO - Directory created or already exists: /home/emumba/Desktop/Random/Project/rsync/917/qor
+2024-09-02 10:15:36,025 - INFO - Copied /home/emumba/Desktop/Random/Project/917/qor/fermi.txt to /home/emumba/Desktop/Random/Project/rsync/917/qor/fermi.txt
