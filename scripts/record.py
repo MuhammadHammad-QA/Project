@@ -1,22 +1,24 @@
 import sqlalchemy as db
 from sqlalchemy import create_engine, Column, Integer, String, insert, text
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy import inspect
 import sys, os
+#from sqlalchemy.ext.declarative import declarative_base
 
 # Define the database URL
 #DATABASE_URL = 'mysql+pymysql://d2s:d2s_1234@localhost/emumba_qor'
 DATABASE_URL = 'mysql+pymysql://d2s:d2s_1234@db/emumba_qor'
 
 # Use the correct import for declarative_base in SQLAlchemy 2.x
-Base = db.orm.declarative_base()
+Base = declarative_base()
 
+# Function to parse the fermi.txt file
 def parse_fermi_file(file_path):
     data = {}
     current_section = None
     job_id = None
 
+    # Read the file line by line
     with open(file_path, 'r') as file:
         for line in file:
             line = line.strip()
