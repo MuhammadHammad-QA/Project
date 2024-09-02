@@ -162,4 +162,7 @@ if __name__ == '__main__':
     app.run(auto_reload=True)
 
 
+
+
+
 # # docker-compose run web python3 scripts/record.py rsync/917/qor/fermi.txt
